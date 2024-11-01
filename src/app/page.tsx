@@ -5,22 +5,8 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { Skills } from "@/components/skills";
-import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 
 export default function Home() {
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      const element = document.getElementById(hash.slice(1));
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  }, [searchParams]);
-
   return (
     <div className="min-h-screen">
       <Header />
