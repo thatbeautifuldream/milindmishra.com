@@ -14,6 +14,16 @@ export function Skills() {
           </div>
         ))}
       </div>
+      <p className="text-sm mt-4">
+        Generated using{" "}
+        <a
+          href="https://github.com/thatbeautifuldream/gitcommitfame/commit/8ba05ee0a87b851acaa7b2cc369b7704864ab181"
+          className="underline underline-offset-4"
+          target="_blank"
+        >
+          gitcommitfame api
+        </a>
+      </p>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import { projects } from "@/data/projects";
+import { SquareArrowOutUpRight, Github } from "lucide-react";
 
 export function FeaturedProjects() {
   return (
@@ -8,8 +9,30 @@ export function FeaturedProjects() {
         {projects.map((project) => (
           <div
             key={project.title}
-            className="border border-green-400/20 p-6 hover:border-green-400 transition-colors"
+            className="border border-green-400/20 p-6 hover:border-green-400 transition-colors relative"
           >
+            <div className="absolute top-4 right-4 flex gap-2">
+              {project.repo && (
+                <a
+                  href={project.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-green-400 hover:text-green-300 transition-colors"
+                >
+                  <Github size={16} />
+                </a>
+              )}
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-green-400 hover:text-green-300 transition-colors"
+                >
+                  <SquareArrowOutUpRight size={16} />
+                </a>
+              )}
+            </div>
             <h3 className="text-xl font-bold mb-2">{project.title}</h3>
             <p className="text-green-300 mb-4">{project.description}</p>
             <div className="flex flex-wrap gap-2">
