@@ -71,6 +71,17 @@ body {
   }
 }
 
+/* Selection colors */
+::selection {
+  background-color: white;
+  color: black;
+}
+
+.dark ::selection {
+  background-color: white;
+  color: black;
+}
+
 @keyframes typing {
   from {
     width: 0;
