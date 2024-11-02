@@ -126,3 +126,20 @@ body {
   scrollbar-color: rgba(0, 0, 0, 0.3) transparent; /* thumb and track color */
   /* or scrollbar-color: black transparent; for solid black */
 }
+
+/* Add these classes to enable 3D card flip */
+.perspective {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
