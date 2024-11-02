@@ -1,4 +1,4 @@
-import { projects } from "@/data/projects";
+import { projects } from "@/data/resume";
 import { SquareArrowOutUpRight, Github } from "lucide-react";
 import { motion } from "framer-motion";
 

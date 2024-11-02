@@ -1,4 +1,4 @@
-import { skills } from "@/data/skills";
+import { skills } from "@/data/resume";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
