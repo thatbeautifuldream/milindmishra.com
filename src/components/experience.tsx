@@ -35,7 +35,7 @@ export function Experience() {
             >
               {/* Timeline dot */}
               <div className="relative">
-                <div className="absolute left-[7px] top-[14px] h-[12px] w-[12px] border-2 border-green-400 bg-black" />
+                <div className="absolute left-[7px] top-[14px] h-[12px] w-[12px] rounded-full border-2 border-green-400 bg-black" />
               </div>
 
               <div className="space-y-3">
