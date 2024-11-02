@@ -1,7 +1,7 @@
 export function Hero() {
   return (
     <section className="text-center sm:text-left">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 typing-effect inline-block">
         Hey, I&apos;m Milind
       </h1>
       <p className="text-lg sm:text-xl text-green-300 max-w-2xl">

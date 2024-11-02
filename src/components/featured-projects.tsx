@@ -1,14 +1,22 @@
 import { projects } from "@/data/projects";
 import { SquareArrowOutUpRight, Github } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function FeaturedProjects() {
   return (
-    <section id="projects" className="py-20">
+    <section id="projects">
       <h2 className="text-2xl sm:text-3xl font-bold mb-6">Featured Projects</h2>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
-          <div
+        {projects.map((project, index) => (
+          <motion.div
             key={project.title}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.4,
+              delay: index * 0.1,
+              ease: "easeOut",
+            }}
             className="border border-green-400/20 p-6 hover:border-green-400 transition-colors relative"
           >
             <div className="absolute top-4 right-4 flex gap-2">
@@ -42,7 +50,7 @@ export function FeaturedProjects() {
                 </span>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
