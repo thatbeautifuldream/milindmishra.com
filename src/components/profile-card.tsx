@@ -12,7 +12,7 @@ const defaultOptions = {
   reverse: false,
   max: 25,
   perspective: 1000,
-  scale: 1.05,
+  scale: 1,
   speed: 1000,
   transition: true,
   axis: null,
