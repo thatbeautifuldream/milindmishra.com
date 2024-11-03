@@ -5,8 +5,9 @@ export const details = {
       first_name: "Milind",
       last_name: "Mishra",
     },
+    designation: "ui, ai & ops",
     profile: {
-      bio: "Product Engineer with experience in software development, UI design, and project management. Proven track record in building AI-driven applications and enhancing user experiences across various platforms.",
+      bio: "Product Engineer fascinated by AI-driven applications and their potential to transform user experiences. Passionate about software development, UI design, and exploring new ways to solve complex problems through technology.",
     },
     statistics: {
       key_stats: [

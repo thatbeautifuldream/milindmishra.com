@@ -1,30 +1,48 @@
+import { Globe } from "./globe";
 import { details } from "@/data/resume";
+import { ResumeModal } from "./resume-modal";
+import { useState } from "react";
 
 export function Hero() {
-  const { person } = details;
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section className="text-center sm:text-left">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 typing-effect inline-block">
-        Hey, I&apos;m {person.name.first_name}
-      </h1>
-      <p className="text-lg sm:text-xl text-green-300 max-w-2xl">
-        {person.profile.bio}
-      </p>
+    <>
+      <div className="h-[calc(100vh-40rem)] flex items-center justify-center">
+        <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          {/* Left side - Text content */}
+          <div className="space-y-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-green-400">
+              {details.person.name.full_name}
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300">
+              {details.person.designation}
+            </p>
+            <p className="text-gray-400 max-w-lg">
+              {details.person.profile.bio}
+            </p>
+            <button
+              className="border border-green-400/20 text-green-400 py-2 px-4 hover:bg-green-400/10 transition-colors"
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              View Resume
+            </button>
+          </div>
 
-      <div className="mt-6 flex gap-4 justify-center sm:justify-start">
-        {Object.entries(person.socials).map(([platform, url]) => (
-          <a
-            key={platform}
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-green-400 hover:text-green-300 transition-colors"
-          >
-            {platform.charAt(0).toUpperCase() + platform.slice(1)}
-          </a>
-        ))}
+          {/* Right side - Globe */}
+          <div className="relative w-full h-full flex items-center justify-center">
+            <div className="absolute w-full max-w-[500px] aspect-square">
+              <div className="relative w-full h-full">
+                <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent z-10 pointer-events-none" />
+                <Globe />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+      <ResumeModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </>
   );
 }
