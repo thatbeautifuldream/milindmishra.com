@@ -5,7 +5,7 @@ export const details = {
       first_name: "Milind",
       last_name: "Mishra",
     },
-    designation: "ui, ai & ops",
+    roles: ["ui", "ai", "ops"],
     profile: {
       bio: "Product Engineer fascinated by AI-driven applications and their potential to transform user experiences. Passionate about software development, UI design, and exploring new ways to solve complex problems through technology.",
     },

@@ -11,10 +11,16 @@ export function Hero() {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto space-y-6 text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-green-400">
-              {details.person.name.full_name}
+              Hi I&apos;m {details.person.name.first_name}!
             </h1>
             <p className="text-xl md:text-2xl text-gray-300">
-              {details.person.designation}
+              I do{" "}
+              {details.person.roles.length > 1
+                ? `${details.person.roles
+                    .slice(0, -1)
+                    .join(", ")} & ${details.person.roles.slice(-1)}`
+                : details.person.roles[0]}
+              .
             </p>
             <p className="text-gray-400">{details.person.profile.bio}</p>
             <button
