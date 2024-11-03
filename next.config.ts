@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     {
       source: "/resume",
       destination:
-        "https://docs.google.com/document/d/1ujYf9MIOEeH3UpaHKZmXm_9-W6XpSQ5LAcLUv0ue32k",
+        "https://cdn.jsdelivr.net/gh/thatbeautifuldream/resume-cron/resume.pdf",
     },
   ],
 };
