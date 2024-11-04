@@ -7,7 +7,7 @@ export function Hero() {
 
   return (
     <>
-      <div className="h-[calc(100vh-40rem)] flex items-center justify-center">
+      <section className="min-h-[80dvh] flex items-center justify-center py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto space-y-6 text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-green-400">
@@ -33,7 +33,7 @@ export function Hero() {
             </button>
           </div>
         </div>
-      </div>
+      </section>
       <ResumeModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
