@@ -10,7 +10,7 @@ export function Projects() {
 
   return (
     <section id="projects">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-6">Projects</h2>
+      <h2 className="~text-2xl/3xl font-bold mb-6">Projects</h2>
       <div className="flex flex-col gap-6">
         {projects.map((project, index) => (
           <div
@@ -81,11 +81,15 @@ export function Projects() {
               >
                 {project.title}
               </h3>
-              <p className="text-green-300/90">{project.description}</p>
+              <p className="text-green-300/90 ~text-sm/base">
+                {project.description}
+              </p>
             </div>
 
             <div className="overflow-hidden">
-              <p className="text-green-200 mb-4">{project.moreDetails}</p>
+              <p className="text-green-200 mb-4 ~text-sm/base">
+                {project.moreDetails}
+              </p>
             </div>
 
             <div className="flex flex-wrap gap-2 mb-4">

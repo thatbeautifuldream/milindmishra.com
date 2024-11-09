@@ -15,8 +15,8 @@ function formatDate(timestamp: number | null) {
 
 export function Experience() {
   return (
-    <section className="space-y-6 sm:space-y-8">
-      <h2 className="text-2xl sm:text-3xl font-bold">Experience</h2>
+    <section className="~space-y-8/6">
+      <h2 className="~text-2xl/3xl font-bold">Experience</h2>
 
       <div className="relative">
         {/* Timeline line */}
@@ -33,7 +33,7 @@ export function Experience() {
                 delay: index * 0.1,
                 ease: "easeOut",
               }}
-              className="relative grid grid-cols-[24px_1fr] gap-4 sm:gap-6"
+              className="relative grid grid-cols-[24px_1fr] ~gap-4/6"
             >
               {/* Timeline dot */}
               <div className="relative">
@@ -50,15 +50,15 @@ export function Experience() {
                   >
                     {job.title}
                   </h3>
-                  <p className="text-green-300 text-sm sm:text-base">
+                  <p className="text-green-300 ~text-sm/base">
                     {job.organization.name} • {job.location}
                   </p>
                   {job.start_date && (
-                    <p className="text-green-300 text-sm sm:text-base mb-2 sm:mb-3">
+                    <p className="text-green-300 ~text-sm/base mb-2 sm:mb-3">
                       {formatDate(job.start_date)} - {formatDate(job.end_date)}
                     </p>
                   )}
-                  <p className="text-green-300 text-sm sm:text-base leading-relaxed">
+                  <p className="text-green-300 ~text-sm/base leading-relaxed">
                     {job.description}
                   </p>
                 </div>
