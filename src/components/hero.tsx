@@ -1,6 +1,8 @@
 import { details } from "@/data/resume";
-import { ResumeModal } from "./resume-modal";
+import { serif } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { ResumeModal } from "./resume-modal";
 
 export function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,7 +12,12 @@ export function Hero() {
       <section className="min-h-[80dvh] flex items-center justify-center py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto space-y-6 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-green-400">
+            <h1
+              className={cn(
+                "text-4xl md:text-6xl text-green-400",
+                serif.className
+              )}
+            >
               Hi I&apos;m {details.person.name.first_name}!
             </h1>
             <p className="text-xl md:text-2xl text-gray-300">

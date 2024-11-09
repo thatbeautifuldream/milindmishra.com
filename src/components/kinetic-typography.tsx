@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -35,7 +36,9 @@ export function KineticTypography({ onComplete }: { onComplete: () => void }) {
         initial={{ y: 0 }}
         animate={{ y: "-100vh" }}
         transition={{ duration: 1, delay: 2 }}
-        className="fixed inset-0 flex items-center justify-center bg-black z-50"
+        className={cn(
+          "fixed inset-0 flex items-center justify-center bg-black z-50"
+        )}
       >
         <motion.div
           variants={containerVariants}
@@ -47,7 +50,7 @@ export function KineticTypography({ onComplete }: { onComplete: () => void }) {
             <motion.span
               key={index}
               variants={childVariants}
-              className="text-4xl font-bold text-green-400"
+              className={cn("text-4xl font-bold text-green-400")}
             >
               {char === " " ? "\u00A0" : char}
             </motion.span>

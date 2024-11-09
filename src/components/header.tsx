@@ -32,12 +32,12 @@ export function Header() {
             >
               Skills
             </button>
-            <button
-              onClick={() => scrollToSection("contact")}
+            <Link
+              href="/contact"
               className="hover:text-green-300 transition-colors"
             >
               Contact
-            </button>
+            </Link>
           </div>
         </nav>
       </div>

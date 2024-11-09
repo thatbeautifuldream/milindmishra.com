@@ -1,13 +1,9 @@
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+import { sans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-
-const inter = Inter({
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Milind Mishra",
@@ -22,10 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={cn(
-          inter.className,
-          "antialiased bg-black text-green-400 font-mono"
-        )}
+        className={cn(sans.className, "antialiased bg-black text-green-400")}
         suppressHydrationWarning
       >
         <div className="min-h-screen">
