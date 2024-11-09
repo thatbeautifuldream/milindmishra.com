@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Sign } from "./sign";
 
 export function Header() {
   const scrollToSection = (sectionId: string) => {
@@ -15,8 +16,7 @@ export function Header() {
       <div className="max-w-6xl mx-auto px-4">
         <nav className="flex flex-wrap items-center justify-between py-4">
           <Link href="/" className="text-xl font-bold">
-            <span className="hidden sm:inline">Milind Mishra</span>
-            <span className="sm:hidden">Milind</span>
+            <Sign color="#49DE80" className="w-14 h-14" />
           </Link>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
