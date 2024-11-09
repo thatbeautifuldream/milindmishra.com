@@ -43,7 +43,7 @@ export function ProfileCard() {
           onClick={handleFlip}
         >
           {/* Front side */}
-          <div className="backface-hidden">
+          <div className="backface-hidden bg-black">
             <Tilt options={defaultOptions} className="w-full max-w-sm mx-auto">
               <div className="border border-green-400/20 hover:border-green-400 transition-colors bg-black/50 backdrop-blur-lg overflow-hidden">
                 <div className="relative h-32 bg-gradient-to-r from-green-400/20 to-green-400/10" />
@@ -112,7 +112,7 @@ export function ProfileCard() {
           </div>
 
           {/* Back side */}
-          <div className="absolute inset-0 rotate-y-180 backface-hidden">
+          <div className="absolute inset-0 rotate-y-180 backface-hidden bg-black">
             <Tilt
               options={defaultOptions}
               className="w-full max-w-sm mx-auto h-full"

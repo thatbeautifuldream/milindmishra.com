@@ -6,7 +6,7 @@ export const details = {
       last_name: "Mishra",
     },
     profile: {
-      bio: "Love everything Design & Engineering.",
+      bio: "I love everything Design & Engineering.",
     },
     statistics: {
       key_stats: [

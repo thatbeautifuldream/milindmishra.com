@@ -22,7 +22,7 @@ export function Skills() {
               href={`https://github.com/thatbeautifuldream?tab=repositories&q=language:${skill}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-green-400/20 p-4 text-center hover:border-green-400 transition-colors block w-full"
+              className="border border-green-400/20 p-4 text-center hover:border-green-400 transition-colors block w-full bg-black/10 backdrop-blur-sm"
             >
               {skill}
             </Link>

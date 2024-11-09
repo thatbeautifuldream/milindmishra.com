@@ -40,7 +40,7 @@ export function Experience() {
                 <div className="absolute left-[7px] top-[14px] h-[12px] w-[12px] rounded-full border-2 border-green-400 bg-black" />
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-3 bg-black/10 backdrop-blur-sm">
                 <div className="border border-green-400/20 p-4 sm:p-6 hover:border-green-400 transition-colors">
                   <h3
                     className={cn(
