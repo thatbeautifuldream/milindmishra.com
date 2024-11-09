@@ -51,7 +51,7 @@ export function ProfileCard() {
                   <div className="relative -mt-16 mb-4">
                     <img
                       className="w-32 h-32 border-4 border-black mx-auto object-cover"
-                      src="https://github.com/thatbeautifuldream.png"
+                      src="https://avatars.githubusercontent.com/u/28717686?v=4"
                       alt="Milind Mishra's Profile picture"
                     />
                   </div>
