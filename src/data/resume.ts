@@ -5,9 +5,8 @@ export const details = {
       first_name: "Milind",
       last_name: "Mishra",
     },
-    roles: ["ui", "ai", "ops"],
     profile: {
-      bio: "Product Engineer fascinated by AI-driven applications and their potential to transform user experiences. Passionate about software development, UI design, and exploring new ways to solve complex problems through technology.",
+      bio: "Love everything Design & Engineering.",
     },
     statistics: {
       key_stats: [
@@ -25,7 +24,7 @@ export const details = {
 
 export const experience = [
   {
-    title: "Product Engineer",
+    title: "Founding Product Engineer",
     description:
       "Part of ideation and design involving multiple user flows. Built multimodal AI chatbot for better skill understanding using OpenAI. Led UI for skill validator, recruiter & candidate flows. Architected deployment processes for multiple Next.js applications on AWS EC2.",
     organization: {
@@ -77,7 +76,7 @@ export const experience = [
     job_type: "full_time",
   },
   {
-    title: "UX Design Intern (to) UI Developer Intern",
+    title: "UI/UX Design Intern",
     description:
       "Prototyped screens for Findcoder.io using Figma to enhance user interaction and overall UX. Developed a version of a Design System for the entire product line, promoting consistency and efficiency in UI design across multiple platforms.",
     organization: {
@@ -90,7 +89,7 @@ export const experience = [
     job_type: "full_time",
   },
   {
-    title: "Technical Writing & Development Intern",
+    title: "Technical Writing Intern",
     description:
       "Documented course material including HTML, CSS, JS. Actively integrated code blocks for students to practice code inside the course material.",
     organization: {

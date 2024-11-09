@@ -11,11 +11,11 @@ export default function Home() {
   const [showAnimation, setShowAnimation] = useState(true);
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-8 sm:py-16">
+    <main className="max-w-6xl mx-auto ~px-4/8 ~py-8/16">
       {showAnimation && (
         <KineticTypography onComplete={() => setShowAnimation(false)} />
       )}
-      <div className="space-y-12 sm:space-y-16">
+      <div className="~space-y-12/16">
         <Hero />
         <Experience />
         <Projects />

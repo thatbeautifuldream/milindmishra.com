@@ -1,6 +1,8 @@
 "use client";
 
 import { experience } from "@/data/resume";
+import { serif } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 function formatDate(timestamp: number | null) {
@@ -40,7 +42,12 @@ export function Experience() {
 
               <div className="space-y-3">
                 <div className="border border-green-400/20 p-4 sm:p-6 hover:border-green-400 transition-colors">
-                  <h3 className="font-bold text-lg sm:text-xl mb-1">
+                  <h3
+                    className={cn(
+                      "~text-3xl/6xl mb-2 text-green-50",
+                      serif.className
+                    )}
+                  >
                     {job.title}
                   </h3>
                   <p className="text-green-300 text-sm sm:text-base">

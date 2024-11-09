@@ -15,16 +15,14 @@ export function Projects() {
         {projects.map((project, index) => (
           <div
             key={index}
-            className={`
-            relative border p-6 
-            hover:shadow-lg
-            bg-black/20 backdrop-blur-sm
-            ${
+            className={cn(
+              "relative border p-6",
+              "hover:shadow-lg",
+              "bg-black/20 backdrop-blur-sm",
               hoveredIndex === index
                 ? "border-green-400"
                 : "border-green-400/20"
-            }
-          `}
+            )}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
