@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { projects } from "@/data/resume";
+import { serif } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 import { SquareArrowOutUpRight, Github } from "lucide-react";
 import { useState } from "react";
 
@@ -42,7 +44,7 @@ export function Projects() {
                         project.awards[award as keyof typeof project.awards].img
                       }
                       alt={award}
-                      className="h-28 w-28"
+                      className="~h-24/36 ~w-24/36"
                     />
                   </a>
                 ))}
@@ -73,7 +75,12 @@ export function Projects() {
             </div>
 
             <div className="mb-4">
-              <h3 className="text-xl font-bold mb-2 text-green-50">
+              <h3
+                className={cn(
+                  "~text-3xl/6xl mb-2 text-green-50",
+                  serif.className
+                )}
+              >
                 {project.title}
               </h3>
               <p className="text-green-300/90">{project.description}</p>
