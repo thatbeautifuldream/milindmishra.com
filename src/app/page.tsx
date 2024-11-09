@@ -1,9 +1,9 @@
 "use client";
 
 import { Experience } from "@/components/experience";
-import { FeaturedProjects } from "@/components/featured-projects";
 import { Hero } from "@/components/hero";
 import { KineticTypography } from "@/components/kinetic-typography";
+import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
 import { useState } from "react";
 
@@ -18,7 +18,7 @@ export default function Home() {
       <div className="space-y-12 sm:space-y-16">
         <Hero />
         <Experience />
-        <FeaturedProjects />
+        <Projects />
         <Skills />
       </div>
     </main>
