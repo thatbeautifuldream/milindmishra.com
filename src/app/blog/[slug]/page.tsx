@@ -1,13 +1,12 @@
 "use client";
 
-// import { posts } from "@/data/posts";
 import { fetchPostDetails } from "@/lib/services/blog";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { motion } from "framer-motion";
-import { AlertTriangle, Loader } from "lucide-react";
-import { useParams } from "next/navigation";
+import { Loader } from "lucide-react";
+import { notFound, useParams } from "next/navigation";
 
 dayjs.extend(relativeTime);
 
@@ -21,18 +20,13 @@ export default function BlogPost() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Loader className="animate-spin -mt-16" />
+        <Loader className="animate-spin w-5 h-5 -mt-16" />
       </div>
     );
   }
 
   if (!post) {
-    return (
-      <div className="min-h-screen flex gap-x-4 items-center justify-center">
-        <AlertTriangle className="-mt-16 w-5 h-5" />
-        <div className="-mt-16">Post not found</div>
-      </div>
-    );
+    notFound();
   }
 
   return (

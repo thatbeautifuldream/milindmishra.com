@@ -1,20 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
-// import { posts } from "@/data/posts";
-import Link from "next/link";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 import { fetchAllPosts } from "@/lib/services/blog";
 import { useQuery } from "@tanstack/react-query";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import { Loader } from "lucide-react";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 dayjs.extend(relativeTime);
 
 export default function BlogPage() {
-  const { data: posts } = useQuery({
+  const { data: posts, isLoading } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchAllPosts,
   });
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader className="animate-spin w-5 h-5 -mt-16" />
+      </div>
+    );
+  }
+
+  if (!posts) {
+    notFound();
+  }
 
   return (
     <div className="min-h-screen">
