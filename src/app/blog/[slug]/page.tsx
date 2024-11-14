@@ -1,19 +1,22 @@
 "use client";
 
-import { posts } from "@/data/posts";
-import { motion } from "framer-motion";
-import { useParams } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+// import { posts } from "@/data/posts";
+import { fetchPostDetails } from "@/lib/services/blog";
+import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { motion } from "framer-motion";
+import { useParams } from "next/navigation";
 
 dayjs.extend(relativeTime);
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const post = posts.find((p) => p.slug === slug);
+  // const post = posts.find((p) => p.slug === slug);
+  const { data: post } = useQuery({
+    queryKey: ["post", slug],
+    queryFn: () => fetchPostDetails(slug as string),
+  });
 
   if (!post) {
     return <div>Post not found</div>;
@@ -28,7 +31,7 @@ export default function BlogPost() {
           transition={{ duration: 0.4 }}
         >
           <div className="text-green-400 mb-2">
-            {dayjs(post.date).fromNow()}
+            {dayjs(post.publishedAt).fromNow()}
           </div>
           <h1 className="text-3xl sm:text-4xl text-white font-bold mb-4">
             {post.title}
@@ -36,38 +39,17 @@ export default function BlogPost() {
           <div className="flex gap-4 mb-8">
             <div className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
-                <span key={tag} className="text-sm px-2 py-1 bg-green-400/10">
-                  {tag}
+                <span
+                  key={tag.id}
+                  className="text-sm px-2 py-1 bg-green-400/10 backdrop-blur-sm"
+                >
+                  {tag.name}
                 </span>
               ))}
             </div>
           </div>
           <div className="prose prose-invert prose-green max-w-none">
-            <ReactMarkdown
-              components={{
-                // @ts-expect-error : TODO : fix this
-                code({ inline, className, children, ...props }) {
-                  const match = /language-(\w+)/.exec(className || "");
-                  return !inline && match ? (
-                    <SyntaxHighlighter
-                      // @ts-expect-error : TODO : fix this
-                      style={atomDark}
-                      language={match[1]}
-                      PreTag="div"
-                      {...props}
-                    >
-                      {String(children).replace(/\n$/, "")}
-                    </SyntaxHighlighter>
-                  ) : (
-                    <code className={className} {...props}>
-                      {children}
-                    </code>
-                  );
-                },
-              }}
-            >
-              {post.content}
-            </ReactMarkdown>
+            <div dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
           </div>
         </motion.article>
       </main>
