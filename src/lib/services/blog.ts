@@ -7,6 +7,7 @@ const client = new GraphQLClient("https://gql.hashnode.com", {
 export type FetchAllPostsResponse = {
   data: {
     publication: {
+      id: string;
       posts: {
         edges: {
           node: {
@@ -41,6 +42,7 @@ export async function fetchAllPosts(): Promise<
   const data: FetchAllPostsResponse["data"] = await client.request(gql`
     query allPosts($tags: [ObjectId!]) {
       publication(host: "blog.milind.live") {
+        id
         title
         posts(first: 20, filter: { tags: $tags }) {
           pageInfo {
@@ -80,6 +82,7 @@ export async function fetchAllPosts(): Promise<
 export type FetchPostDetailsResponse = {
   data: {
     publication: {
+      id: string;
       post: {
         author: {
           name: string;
@@ -112,6 +115,7 @@ export async function fetchPostDetails(
     gql`
       query postDetails($slug: String!) {
         publication(host: "blog.milind.live") {
+          id
           post(slug: $slug) {
             author {
               name
