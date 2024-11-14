@@ -6,20 +6,33 @@ import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { motion } from "framer-motion";
+import { AlertTriangle, Loader } from "lucide-react";
 import { useParams } from "next/navigation";
 
 dayjs.extend(relativeTime);
 
 export default function BlogPost() {
   const { slug } = useParams();
-  // const post = posts.find((p) => p.slug === slug);
-  const { data: post } = useQuery({
+  const { data: post, isLoading } = useQuery({
     queryKey: ["post", slug],
     queryFn: () => fetchPostDetails(slug as string),
   });
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader className="animate-spin -mt-16" />
+      </div>
+    );
+  }
+
   if (!post) {
-    return <div>Post not found</div>;
+    return (
+      <div className="min-h-screen flex gap-x-4 items-center justify-center">
+        <AlertTriangle className="-mt-16 w-5 h-5" />
+        <div className="-mt-16">Post not found</div>
+      </div>
+    );
   }
 
   return (
