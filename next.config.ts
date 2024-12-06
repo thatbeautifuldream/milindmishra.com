@@ -39,8 +39,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/khas",
-        destination:
-          "https://docs.google.com/spreadsheets/d/1U3ERACL9IE8tCROEP3ODnAk8_SE4OpyYL6JgTP9YamU/edit?usp=sharing",
+        destination: "https://forms.gle/LnVszBUwfA2fG6iV6",
         permanent: true,
       },
     ];
