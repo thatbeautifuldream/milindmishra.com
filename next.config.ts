@@ -37,6 +37,12 @@ const nextConfig: NextConfig = {
         destination: "https://bsky.app/profile/milindmishra.bsky.social",
         permanent: true,
       },
+      {
+        source: "/khas",
+        destination:
+          "https://docs.google.com/spreadsheets/d/1U3ERACL9IE8tCROEP3ODnAk8_SE4OpyYL6JgTP9YamU/edit?usp=sharing",
+        permanent: true,
+      },
     ];
   },
 };
