@@ -8,8 +8,8 @@ export function Hero() {
       <section>
         <div className="container mx-auto ~px-4/8">
           <div className="max-w-2xl mx-auto ~space-y-3/6 text-center">
-            <h1 className={cn("~text-4xl/7xl text-green-400", serif.className)}>
-              Hi I&apos;m {details.person.name.first_name}!
+            <h1 className={cn("~text-3xl/6xl text-green-400", serif.className)}>
+              Indiranagar का Design Engineer
             </h1>
             <p className="text-gray-400 ~text-sm/lg">
               {details.person.profile.bio}
