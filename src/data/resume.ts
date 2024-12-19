@@ -6,7 +6,7 @@ export const details = {
       last_name: "Mishra",
     },
     profile: {
-      bio: "I love everything Design & Engineering.",
+      bio: "I am a software engineer based in Bangalore, India. I love studying about design and engineering to build products that solve problems.",
     },
     statistics: {
       key_stats: [
