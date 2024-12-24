@@ -1,27 +1,3 @@
-export const details = {
-  person: {
-    name: {
-      full_name: "Milind Mishra",
-      first_name: "Milind",
-      last_name: "Mishra",
-    },
-    profile: {
-      bio: "I am a software engineer based in Bangalore, India. I love studying about design and engineering to build products that solve problems.",
-    },
-    statistics: {
-      key_stats: [
-        { name: "total_exp_months", value: 33 },
-        { name: "total_projects", value: 2 },
-      ],
-    },
-    socials: {
-      github: "https://github.com/thatbeautifuldream",
-      linkedin: "https://www.linkedin.com/in/mishramilind/",
-      twitter: "https://x.com/milindmishra_",
-    },
-  },
-};
-
 export const experience = [
   {
     title: "Founding Product Engineer",
@@ -88,16 +64,6 @@ export const experience = [
     location: "Bangalore, India",
     job_type: "full_time",
   },
-  {
-    title: "Technical Writing Intern",
-    description:
-      "Documented course material including HTML, CSS, JS. Actively integrated code blocks for students to practice code inside the course material.",
-    organization: {
-      name: "Technical Organization",
-      logo: "https://p1.edge.duggup.com/organizations/243215570149.jpg?v=0",
-    },
-    location: "Remote",
-  },
 ];
 
 export const projects = [
@@ -157,3 +123,42 @@ export const skills = [
   "MDX",
   "Astro",
 ];
+
+export const details = {
+  person: {
+    name: {
+      full_name: "Milind Mishra",
+      first_name: "Milind",
+      last_name: "Mishra",
+    },
+    profile: {
+      bio: "I am a software engineer based in Bangalore, India. I love studying about design and engineering to build products that solve problems.",
+    },
+    statistics: {
+      key_stats: [
+        {
+          name: "total_exp_months",
+          value: experience.reduce((acc, exp) => {
+            const startDate = new Date(exp.start_date * 1000);
+            const endDate = exp.end_date
+              ? new Date(exp.end_date * 1000)
+              : new Date();
+            const months =
+              (endDate.getFullYear() - startDate.getFullYear()) * 12 +
+              (endDate.getMonth() - startDate.getMonth());
+            return acc + months;
+          }, 0),
+        },
+        {
+          name: "total_projects",
+          value: projects.length,
+        },
+      ],
+    },
+    socials: {
+      github: "https://github.com/thatbeautifuldream",
+      linkedin: "https://www.linkedin.com/in/mishramilind/",
+      twitter: "https://x.com/milindmishra_",
+    },
+  },
+};
