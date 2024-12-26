@@ -1,5 +1,17 @@
 export const experience = [
   {
+    title: "Software Engineer",
+    description: "Fresh Hire!",
+    organization: {
+      name: "SARAL",
+      logo: "https://p1.edge.duggup.com/organizations/213603474374859821.jpg?v=0",
+    },
+    start_date: 1735689600,
+    end_date: null,
+    location: "Remote",
+    job_type: "full_time",
+  },
+  {
     title: "Founding Product Engineer",
     description:
       "Part of ideation and design involving multiple user flows. Built multimodal AI chatbot for better skill understanding using OpenAI. Led UI for skill validator, recruiter & candidate flows. Architected deployment processes for multiple Next.js applications on AWS EC2.",
@@ -8,7 +20,7 @@ export const experience = [
       logo: "https://p1.edge.duggup.com/organizations/213603474374859821.jpg?v=0",
     },
     start_date: 1714521600,
-    end_date: null,
+    end_date: 1735257600,
     location: "Bangalore, India",
     job_type: "full_time",
   },
