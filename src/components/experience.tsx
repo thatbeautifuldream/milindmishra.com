@@ -1,17 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { experience } from "@/data/resume";
 import { serif } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-
-function formatDate(timestamp: number | null) {
-  if (!timestamp) return "Present";
-  return new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "short",
-  }).format(new Date(timestamp * 1000));
-}
+import { formatDate } from "@/lib/utils";
 
 export function Experience() {
   return (
@@ -82,6 +76,26 @@ export function Experience() {
                   <p className="text-green-300 ~text-sm/base leading-relaxed">
                     {job.description}
                   </p>
+                  {index === 0 && (
+                    <div className="flex items-center mt-4">
+                      <img
+                        src="/assets/shopify.webp"
+                        alt="Shopify App"
+                        className="h-6 w-6 mr-2"
+                      />
+                      <div className="flex-1 h-1 bg-green-900 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-green-400"
+                          style={{ width: "1%" }}
+                        ></div>
+                      </div>
+                      <img
+                        src="/assets/re.png"
+                        alt="Royal Enfield"
+                        className="h-6 w-6 ml-2"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
