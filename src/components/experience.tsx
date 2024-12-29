@@ -76,7 +76,7 @@ export function Experience() {
                   <p className="text-green-300 ~text-sm/base leading-relaxed">
                     {job.description}
                   </p>
-                  {index === 0 && (
+                  {/* {index === 0 && (
                     <div className="flex items-center mt-4">
                       <img
                         src="/assets/shopify.webp"
@@ -95,7 +95,7 @@ export function Experience() {
                         className="h-6 w-6 ml-2"
                       />
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             </motion.div>
