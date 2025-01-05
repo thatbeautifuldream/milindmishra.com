@@ -1,6 +1,6 @@
-import { DM_Sans, Instrument_Serif } from "next/font/google";
+import { Space_Grotesk, Instrument_Serif } from "next/font/google";
 
-export const sans = DM_Sans({
+export const sans = Space_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
   display: "swap",
