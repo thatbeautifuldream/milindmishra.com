@@ -18,7 +18,7 @@ export default function LinksPage() {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block p-4 border border-green-500/20 hover:bg-green-500/10 transition-colors backdrop-blur-sm"
+              className="block p-4 border border-green-500/20 hover:bg-green-500/10 transition-colors backdrop-blur-sm mb-4"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{

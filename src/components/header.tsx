@@ -4,12 +4,12 @@ import Link from "next/link";
 import { Sign } from "./sign";
 
 export function Header() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  // const scrollToSection = (sectionId: string) => {
+  //   const element = document.getElementById(sectionId);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // };
 
   return (
     <header className="sticky top-0 z-50 bg-black border-b border-green-400/20">
@@ -20,7 +20,7 @@ export function Header() {
           </Link>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-            <button
+            {/* <button
               onClick={() => scrollToSection("projects")}
               className="hover:text-green-300 transition-colors"
             >
@@ -31,12 +31,24 @@ export function Header() {
               className="hover:text-green-300 transition-colors"
             >
               Skills
-            </button>
+            </button> */}
             <Link
               href="/contact"
               className="hover:text-green-300 transition-colors"
             >
               Contact
+            </Link>
+            <Link
+              href="/blog"
+              className="hover:text-green-300 transition-colors"
+            >
+              Blog
+            </Link>
+            <Link
+              href="/links"
+              className="hover:text-green-300 transition-colors"
+            >
+              Links
             </Link>
           </div>
         </nav>
