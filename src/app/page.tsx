@@ -11,7 +11,7 @@ export default function Home() {
   const [showAnimation, setShowAnimation] = useState(true);
 
   return (
-    <main className="max-w-6xl mx-auto ~px-4/8 ~py-8/16">
+    <>
       {showAnimation && (
         <KineticTypography onComplete={() => setShowAnimation(false)} />
       )}
@@ -21,6 +21,6 @@ export default function Home() {
         <Projects />
         <Skills />
       </div>
-    </main>
+    </>
   );
 }

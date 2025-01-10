@@ -5,7 +5,7 @@ import { links } from "@/data/links";
 
 export default function LinksPage() {
   return (
-    <main className="max-w-2xl mx-auto ~px-4/8 ~py-8/16 min-h-screen">
+    <main className="min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

@@ -29,7 +29,9 @@ export default function RootLayout({
         >
           <div className="min-h-screen">
             <Header />
-            {children}
+            <main className="max-w-6xl mx-auto ~px-4/8 ~py-8/16">
+              {children}
+            </main>
             <Footer />
           </div>
         </body>

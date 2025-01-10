@@ -45,7 +45,7 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="min-h-screen pt-8">
+    <div className="min-h-screen">
       <motion.header
         style={{
           paddingTop: headerPadding,
