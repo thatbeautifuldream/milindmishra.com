@@ -1,20 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+import ExperienceTooltip from "@/components/experience-tooltip";
 import { experience } from "@/data/resume";
 import { serif } from "@/lib/fonts";
 import { cn, formatDate } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { Minus } from "lucide-react";
 
 export function Experience() {
   return (
-    <section className="~space-y-8/6">
+    <section className="~space-y-8/6 select-none">
       <h2 className="~text-2xl/3xl font-bold">Experience</h2>
 
       <div className="relative">
@@ -71,37 +67,9 @@ export function Experience() {
                     {job.title}
                   </h3>
                   <div className="text-green-300 flex items-center ~text-sm/base">
-                    <HoverCard>
-                      <HoverCardTrigger asChild>
-                        <button className="text-white flex mr-1 items-center">
-                          <img
-                            src={job.organization.logo}
-                            alt={`${job.organization.name} Logo`}
-                            className="h-6 w-6 mr-2 rounded-full border border-green-400/20"
-                          />
-                          {job.organization.name}
-                        </button>
-                      </HoverCardTrigger>
-                      <HoverCardContent className="w-80 bg-black text-white">
-                        <div className="flex justify-between space-x-4">
-                          <Avatar>
-                            <AvatarImage src={job.organization.logo} />
-                            <AvatarFallback>
-                              {job.organization.name.charAt(0)}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div className="space-y-1">
-                            <p className="text-sm font-semibold text-white">
-                              {job.organization.name}
-                            </p>
-                            <p className="text-sm text-white">
-                              {job.organization.description}
-                            </p>
-                          </div>
-                        </div>
-                      </HoverCardContent>
-                    </HoverCard>{" "}
-                    • {job.location}
+                    <ExperienceTooltip organization={job.organization} />
+                    <Minus className="h-2 w-2 m-2" />
+                    {job.location}
                   </div>
                   {job.start_date && (
                     <p className="text-green-300 ~text-xs/sm mb-2 sm:mb-3 ~mt-1/2">
