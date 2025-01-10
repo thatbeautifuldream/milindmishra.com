@@ -4,9 +4,9 @@ import { formatDate } from "@/lib/utils";
 export default async function ExperiencePage({
   params,
 }: {
-  params: { org: string };
+  params: Promise<{ org: string }>;
 }) {
-  const { org } = params;
+  const { org } = await params;
 
   const job = experience.find(
     (job) => job.organization.name.toLowerCase() === org
