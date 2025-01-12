@@ -127,7 +127,7 @@ body {
   /* or scrollbar-color: black transparent; for solid black */
 }
 
-/* Add these classes to enable 3D card flip */
+/* 3D card flip */
 .perspective {
   perspective: 1000px;
   -webkit-perspective: 1000px;

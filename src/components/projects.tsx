@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { projects } from "@/data/resume";
-import { serif } from "@/lib/fonts";
+import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { SquareArrowOutUpRight, Github } from "lucide-react";
 import { useState } from "react";
@@ -76,7 +76,7 @@ export function Projects() {
               <h3
                 className={cn(
                   "~text-3xl/6xl mb-2 text-green-50",
-                  serif.className
+                  bricolageGrotesque.className
                 )}
               >
                 {project.title}

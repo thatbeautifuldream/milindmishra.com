@@ -1,13 +1,35 @@
-import { Space_Grotesk, Instrument_Serif } from "next/font/google";
+import {
+  Inter,
+  Space_Grotesk,
+  Instrument_Serif,
+  Bricolage_Grotesque,
+  Libre_Baskerville,
+} from "next/font/google";
 
-export const sans = Space_Grotesk({
+export const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
   display: "swap",
 });
 
-export const serif = Instrument_Serif({
+export const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+export const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: ["400"],
+  display: "swap",
+});
+
+export const bricolageGrotesque = Bricolage_Grotesque({
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const libreBaskerville = Libre_Baskerville({
+  subsets: ["latin"],
+  weight: ["400", "700"],
   display: "swap",
 });
