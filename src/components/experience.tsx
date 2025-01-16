@@ -3,7 +3,7 @@
 
 import ExperienceTooltip from "@/components/experience-tooltip";
 import { experience } from "@/data/resume";
-import { serif } from "@/lib/fonts";
+import { bricolageGrotesque } from "@/lib/fonts";
 import { cn, formatDate } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Minus } from "lucide-react";
@@ -61,7 +61,7 @@ export function Experience() {
                   <h3
                     className={cn(
                       "~text-3xl/6xl mb-2 text-green-50 flex items-center",
-                      serif.className
+                      bricolageGrotesque.className
                     )}
                   >
                     {job.title}

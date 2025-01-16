@@ -1,6 +1,6 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
-import { sans } from "@/lib/fonts";
+import { inter } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <Providers>
         <body
-          className={cn(sans.className, "antialiased bg-black text-green-400")}
+          className={cn(inter.className, "antialiased bg-black text-green-400")}
           suppressHydrationWarning
           style={{
             backgroundColor: "#000000",
