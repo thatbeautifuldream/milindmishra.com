@@ -1,7 +1,7 @@
 import { details } from "@/data/resume";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import BookACallButton from "./book-a-call-button";
+// import BookACallButton from "./book-a-call-button";
 
 export function Hero() {
   const gradient =
