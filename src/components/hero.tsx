@@ -32,7 +32,7 @@ export function Hero() {
             <p className="text-gray-400 ~text-sm/lg">
               {details.person.profile.bio}
             </p>
-            <BookACallButton />
+            {/* <BookACallButton /> */}
           </div>
         </div>
       </section>
