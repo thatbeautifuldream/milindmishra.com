@@ -7,8 +7,17 @@ import { bricolageGrotesque } from "@/lib/fonts";
 import { cn, formatDate } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Minus } from "lucide-react";
+import { useState } from "react";
+import { Button } from "./ui/button";
 
 export function Experience() {
+  const [showAll, setShowAll] = useState(false);
+  const maxDisplayed = 2;
+
+  const experiencesToShow = showAll
+    ? experience
+    : experience.slice(0, maxDisplayed);
+
   return (
     <section className="~space-y-8/6 select-none">
       <h2
@@ -22,7 +31,7 @@ export function Experience() {
         <div className="absolute left-3 top-3 h-full w-[2px] bg-green-400/20" />
 
         <div className="space-y-6 sm:space-y-8">
-          {experience.map((job, index) => (
+          {experiencesToShow.map((job, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -89,6 +98,14 @@ export function Experience() {
           ))}
         </div>
       </div>
+
+      {experience.length > maxDisplayed && !showAll && (
+        <div className="flex float-right mt-4">
+          <Button variant="ghost" onClick={() => setShowAll(true)}>
+            Read More
+          </Button>
+        </div>
+      )}
     </section>
   );
 }

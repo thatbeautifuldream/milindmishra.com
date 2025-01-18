@@ -117,12 +117,8 @@ export function Testimonials({
           <>
             <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent opacity-70" />
             <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
-              <Button
-                variant="secondary"
-                className="bg-gray-800 text-white hover:bg-gray-700"
-                onClick={() => setShowAll(true)}
-              >
-                Load More
+              <Button variant="ghost" onClick={() => setShowAll(true)}>
+                Read More
               </Button>
             </div>
           </>
