@@ -5,8 +5,10 @@ import { Tilt } from "react-tilt";
 import { Github, Twitter, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { skills } from "@/data/resume";
+import { skills, contact } from "@/data/resume";
 import { ResumeModal } from "./resume-modal";
+import { cn } from "@/lib/utils";
+import { bricolageGrotesque } from "@/lib/fonts";
 
 const defaultOptions = {
   reverse: false,
@@ -51,19 +53,31 @@ export function ProfileCard() {
                   <div className="relative -mt-16 mb-4">
                     <img
                       className="w-32 h-32 border-4 border-black mx-auto object-cover"
-                      src="https://avatars.githubusercontent.com/u/28717686?v=4"
-                      alt="Milind Mishra's Profile picture"
+                      src={contact.profilePicture}
+                      alt={`${contact.name}'s Profile picture`}
                     />
                   </div>
                   <div className="text-center">
-                    <h2 className="text-2xl font-bold text-white">
-                      Milind Mishra
+                    <h2
+                      className={cn(
+                        "text-2xl font-bold text-white",
+                        bricolageGrotesque.className
+                      )}
+                    >
+                      {contact.name}
                     </h2>
-                    <p className="text-green-300 mt-1">Design Engineer</p>
+                    <p
+                      className={cn(
+                        "text-green-300 mt-1",
+                        bricolageGrotesque.className
+                      )}
+                    >
+                      {contact.title}
+                    </p>
                   </div>
                   <div className="mt-6 flex justify-center space-x-6">
                     <a
-                      href="https://github.com/thatbeautifuldream"
+                      href={contact.socialLinks.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-green-400 hover:text-green-300 transition-colors"
@@ -71,7 +85,7 @@ export function ProfileCard() {
                       <Github size={20} />
                     </a>
                     <a
-                      href="https://twitter.com/milindmishra_"
+                      href={contact.socialLinks.twitter}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-green-400 hover:text-green-300 transition-colors"
@@ -79,7 +93,7 @@ export function ProfileCard() {
                       <Twitter size={20} />
                     </a>
                     <a
-                      href="mailto:contact@milindmishra.com"
+                      href={contact.socialLinks.email}
                       className="text-green-400 hover:text-green-300 transition-colors"
                     >
                       <Mail size={20} />
@@ -119,15 +133,27 @@ export function ProfileCard() {
             >
               <div className="h-full border border-green-400/20 hover:border-green-400 transition-colors bg-black/50 backdrop-blur-lg overflow-hidden">
                 <div className="p-6 flex flex-col h-full">
-                  <h3 className="text-xl font-bold text-white mb-4">
+                  <h3
+                    className={cn(
+                      "text-xl font-bold text-white mb-4",
+                      bricolageGrotesque.className
+                    )}
+                  >
                     About Me
                   </h3>
                   <p className="text-green-300 mb-4">
-                    Design Engineer passionate about creating beautiful and
+                    Software Engineer passionate about creating beautiful and
                     functional web experiences.
                   </p>
 
-                  <h3 className="text-xl font-bold text-white mb-4">Skills</h3>
+                  <h3
+                    className={cn(
+                      "text-xl font-bold text-white mb-4",
+                      bricolageGrotesque.className
+                    )}
+                  >
+                    Skills
+                  </h3>
                   <div className="grid grid-cols-2 gap-2">
                     {skills.map((skill) => (
                       <span
