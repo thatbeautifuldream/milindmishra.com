@@ -11,7 +11,11 @@ import { Minus } from "lucide-react";
 export function Experience() {
   return (
     <section className="~space-y-8/6 select-none">
-      <h2 className="~text-2xl/3xl font-bold">Experience</h2>
+      <h2
+        className={cn("~text-2xl/3xl font-bold", bricolageGrotesque.className)}
+      >
+        Experience
+      </h2>
 
       <div className="relative">
         {/* Timeline line */}

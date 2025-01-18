@@ -5,6 +5,8 @@ import { Hero } from "@/components/hero";
 import { KineticTypography } from "@/components/kinetic-typography";
 import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
+import { Testimonials } from "@/components/testimonials";
+import { testimonials } from "@/data/resume";
 import { useState } from "react";
 
 export default function Home() {
@@ -19,6 +21,7 @@ export default function Home() {
         <Hero />
         <Experience />
         <Projects />
+        <Testimonials testimonials={testimonials} />
         <Skills />
       </div>
     </>

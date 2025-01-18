@@ -183,3 +183,13 @@ export const details = {
     },
   },
 };
+
+export const testimonials = [
+  {
+    image: "/assets/testimonials/yash-chavan.jpeg",
+    text: "I'm so impressed by your work on the UI so far, I can't wait to deliver those SMOOOTH experiences to our customers. Excited to see you growing into a fullstack role here too. Glad to have you on the team!",
+    name: "Yash Chavan",
+    bio: "Founder & CEO at SARAL",
+    social: "https://www.linkedin.com/in/yctheman",
+  },
+];

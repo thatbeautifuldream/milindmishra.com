@@ -1,11 +1,20 @@
 import { skills } from "@/data/resume";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { bricolageGrotesque } from "@/lib/fonts";
 
 export function Skills() {
   return (
     <section id="skills">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-6">Skills</h2>
+      <h2
+        className={cn(
+          "~text-2xl/3xl font-bold mb-6",
+          bricolageGrotesque.className
+        )}
+      >
+        Skills
+      </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {skills.map((skill, index) => (
           <motion.div

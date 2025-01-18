@@ -10,7 +10,14 @@ export function Projects() {
 
   return (
     <section id="projects">
-      <h2 className="~text-2xl/3xl font-bold mb-6">Projects</h2>
+      <h2
+        className={cn(
+          "~text-2xl/3xl font-bold mb-6",
+          bricolageGrotesque.className
+        )}
+      >
+        Projects
+      </h2>
       <div className="flex flex-col gap-6">
         {projects.map((project, index) => (
           <div
