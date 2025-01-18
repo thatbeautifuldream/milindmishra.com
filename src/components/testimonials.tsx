@@ -74,7 +74,7 @@ export function Testimonials({
             .map((testimonial, index) => (
               <Card
                 key={index}
-                className="w-80 h-auto p-5 relative bg-black border-green-400 text-white"
+                className="w-80 h-auto p-5 relative bg-transparent border-green-400/20 hover:border-green-400 text-white backdrop-blur-sm transition-all duration-300 select-none"
               >
                 <div className="flex items-center">
                   <Image
@@ -94,7 +94,14 @@ export function Testimonials({
                   </div>
                 </div>
                 <div className="mt-5 mb-5">
-                  <p className="text-white ~text-sm/md">{testimonial.text}</p>
+                  <p
+                    className={cn(
+                      "text-green-300 hover:text-green-400 transition-colors duration-300 ~text-sm/base",
+                      bricolageGrotesque.className
+                    )}
+                  >
+                    &quot; {testimonial.text} &quot;
+                  </p>
                 </div>
                 <button
                   onClick={() => openInNewTab(testimonial.social)}
