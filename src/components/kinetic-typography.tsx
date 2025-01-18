@@ -1,3 +1,4 @@
+import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -37,7 +38,8 @@ export function KineticTypography({ onComplete }: { onComplete: () => void }) {
         animate={{ y: "-100vh" }}
         transition={{ duration: 1, delay: 2 }}
         className={cn(
-          "fixed inset-0 flex items-center justify-center bg-black z-50"
+          "fixed inset-0 flex items-center justify-center bg-black z-50",
+          bricolageGrotesque.className
         )}
       >
         <motion.div
@@ -50,7 +52,10 @@ export function KineticTypography({ onComplete }: { onComplete: () => void }) {
             <motion.span
               key={index}
               variants={childVariants}
-              className={cn("text-4xl font-bold text-green-400")}
+              className={cn(
+                "~text-4xl/6xl font-bold",
+                "bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400 bg-clip-text text-transparent"
+              )}
             >
               {char === " " ? "\u00A0" : char}
             </motion.span>
