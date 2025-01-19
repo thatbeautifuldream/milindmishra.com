@@ -7,10 +7,20 @@ import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
 import { Testimonials } from "@/components/testimonials";
 import { testimonials } from "@/data/resume";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const [showAnimation, setShowAnimation] = useState(true);
+
+  useEffect(() => {
+    const hasSeenAnimation = localStorage.getItem("hasSeenAnimation");
+    if (!hasSeenAnimation) {
+      setShowAnimation(true);
+      localStorage.setItem("hasSeenAnimation", "true");
+    } else {
+      setShowAnimation(false);
+    }
+  }, []);
 
   return (
     <>

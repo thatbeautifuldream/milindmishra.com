@@ -24,8 +24,8 @@ export default function LinksPage() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{
-                delay: index * 0.1 + 0.3,
-                duration: 0.3,
+                delay: index * 0.05 + 0.1,
+                duration: 0.2,
               }}
             >
               <h2
