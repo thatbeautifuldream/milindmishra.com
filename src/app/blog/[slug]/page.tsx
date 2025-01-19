@@ -19,18 +19,18 @@ export default function BlogPost() {
   });
 
   // Adjust the transform values
-  const headerPadding = useTransform(scrollY, [0, 200], [24, 12]);
-  const titleScale = useTransform(scrollY, [0, 200], [1, 0.8]);
-  const containerY = useTransform(scrollY, [0, 200], [0, -15]);
+  const headerPadding = useTransform(scrollY, [0, 200], [16, 8]);
+  const titleScale = useTransform(scrollY, [0, 200], [1, 0.9]);
+  const containerY = useTransform(scrollY, [0, 200], [0, -10]);
 
   // New transforms for layout changes
-  const titleWidth = useTransform(scrollY, [0, 200], ["100%", "75%"]);
-  const tagsScale = useTransform(scrollY, [0, 200], [1, 0.75]);
-  const tagsY = useTransform(scrollY, [0, 200], [0, -8]);
+  const titleWidth = useTransform(scrollY, [0, 200], ["100%", "85%"]);
+  const tagsScale = useTransform(scrollY, [0, 200], [1, 0.85]);
+  const tagsY = useTransform(scrollY, [0, 200], [0, -5]);
 
   // New transforms for spacing - reduced padding values
-  const containerGap = useTransform(scrollY, [0, 200], [12, 6]);
-  const headerVerticalPadding = useTransform(scrollY, [0, 200], [24, 12]);
+  const containerGap = useTransform(scrollY, [0, 200], [8, 4]);
+  const headerVerticalPadding = useTransform(scrollY, [0, 200], [16, 8]);
 
   if (isLoading) {
     return (
@@ -50,8 +50,9 @@ export default function BlogPost() {
         style={{
           paddingTop: headerPadding,
           paddingBottom: headerPadding,
+          marginTop: "0px",
         }}
-        className="fixed top-20 left-0 right-0 bg-black/80 backdrop-blur-sm z-10"
+        className="sticky top-12 left-0 right-0 bg-black/80 backdrop-blur-sm z-10"
       >
         <motion.div
           style={{
@@ -101,7 +102,7 @@ export default function BlogPost() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <div style={{ paddingTop: "160px" }}>
+          <div style={{ paddingTop: "80px" }}>
             <div className="prose prose-invert prose-green max-w-none">
               <div
                 dangerouslySetInnerHTML={{ __html: post.content.html }}

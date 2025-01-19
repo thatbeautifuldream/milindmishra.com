@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { links } from "@/data/links";
+import { cn } from "@/lib/utils";
+import { bricolageGrotesque } from "@/lib/fonts";
 
 export default function LinksPage() {
   return (
@@ -26,7 +28,12 @@ export default function LinksPage() {
                 duration: 0.3,
               }}
             >
-              <h2 className="text-xl font-semibold text-green-400">
+              <h2
+                className={cn(
+                  "text-xl font-semibold text-green-400",
+                  bricolageGrotesque.className
+                )}
+              >
                 {link.title}
               </h2>
               {link.description && (
