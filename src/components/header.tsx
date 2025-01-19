@@ -4,8 +4,11 @@ import Link from "next/link";
 import { Sign } from "./sign";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "nextjs-toploader/app";
+import { Badge } from "@/components/ui/badge";
 
 export function Header() {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -16,6 +19,41 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case "1":
+          router.push("/");
+          break;
+        case "2":
+          router.push("/contact");
+          break;
+        case "3":
+          router.push("/blog");
+          break;
+        case "4":
+          router.push("/links");
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [router]);
+
+  function ShortcutBadge({ children }: { children: React.ReactNode }) {
+    return (
+      <Badge
+        variant="shortcut"
+        className="hidden md:block ml-1 text-xs absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2"
+      >
+        {children}
+      </Badge>
+    );
+  }
 
   return (
     <motion.header
@@ -42,21 +80,24 @@ export function Header() {
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
             <Link
               href="/contact"
-              className="hover:text-green-300 transition-colors"
+              className="hover:text-green-300 transition-colors relative"
             >
               Contact
+              <ShortcutBadge>2</ShortcutBadge>
             </Link>
             <Link
               href="/blog"
-              className="hover:text-green-300 transition-colors"
+              className="hover:text-green-300 transition-colors relative"
             >
               Blog
+              <ShortcutBadge>3</ShortcutBadge>
             </Link>
             <Link
               href="/links"
-              className="hover:text-green-300 transition-colors"
+              className="hover:text-green-300 transition-colors relative"
             >
               Links
+              <ShortcutBadge>4</ShortcutBadge>
             </Link>
           </div>
         </nav>
