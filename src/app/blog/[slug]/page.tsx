@@ -85,7 +85,7 @@ export default function BlogPost() {
                 {post.tags.map((tag) => (
                   <span
                     key={tag.id}
-                    className="text-sm px-2 py-0.5 bg-green-400/10 backdrop-blur-sm"
+                    className="text-sm px-2 py-0.5 bg-green-400/10 backdrop-blur-sm lowercase"
                   >
                     {tag.name}
                   </span>
