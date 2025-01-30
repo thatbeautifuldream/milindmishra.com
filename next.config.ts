@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
       {
         source: "/resume",
         destination:
-          "https://cdn.jsdelivr.net/gh/thatbeautifuldream/resume-cron/resume.pdf",
+          "https://milindmishra.com/Milind_Mishra_Resume.pdf",
       },
     ];
   },
