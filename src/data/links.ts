@@ -2,7 +2,7 @@ export interface LinkItem {
   title: string;
   url: string;
   description?: string;
-  icon?: string; // You can add icons later if needed
+  icon?: string;
 }
 
 export const links: LinkItem[] = [
@@ -10,6 +10,11 @@ export const links: LinkItem[] = [
     title: "GitHub",
     url: "https://github.com/thatbeautifuldream",
     description: "Check out my open source projects and contributions",
+  },
+  {
+    title: "Peerlist",
+    url: "https://peerlist.io/milind",
+    description: "Sharing cool side projects and findings here!",
   },
   {
     title: "LinkedIn",
