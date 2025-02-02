@@ -6,6 +6,7 @@ import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 interface Testimonial {
@@ -88,14 +89,15 @@ export function Testimonials({
                     className="rounded-full"
                   />
                   <div className="flex flex-col pl-4">
-                    <button
-                      onClick={() => openInNewTab(testimonial.author.social)}
+                    <Link
+                      href={testimonial.author.social}
+                      target="_blank"
                       className="text-left hover:opacity-80 transition-opacity"
                     >
                       <span className="font-semibold text-base hover:text-green-400 transition-colors">
                         {testimonial.author.name}
                       </span>
-                    </button>
+                    </Link>
                     <span className="text-sm text-muted-foreground">
                       {testimonial.author.bio}
                     </span>
@@ -111,12 +113,13 @@ export function Testimonials({
                     &quot; {testimonial.message} &quot;
                   </p>
                 </div>
-                <button
-                  onClick={() => openInNewTab(testimonial.linkToTestimony)}
+                <Link
+                  href={testimonial.linkToTestimony}
+                  target="_blank"
                   className="absolute top-4 right-4 hover:opacity-80 transition-opacity"
                 >
                   <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                </button>
+                </Link>
               </Card>
             ))}
         </div>

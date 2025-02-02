@@ -202,7 +202,7 @@ export const testimonials: {
     author: {
       name: "Yash Chavan",
       bio: "Founder & CEO at SARAL",
-      image: "/assets/testimonials/yash-chavan.jpeg",
+      image: "/assets/testimonials/yash.jpeg",
       social: "https://www.linkedin.com/in/yctheman",
     },
   },
