@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { Octokit } from "@octokit/rest";
-import { Loader } from "lucide-react";
+import { Loader, Copy, Check } from "lucide-react";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -11,6 +11,7 @@ import ReactMarkdown from "react-markdown";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { use } from "react";
+import { useState } from "react";
 
 const fetchGistContent = async (gistId: string) => {
   const octokit = new Octokit();
@@ -26,6 +27,7 @@ export default function GistPage({
   params: Promise<{ id: string }>;
 }) {
   const resolvedParams = use(params);
+  const [copiedFile, setCopiedFile] = useState<string | null>(null);
   const {
     data: gist,
     isLoading,
@@ -46,6 +48,12 @@ export default function GistPage({
   if (error || !gist) {
     notFound();
   }
+
+  const handleCopy = async (content: string, filename: string) => {
+    await navigator.clipboard.writeText(content);
+    setCopiedFile(filename);
+    setTimeout(() => setCopiedFile(null), 2000);
+  };
 
   return (
     <div className="min-h-screen">
@@ -86,8 +94,25 @@ export default function GistPage({
                 key={filename}
                 className="border border-green-400/20 overflow-hidden bg-black/50 backdrop-blur-sm"
               >
-                <div className="border-b border-green-400/20 px-4 py-2">
+                <div className="border-b border-green-400/20 px-4 py-2 flex justify-between items-center">
                   <h2 className="text-green-300 font-medium">{filename}</h2>
+                  <motion.button
+                    onClick={() => handleCopy(file?.content || "", filename)}
+                    className="text-green-300/70 hover:text-green-300 transition-colors"
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {copiedFile === filename ? (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        exit={{ scale: 0 }}
+                      >
+                        <Check className="w-4 h-4" />
+                      </motion.div>
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
+                  </motion.button>
                 </div>
                 <div className="p-4">
                   {file?.language?.toLowerCase().includes("markdown") ? (
