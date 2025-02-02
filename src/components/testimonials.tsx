@@ -4,16 +4,19 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import { Linkedin } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
 interface Testimonial {
-  image: string;
-  name: string;
-  bio: string;
-  text: string;
-  social: string;
+  message: string;
+  linkToTestimony: string;
+  author: {
+    name: string;
+    bio: string;
+    image: string;
+    social: string;
+  };
 }
 
 interface TestimonialsProps {
@@ -78,18 +81,23 @@ export function Testimonials({
               >
                 <div className="flex items-center">
                   <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
+                    src={testimonial.author.image}
+                    alt={testimonial.author.name}
                     width={50}
                     height={50}
                     className="rounded-full"
                   />
                   <div className="flex flex-col pl-4">
-                    <span className="font-semibold text-base">
-                      {testimonial.name}
-                    </span>
+                    <button
+                      onClick={() => openInNewTab(testimonial.author.social)}
+                      className="text-left hover:opacity-80 transition-opacity"
+                    >
+                      <span className="font-semibold text-base hover:text-green-400 transition-colors">
+                        {testimonial.author.name}
+                      </span>
+                    </button>
                     <span className="text-sm text-muted-foreground">
-                      {testimonial.bio}
+                      {testimonial.author.bio}
                     </span>
                   </div>
                 </div>
@@ -100,14 +108,14 @@ export function Testimonials({
                       bricolageGrotesque.className
                     )}
                   >
-                    &quot; {testimonial.text} &quot;
+                    &quot; {testimonial.message} &quot;
                   </p>
                 </div>
                 <button
-                  onClick={() => openInNewTab(testimonial.social)}
+                  onClick={() => openInNewTab(testimonial.linkToTestimony)}
                   className="absolute top-4 right-4 hover:opacity-80 transition-opacity"
                 >
-                  <Linkedin className="h-4 w-4" aria-hidden="true" />
+                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 </button>
               </Card>
             ))}
