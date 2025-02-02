@@ -8,6 +8,8 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { Loader } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { bricolageGrotesque } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 
 dayjs.extend(relativeTime);
 
@@ -31,7 +33,14 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6">Blog Posts</h1>
+      <h2
+        className={cn(
+          "~text-2xl/3xl font-bold mb-6",
+          bricolageGrotesque.className
+        )}
+      >
+        My Blog
+      </h2>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {posts?.map((post, index) => (
           <motion.div

@@ -30,9 +30,17 @@ export function Gists() {
     queryFn: fetchGists,
   });
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-400 -mt-16"></div>
+      </div>
+    );
+  }
+
   if (error) {
     return (
-      <div className="container mx-auto px-4 py-4">
+      <div className="min-h-screen">
         <div className="text-red-500">
           Error loading gists. Please try again later.
         </div>
@@ -41,7 +49,7 @@ export function Gists() {
   }
 
   return (
-    <section className="container mx-auto px-4 py-4">
+    <div className="min-h-screen">
       <h2
         className={cn(
           "~text-2xl/3xl font-bold mb-6",
@@ -97,6 +105,6 @@ export function Gists() {
           ))}
         </div>
       )}
-    </section>
+    </div>
   );
 }

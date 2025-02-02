@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "nextjs-toploader/app";
 import { Badge } from "@/components/ui/badge";
+import { navigation } from "@/config/navigation";
 
 export function Header() {
   const router = useRouter();
@@ -22,21 +23,9 @@ export function Header() {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      switch (event.key) {
-        case "1":
-          router.push("/");
-          break;
-        case "2":
-          router.push("/contact");
-          break;
-        case "3":
-          router.push("/blog");
-          break;
-        case "4":
-          router.push("/links");
-          break;
-        default:
-          break;
+      const navItem = navigation.find((item) => item.shortcut === event.key);
+      if (navItem) {
+        router.push(navItem.href);
       }
     };
 
@@ -78,27 +67,21 @@ export function Header() {
           </Link>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-            <Link
-              href="/contact"
-              className="hover:text-green-300 transition-colors relative"
-            >
-              Contact
-              <ShortcutBadge>2</ShortcutBadge>
-            </Link>
-            <Link
-              href="/blog"
-              className="hover:text-green-300 transition-colors relative"
-            >
-              Blog
-              <ShortcutBadge>3</ShortcutBadge>
-            </Link>
-            <Link
-              href="/links"
-              className="hover:text-green-300 transition-colors relative"
-            >
-              Links
-              <ShortcutBadge>4</ShortcutBadge>
-            </Link>
+            {navigation
+              .slice(1)
+              .filter((item) => item.visible !== false)
+              .map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="hover:text-green-300 transition-colors relative"
+                >
+                  {item.label}
+                  {item.shortcut && (
+                    <ShortcutBadge>{item.shortcut}</ShortcutBadge>
+                  )}
+                </Link>
+              ))}
           </div>
         </nav>
       </div>
