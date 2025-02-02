@@ -15,8 +15,9 @@ dayjs.extend(relativeTime);
 
 export default function BlogPage() {
   const { data: posts, isLoading } = useQuery({
-    queryKey: ["posts"],
+    queryKey: ["blog-posts"],
     queryFn: fetchAllPosts,
+    staleTime: 5 * 60 * 1000,
   });
 
   if (isLoading) {

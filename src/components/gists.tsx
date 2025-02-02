@@ -28,6 +28,7 @@ export function Gists() {
   } = useQuery({
     queryKey: ["gists"],
     queryFn: fetchGists,
+    staleTime: 5 * 60 * 1000,
   });
 
   if (isLoading) {

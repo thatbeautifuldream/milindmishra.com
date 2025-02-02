@@ -33,8 +33,9 @@ export default function GistPage({
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["gist", resolvedParams.id],
+    queryKey: ["gist-" + resolvedParams.id, resolvedParams.id],
     queryFn: () => fetchGistContent(resolvedParams.id),
+    staleTime: 5 * 60 * 1000,
   });
 
   if (isLoading) {
@@ -62,7 +63,7 @@ export default function GistPage({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
       >
-        <div className="max-w-4xl mx-auto">
+        <div className="px-4 sm:px-6 lg:px-8">
           <h1
             className={cn(
               "text-2xl sm:text-3xl font-bold mb-4 text-green-50",
