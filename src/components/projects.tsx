@@ -39,14 +39,16 @@ export function Projects() {
                   <a
                     key={award}
                     href={
-                      project.awards[award as keyof typeof project.awards].link
+                      project?.awards?.[award as keyof typeof project.awards]
+                        ?.link
                     }
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <img
                       src={
-                        project.awards[award as keyof typeof project.awards].img
+                        project?.awards?.[award as keyof typeof project.awards]
+                          ?.img
                       }
                       alt={award}
                       className="~h-24/36 ~w-24/36"

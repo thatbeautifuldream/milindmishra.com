@@ -2,8 +2,8 @@ import Icons from "@/components/icons";
 
 export interface TechStackEntry {
   period: {
-    start: number; // Unix timestamp
-    end: number | null; // null represents "Present"
+    start: number;
+    end: number | null;
   };
   name: string;
   description: string;
@@ -37,5 +37,4 @@ export const techTimeline: TechStackEntry[] = [
     tags: ["React", "Redux", "React Query", "Styled Components"],
     url: "https://react.dev",
   },
-  // Add more entries...
 ];
