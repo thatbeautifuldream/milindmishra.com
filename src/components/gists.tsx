@@ -1,13 +1,12 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { Octokit, RestEndpointMethodTypes } from "@octokit/rest";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
+import { Octokit, RestEndpointMethodTypes } from "@octokit/rest";
+import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Loader } from "lucide-react";
 import FullPageLoader from "./full-page-loader";
 
 type GistsData =
