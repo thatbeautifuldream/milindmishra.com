@@ -2,14 +2,13 @@
 "use client";
 
 import ExperienceTooltip from "@/components/experience-tooltip";
+import { Timeline, TimelineItem } from "@/components/ui/timeline";
 import { experience } from "@/data/resume";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn, formatDate } from "@/lib/utils";
-import { motion } from "framer-motion";
 import { Minus } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
-import { Timeline, TimelineItem } from "@/components/ui/timeline";
 
 export function Experience() {
   const [showAll, setShowAll] = useState(false);

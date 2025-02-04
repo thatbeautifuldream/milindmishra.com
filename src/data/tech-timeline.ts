@@ -1,3 +1,5 @@
+import Icons from "@/components/icons";
+
 export interface TechStackEntry {
   period: {
     start: number; // Unix timestamp
@@ -5,7 +7,7 @@ export interface TechStackEntry {
   };
   name: string;
   description: string;
-  icon: string;
+  icon: React.ComponentType<{ className?: string }>;
   tags: string[];
   url?: string;
 }
@@ -19,7 +21,7 @@ export const techTimeline: TechStackEntry[] = [
     name: "Modern Full Stack",
     description:
       "Building scalable applications with Next.js 14, TypeScript, and Tailwind CSS. Implementing server components and streaming patterns.",
-    icon: "/assets/icons/nextjs.svg",
+    icon: Icons.Nextjs,
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "React", "Node.js"],
     url: "https://nextjs.org",
   },
@@ -31,7 +33,7 @@ export const techTimeline: TechStackEntry[] = [
     name: "React Ecosystem",
     description:
       "Focused on React ecosystem with Redux, React Query, and styled-components. Built responsive and accessible web applications.",
-    icon: "/assets/icons/react.svg",
+    icon: Icons.Reactjs,
     tags: ["React", "Redux", "React Query", "Styled Components"],
     url: "https://react.dev",
   },
