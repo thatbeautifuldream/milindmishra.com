@@ -37,10 +37,6 @@ export function Testimonials({
 }: TestimonialsProps) {
   const [showAll, setShowAll] = useState(false);
 
-  const openInNewTab = (url: string) => {
-    window.open(url, "_blank")?.focus();
-  };
-
   return (
     <div className={className}>
       <div className="flex flex-col items-center justify-center pt-5">

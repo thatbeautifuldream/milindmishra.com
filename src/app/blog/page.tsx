@@ -1,15 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import FullPageLoader from "@/components/full-page-loader";
+import { bricolageGrotesque } from "@/lib/fonts";
 import { fetchAllPosts } from "@/lib/services/blog";
+import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { Loader } from "lucide-react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { bricolageGrotesque } from "@/lib/fonts";
-import { cn } from "@/lib/utils";
 
 dayjs.extend(relativeTime);
 
@@ -21,11 +21,7 @@ export default function BlogPage() {
   });
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader className="animate-spin w-5 h-5 -mt-16" />
-      </div>
-    );
+    return <FullPageLoader />;
   }
 
   if (!posts) {

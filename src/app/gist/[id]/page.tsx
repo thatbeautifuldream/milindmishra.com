@@ -12,6 +12,7 @@ import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { use } from "react";
 import { useState } from "react";
+import FullPageLoader from "@/components/full-page-loader";
 
 const fetchGistContent = async (gistId: string) => {
   const octokit = new Octokit();
@@ -39,11 +40,7 @@ export default function GistPage({
   });
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader className="animate-spin w-5 h-5 -mt-16" />
-      </div>
-    );
+    return <FullPageLoader />;
   }
 
   if (error || !gist) {
