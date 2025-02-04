@@ -1,18 +1,17 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { Octokit } from "@octokit/rest";
-import { Loader, Copy, Check } from "lucide-react";
-import { notFound } from "next/navigation";
-import { motion } from "framer-motion";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import ReactMarkdown from "react-markdown";
+import FullPageLoader from "@/components/full-page-loader";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import { use } from "react";
-import { useState } from "react";
-import FullPageLoader from "@/components/full-page-loader";
+import { Octokit } from "@octokit/rest";
+import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
+import { Check, Copy } from "lucide-react";
+import { notFound } from "next/navigation";
+import { use, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const fetchGistContent = async (gistId: string) => {
   const octokit = new Octokit();
