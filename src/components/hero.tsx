@@ -4,9 +4,10 @@ import { details } from "@/data/resume";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import TextRotate from "./text-rotate";
-// import BookACallButton from "./book-a-call-button";
+import { BotMessageSquare } from "lucide-react";
 import { LayoutGroup, motion } from "motion/react";
 import BookACallButton from "./book-a-call-button";
+import { Button } from "./ui/button";
 
 export function Hero() {
   const gradient =
@@ -71,7 +72,22 @@ export function Hero() {
             <p className="text-gray-400 ~text-sm/lg ~max-w-sm/lg mx-auto">
               {details.person.profile.bio}
             </p>
-            <BookACallButton />
+            <div className="flex justify-center ~mt-2/4 gap-x-2">
+              <Button
+                variant="outline"
+                className="flex items-center gap-x-2"
+                onClick={() => {
+                  window.open(
+                    "https://chatgpt.com/share/67a9272a-3c60-8008-ac34-799d3aa47b04",
+                    "_blank"
+                  );
+                }}
+              >
+                <BotMessageSquare className="w-4 h-4" />
+                Chat with my resume
+              </Button>
+              <BookACallButton />
+            </div>
           </div>
         </div>
       </section>
