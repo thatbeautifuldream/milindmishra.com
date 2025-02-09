@@ -7,7 +7,7 @@ import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
 import { Testimonials } from "@/components/testimonials";
 import { testimonials } from "@/data/resume";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [showAnimation, setShowAnimation] = useState(true);
