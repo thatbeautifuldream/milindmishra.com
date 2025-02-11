@@ -40,7 +40,10 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                       bricolageGrotesque.className
                     )}
                   >
-                    Milind&apos;s Resume
+                    <span className="hidden md:block">
+                      Milind&apos;s Resume
+                    </span>
+                    <span className="block md:hidden">Resume</span>
                   </span>
                   <div className="flex items-center gap-x-2">
                     <ChatResumeButton variant="ghost" />

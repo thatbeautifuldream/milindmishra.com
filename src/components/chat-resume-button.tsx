@@ -22,7 +22,8 @@ export function ChatResumeButton({
       }}
     >
       <BotMessageSquare className="w-4 h-4" />
-      Chat with the resume
+      <span className="hidden md:block">Chat with the resume</span>
+      <span className="block md:hidden">Chat</span>
     </Button>
   );
 }
