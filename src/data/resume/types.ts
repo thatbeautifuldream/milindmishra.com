@@ -42,6 +42,7 @@ export interface PersonName {
 
 export interface Profile {
   bio: string;
+  shortBio: string;
 }
 
 export interface KeyStat {

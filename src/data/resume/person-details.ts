@@ -10,7 +10,8 @@ const details: PersonDetails = {
       last_name: "Mishra",
     },
     profile: {
-      bio: "Helping teams and businesses build digital products that work beautifully.",
+      bio: "Passionate about design engineering and crafting elegant, intuitive interfaces.",
+      shortBio: "Design + Engineering",
     },
     statistics: {
       key_stats: [
