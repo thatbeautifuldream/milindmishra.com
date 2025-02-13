@@ -11,6 +11,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Milind Mishra",
   description: "Milind Mishra's portfolio",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

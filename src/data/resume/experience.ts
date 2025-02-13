@@ -3,9 +3,10 @@ import { Experience } from "./types";
 const experience: Experience[] = [
   {
     title: "Software Engineer",
-    description: "Fresh Hire!",
+    description:
+      "Revamped internal dashboard improving key metrics access. Optimized influencer performance monitoring. Enhanced relationship board with multi-select drag-and-drop. Developed UI for content submission system.",
     organization: {
-      name: "SARAL",
+      name: "SARAL - The Influencer OS",
       slug: "saral",
       description:
         "The easiest way to seed influencers and build your ambassador program",
@@ -21,17 +22,17 @@ const experience: Experience[] = [
       "MUI",
       "DND-Kit",
     ],
-    start_date: 1735689600,
+    start_date: 1704067200, // January 2024
     end_date: null,
-    location: "Remote",
+    location: "Bengaluru, Karnataka, India",
     job_type: "full_time",
   },
   {
     title: "Founding Product Engineer",
     description:
-      "Part of ideation and design involving multiple user flows. Built multimodal AI chatbot for better skill understanding using OpenAI. Led UI for skill validator, recruiter & candidate flows. Architected deployment processes for multiple Next.js applications on AWS EC2.",
+      "Led MVP development for core workflows. Designed frontend for Skill Validators. Developed Candidate Flow with real-time assessment. Built Recruiter Flow with skill heatmap. Managed deployment using EC2, NGINX, PM2, Next.js",
     organization: {
-      name: "Proof of Skill",
+      name: "Proof-of-Skill Protocol",
       slug: "proof-of-skill",
       description: "Proven Skills. Trusted Signals. Faster Hires.",
       logo: "/assets/logos/proofofskill_logo.jpeg",
@@ -42,72 +43,97 @@ const experience: Experience[] = [
       "Express.js",
       "Zustand",
       "PostgreSQL",
-      "SQLite",
       "Typescript",
       "OpenAI",
-      "Vercel AI SDK",
-      "Framer Motion",
       "AWS",
       "EC2",
-      "SQS",
-      "S3",
-      "Redis",
-      "Figma",
+      "NGINX",
+      "PM2",
     ],
-    start_date: 1714521600,
-    end_date: 1735257600,
-    location: "Bangalore, India",
+    start_date: 1717286400, // June 2024
+    end_date: 1735689600, // December 2024
+    location: "Bengaluru, Karnataka, India",
     job_type: "full_time",
   },
   {
-    title: "Software Engineer",
+    title: "Independent Contractor",
     description:
-      "Led UI for consultant hiring flows involving search, filtering, sorting on various parameters. Built an in-house implementation for email resume requests and email scheduling feature. Built AI Agentic Workflows for resume parsing and email scheduling using Vercel AI SDK.",
+      "Developed recruiter platform for contractor search. Built AI-powered quiz system. Implemented Next.js frontend.",
     organization: {
-      name: "Freelance Consulting",
-      slug: "freelance-consulting",
-      description: "Consulting for startups and scaleups",
-      logo: "/assets/logos/milind_mishra_technologies_logo.jpeg",
+      name: "Freelance",
+      slug: "freelance",
+      description: "Independent consulting and development work",
+      logo: "/assets/logos/freelance_logo.jpeg",
     },
-    start_date: 1704067200,
-    end_date: 1714521600,
-    location: "Remote",
-    job_type: "full_time",
+    skills: ["Next.js", "React.js", "TypeScript", "AI Integration"],
+    start_date: 1706745600, // February 2024
+    end_date: 1714521600, // May 2024
+    location: "Bengaluru, Karnataka, India",
+    job_type: "contract",
   },
   {
     title: "Lead Software Engineer",
     description:
-      "Built consumer-facing landing page using Framer Motion, Next.js and gazed over 5k+ impressions. Led a team of 3 to build a job poster application, with candidate tracking capabilities. Integrated popular Job Boards into the platform and added value to the recruiter pipeline.",
+      "Led team of two developers. Integrated multiple job boards. Built recruiting pipeline prototype.",
     organization: {
       name: "StartupHire",
+      slug: "startuphire",
       description:
         "The easiest way to find and hire top talent for your startup",
       logo: "/assets/logos/startuphire_logo.jpeg",
     },
-    start_date: 1690848000,
-    end_date: 1701388800,
-    location: "Remote",
+    skills: ["Team Leadership", "Next.js", "React.js", "API Integration"],
+    start_date: 1690848000, // August 2023
+    end_date: 1704067200, // January 2024
+    location: "Irvine, California, United States",
+    job_type: "full_time",
+  },
+  {
+    title: "Research Assistant",
+    description:
+      "Developed indoor positioning system frontend. Implemented 3D visualization. Optimized HDOP calculations.",
+    organization: {
+      name: "National Yang Ming Chiao Tung University",
+      slug: "nycu",
+      description: "Leading research university in Taiwan",
+      logo: "/assets/logos/nycu_logo.jpeg",
+    },
+    skills: [
+      "3D Visualization",
+      "Frontend Development",
+      "Research",
+      "Indoor Positioning",
+    ],
+    start_date: 1675209600, // February 2023
+    end_date: 1688169600, // July 2023
+    location: "Hsinchu City, Taiwan",
     job_type: "full_time",
   },
   {
     title: "Software Engineer",
     description:
-      "Created a portal application helping Locus clients to efficiently manage location tracking needs, configure floor plans, and manage Locus hardware. Implemented robust file management, floor plan processing, and 3D-HDOP map generation capabilities on the portal server.",
+      "Developed 3D indoor positioning platform frontend. Built company marketing site. Managed server infrastructure. Deployed services using Docker.",
     organization: {
       name: "Locus Connect",
       slug: "locus-connect",
       description: "Indoor location tracking for your business",
       logo: "/assets/logos/locus_connect_logo.jpeg",
     },
-    start_date: 1661990400,
-    end_date: 1688169600,
-    location: "Hsinchu, Taiwan",
+    skills: [
+      "Frontend Development",
+      "Docker",
+      "Server Management",
+      "3D Visualization",
+    ],
+    start_date: 1656633600, // July 2022
+    end_date: 1672531200, // January 2023
+    location: "Bengaluru, Karnataka, India",
     job_type: "full_time",
   },
   {
-    title: "UI/UX Design Intern",
+    title: "UX Designer",
     description:
-      "Prototyped screens for Findcoder.io using Figma to enhance user interaction and overall UX. Developed a version of a Design System for the entire product line, promoting consistency and efficiency in UI design across multiple platforms.",
+      "Designed user flows. Managed design system. Created marketing assets.",
     organization: {
       name: "iNeuron.ai",
       slug: "ineuron-ai",
@@ -115,10 +141,26 @@ const experience: Experience[] = [
         "Gateway to affordable, high-quality education in emerging technologies.",
       logo: "/assets/logos/ineuron_ai_logo.jpeg",
     },
-    start_date: 1648771200,
-    end_date: 1654041600,
-    location: "Bangalore, India",
+    skills: ["UX Design", "Design Systems", "User Flows", "Marketing Design"],
+    start_date: 1651363200, // May 2022
+    end_date: 1656633600, // June 2022
+    location: "Bengaluru, Karnataka, India",
     job_type: "full_time",
+  },
+  {
+    title: "Technical Writer",
+    description: "Authored technical courses. Created learning materials.",
+    organization: {
+      name: "Plusklass",
+      slug: "plusklass",
+      description: "Educational technology platform",
+      logo: "/assets/logos/plusklass_logo.jpeg",
+    },
+    skills: ["Technical Writing", "Course Creation", "Educational Content"],
+    start_date: 1640995200, // January 2022
+    end_date: 1648771200, // April 2022
+    location: "Remote",
+    job_type: "contract",
   },
 ];
 
