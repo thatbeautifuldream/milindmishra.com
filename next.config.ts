@@ -5,20 +5,19 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/resume",
-        destination:
-          "https://milindmishra.com/Milind_Mishra_Resume.pdf",
+        destination: "https://milindmishra.com/resume.pdf",
       },
     ];
   },
   async redirects() {
     return [
       {
-        source: "/li",
+        source: "/linkedin",
         destination: "https://www.linkedin.com/in/mishramilind/",
         permanent: true,
       },
       {
-        source: "/gh",
+        source: "/github",
         destination: "https://github.com/thatbeautifuldream",
         permanent: true,
       },
@@ -28,7 +27,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/ig",
+        source: "/instagram",
         destination: "https://www.instagram.com/thatbeautifuldream",
         permanent: true,
       },

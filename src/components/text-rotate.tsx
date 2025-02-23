@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   forwardRef,
@@ -7,47 +7,47 @@ import {
   useImperativeHandle,
   useMemo,
   useState,
-} from "react"
+} from "react";
 import {
   AnimatePresence,
-  AnimatePresenceProps,
+  type AnimatePresenceProps,
   motion,
-  MotionProps,
-  Transition,
-} from "motion/react"
+  type MotionProps,
+  type Transition,
+} from "motion/react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 interface TextRotateProps {
-  texts: string[]
-  rotationInterval?: number
-  initial?: MotionProps["initial"]
-  animate?: MotionProps["animate"]
-  exit?: MotionProps["exit"]
-  animatePresenceMode?: AnimatePresenceProps["mode"]
-  animatePresenceInitial?: boolean
-  staggerDuration?: number
-  staggerFrom?: "first" | "last" | "center" | number | "random"
-  transition?: Transition
-  loop?: boolean // Whether to start from the first text when the last one is reached
-  auto?: boolean // Whether to start the animation automatically
-  splitBy?: "words" | "characters" | "lines" | string
-  onNext?: (index: number) => void
-  mainClassName?: string
-  splitLevelClassName?: string
-  elementLevelClassName?: string
+  texts: string[];
+  rotationInterval?: number;
+  initial?: MotionProps["initial"];
+  animate?: MotionProps["animate"];
+  exit?: MotionProps["exit"];
+  animatePresenceMode?: AnimatePresenceProps["mode"];
+  animatePresenceInitial?: boolean;
+  staggerDuration?: number;
+  staggerFrom?: "first" | "last" | "center" | number | "random";
+  transition?: Transition;
+  loop?: boolean; // Whether to start from the first text when the last one is reached
+  auto?: boolean; // Whether to start the animation automatically
+  splitBy?: "words" | "characters" | "lines" | string;
+  onNext?: (index: number) => void;
+  mainClassName?: string;
+  splitLevelClassName?: string;
+  elementLevelClassName?: string;
 }
 
 export interface TextRotateRef {
-  next: () => void
-  previous: () => void
-  jumpTo: (index: number) => void
-  reset: () => void
+  next: () => void;
+  previous: () => void;
+  jumpTo: (index: number) => void;
+  reset: () => void;
 }
 
 interface WordObject {
-  characters: string[]
-  needsSpace: boolean
+  characters: string[];
+  needsSpace: boolean;
 }
 
 const TextRotate = forwardRef<TextRotateRef, TextRotateProps>(
@@ -74,105 +74,121 @@ const TextRotate = forwardRef<TextRotateRef, TextRotateProps>(
     },
     ref
   ) => {
-    const [currentTextIndex, setCurrentTextIndex] = useState(0)
+    const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
     // handy function to split text into characters with support for unicode and emojis
     const splitIntoCharacters = (text: string): string[] => {
       if (typeof Intl !== "undefined" && "Segmenter" in Intl) {
-        const segmenter = new Intl.Segmenter("en", { granularity: "grapheme" })
-        return Array.from(segmenter.segment(text), ({ segment }) => segment)
+        const segmenter = new Intl.Segmenter("en", { granularity: "grapheme" });
+        return Array.from(segmenter.segment(text), ({ segment }) => segment);
       }
       // Fallback for browsers that don't support Intl.Segmenter
-      return Array.from(text)
-    }
+      return Array.from(text);
+    };
 
     const elements = useMemo(() => {
-      const currentText = texts[currentTextIndex]
+      const currentText = texts[currentTextIndex];
       if (splitBy === "characters") {
-        const text = currentText.split(" ")
+        const text = currentText.split(" ");
         return text.map((word, i) => ({
           characters: splitIntoCharacters(word),
           needsSpace: i !== text.length - 1,
-        }))
+        }));
       }
       return splitBy === "words"
         ? currentText.split(" ")
         : splitBy === "lines"
-          ? currentText.split("\n")
-          : currentText.split(splitBy)
-    }, [texts, currentTextIndex, splitBy])
+        ? currentText.split("\n")
+        : currentText.split(splitBy);
+    }, [texts, currentTextIndex, splitBy]);
 
     const getStaggerDelay = useCallback(
       (index: number, totalChars: number) => {
-        const total = totalChars
-        if (staggerFrom === "first") return index * staggerDuration
-        if (staggerFrom === "last") return (total - 1 - index) * staggerDuration
+        const total = totalChars;
+        if (staggerFrom === "first") return index * staggerDuration;
+        if (staggerFrom === "last")
+          return (total - 1 - index) * staggerDuration;
         if (staggerFrom === "center") {
-          const center = Math.floor(total / 2)
-          return Math.abs(center - index) * staggerDuration
+          const center = Math.floor(total / 2);
+          return Math.abs(center - index) * staggerDuration;
         }
         if (staggerFrom === "random") {
-          const randomIndex = Math.floor(Math.random() * total)
-          return Math.abs(randomIndex - index) * staggerDuration
+          const randomIndex = Math.floor(Math.random() * total);
+          return Math.abs(randomIndex - index) * staggerDuration;
         }
-        return Math.abs(staggerFrom - index) * staggerDuration
+        return Math.abs(staggerFrom - index) * staggerDuration;
       },
       [staggerFrom, staggerDuration]
-    )
+    );
 
     // Helper function to handle index changes and trigger callback
-    const handleIndexChange = useCallback((newIndex: number) => {
-      setCurrentTextIndex(newIndex)
-      onNext?.(newIndex)
-    }, [onNext])
+    const handleIndexChange = useCallback(
+      (newIndex: number) => {
+        setCurrentTextIndex(newIndex);
+        onNext?.(newIndex);
+      },
+      [onNext]
+    );
 
     const next = useCallback(() => {
-      const nextIndex = currentTextIndex === texts.length - 1
-        ? (loop ? 0 : currentTextIndex)
-        : currentTextIndex + 1
-      
+      const nextIndex =
+        currentTextIndex === texts.length - 1
+          ? loop
+            ? 0
+            : currentTextIndex
+          : currentTextIndex + 1;
+
       if (nextIndex !== currentTextIndex) {
-        handleIndexChange(nextIndex)
+        handleIndexChange(nextIndex);
       }
-    }, [currentTextIndex, texts.length, loop, handleIndexChange])
+    }, [currentTextIndex, texts.length, loop, handleIndexChange]);
 
     const previous = useCallback(() => {
-      const prevIndex = currentTextIndex === 0
-        ? (loop ? texts.length - 1 : currentTextIndex)
-        : currentTextIndex - 1
-      
-      if (prevIndex !== currentTextIndex) {
-        handleIndexChange(prevIndex)
-      }
-    }, [currentTextIndex, texts.length, loop, handleIndexChange])
+      const prevIndex =
+        currentTextIndex === 0
+          ? loop
+            ? texts.length - 1
+            : currentTextIndex
+          : currentTextIndex - 1;
 
-    const jumpTo = useCallback((index: number) => {
-      const validIndex = Math.max(0, Math.min(index, texts.length - 1))
-      if (validIndex !== currentTextIndex) {
-        handleIndexChange(validIndex)
+      if (prevIndex !== currentTextIndex) {
+        handleIndexChange(prevIndex);
       }
-    }, [texts.length, currentTextIndex, handleIndexChange])
+    }, [currentTextIndex, texts.length, loop, handleIndexChange]);
+
+    const jumpTo = useCallback(
+      (index: number) => {
+        const validIndex = Math.max(0, Math.min(index, texts.length - 1));
+        if (validIndex !== currentTextIndex) {
+          handleIndexChange(validIndex);
+        }
+      },
+      [texts.length, currentTextIndex, handleIndexChange]
+    );
 
     const reset = useCallback(() => {
       if (currentTextIndex !== 0) {
-        handleIndexChange(0)
+        handleIndexChange(0);
       }
-    }, [currentTextIndex, handleIndexChange])
+    }, [currentTextIndex, handleIndexChange]);
 
     // Expose all navigation functions via ref
-    useImperativeHandle(ref, () => ({
-      next,
-      previous,
-      jumpTo,
-      reset,
-    }), [next, previous, jumpTo, reset])
-
+    useImperativeHandle(
+      ref,
+      () => ({
+        next,
+        previous,
+        jumpTo,
+        reset,
+      }),
+      [next, previous, jumpTo, reset]
+    );
 
     useEffect(() => {
-      if (!auto) return
-      const intervalId = setInterval(next, rotationInterval)
-      return () => clearInterval(intervalId)
-    }, [next, rotationInterval, auto])
+      if (!auto) return;
+      const intervalId = setInterval(next, rotationInterval);
+      return () => clearInterval(intervalId);
+    }, [next, rotationInterval, auto]);
 
     return (
       <motion.span
@@ -205,7 +221,7 @@ const TextRotate = forwardRef<TextRotateRef, TextRotateProps>(
             ).map((wordObj, wordIndex, array) => {
               const previousCharsCount = array
                 .slice(0, wordIndex)
-                .reduce((sum, word) => sum + word.characters.length, 0)
+                .reduce((sum, word) => sum + word.characters.length, 0);
 
               return (
                 <span
@@ -237,15 +253,15 @@ const TextRotate = forwardRef<TextRotateRef, TextRotateProps>(
                     <span className="whitespace-pre"> </span>
                   )}
                 </span>
-              )
+              );
             })}
           </motion.div>
         </AnimatePresence>
       </motion.span>
-    )
+    );
   }
-)
+);
 
-TextRotate.displayName = "TextRotate"
+TextRotate.displayName = "TextRotate";
 
-export default TextRotate
+export default TextRotate;
