@@ -2,6 +2,7 @@ import { experience } from "@/data/resume";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn, formatDate } from "@/lib/utils";
 import { notFound } from "next/navigation";
+import { Minus } from "lucide-react";
 
 export default async function ExperiencePage({
   params,
@@ -20,29 +21,30 @@ export default async function ExperiencePage({
 
   return (
     <section className="min-h-screen">
-      <div className="border border-green-400/20 hover:border-green-400 transition-colors bg-black/50 backdrop-blur-sm p-6 space-y-6">
+      <div className="border border-green-400/20 hover:border-green-400 transition-colors p-4 sm:p-6">
         <h2
           className={cn(
-            "text-3xl font-bold text-green-50",
+            "text-xl sm:text-2xl mb-2 text-green-50",
             bricolageGrotesque.className
           )}
         >
           {job.title}
         </h2>
 
-        <div className="flex items-center text-sm text-green-300 space-x-4">
+        <div className="flex items-center text-sm sm:text-base text-green-300 space-x-2">
           <p className="font-medium">{job.organization.name}</p>
-          <p className="italic">{job.location}</p>
+          <Minus className="h-2 w-2" />
+          <p>{job.location}</p>
         </div>
 
         {job.start_date && (
-          <p className="text-xs text-green-400/70">
+          <p className="text-xs sm:text-sm text-green-300 mb-2 sm:mb-3 mt-1 sm:mt-2">
             {formatDate(job.start_date)} - {formatDate(job.end_date)}
           </p>
         )}
 
         <div className="space-y-4">
-          <p className="text-base text-green-300/90 leading-relaxed">
+          <p className="text-sm sm:text-base text-green-300 leading-relaxed">
             {job.description}
           </p>
 

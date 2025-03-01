@@ -22,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <Providers>
+    <Providers>
+      <html lang="en" suppressHydrationWarning>
         <body
           className={cn(inter.className, "antialiased bg-black text-green-400")}
           suppressHydrationWarning
@@ -37,7 +37,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </body>
-      </Providers>
-    </html>
+      </html>
+    </Providers>
   );
 }
