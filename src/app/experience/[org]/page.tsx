@@ -3,6 +3,12 @@ import { bricolageGrotesque } from "@/lib/fonts";
 import { cn, formatDate } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import { Minus } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Experience | Milind Mishra",
+  description: "Work Experience of Milind Mishra",
+};
 
 export default async function ExperiencePage({
   params,

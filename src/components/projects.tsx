@@ -12,7 +12,7 @@ export function Projects() {
     <section id="projects">
       <h2
         className={cn(
-          "~text-2xl/3xl font-bold mb-6",
+          "~text-xl/2xl font-bold mb-4",
           bricolageGrotesque.className
         )}
       >
@@ -23,8 +23,8 @@ export function Projects() {
           <div
             key={index}
             className={cn(
-              "relative border p-6",
-              "hover:shadow-lg",
+              "relative border p-4 sm:p-6",
+              "hover:border-green-400 transition-colors",
               "bg-black/10 backdrop-blur-sm",
               hoveredIndex === index
                 ? "border-green-400"
@@ -51,7 +51,7 @@ export function Projects() {
                           ?.img
                       }
                       alt={award}
-                      className="~h-24/36 ~w-24/36"
+                      className="~h-20/32 ~w-20/32"
                     />
                   </a>
                 ))}
@@ -84,19 +84,19 @@ export function Projects() {
             <div className="mb-4">
               <h3
                 className={cn(
-                  "~text-3xl/6xl mb-2 text-green-50",
+                  "~text-xl/2xl mb-2 text-green-50",
                   bricolageGrotesque.className
                 )}
               >
                 {project.title}
               </h3>
-              <p className="text-green-300/90 ~text-sm/base">
+              <p className="text-green-300 ~text-sm/base">
                 {project.description}
               </p>
             </div>
 
             <div className="overflow-hidden">
-              <p className="text-green-200 mb-4 ~text-sm/base">
+              <p className="text-green-200 ~text-sm/base leading-relaxed">
                 {project.moreDetails}
               </p>
             </div>
