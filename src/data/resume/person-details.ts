@@ -1,4 +1,4 @@
-import { PersonDetails } from "./types";
+import { PersonDetails } from "./schema";
 import { experience } from "./experience";
 import { projects } from "./projects";
 

@@ -1,4 +1,4 @@
-import { fetchAllPosts } from "@/lib/services/blog";
+import { fetchAllPosts } from "@/services/blog/blog.service";
 import { notFound } from "next/navigation";
 import BlogPostCard from "./components/blog-post-card";
 import { cn } from "@/lib/utils";

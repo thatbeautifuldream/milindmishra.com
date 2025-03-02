@@ -1,4 +1,4 @@
-export * from "./types";
+export * from "./schema";
 
 export { experience } from "./experience";
 export { projects } from "./projects";

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { Experience } from "@/data/resume/types";
+import { Experience } from "@/data/resume/schema";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn, formatDate } from "@/lib/utils";
 import { Minus } from "lucide-react";

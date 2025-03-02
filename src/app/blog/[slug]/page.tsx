@@ -1,4 +1,4 @@
-import { fetchPostDetails } from "@/lib/services/blog";
+import { fetchPostDetails } from "@/services/blog/blog.service";
 import { notFound } from "next/navigation";
 import { BlogHeader } from "./components/blog-header";
 import { Suspense } from "react";

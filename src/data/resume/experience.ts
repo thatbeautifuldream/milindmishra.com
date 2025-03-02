@@ -1,6 +1,30 @@
-import { Experience } from "./types";
+import { Experience } from "./schema";
+import { indianDateToUnixTimestamp } from "@/lib/utils";
 
 const experience: Experience[] = [
+  {
+    title: "Product Engineer",
+    description: "Getting started with Chat related features for Merlin AI.",
+    organization: {
+      name: "Merlin AI",
+      slug: "merlin-ai",
+      description:
+        "Merlin is an AI Chrome Extension and web app that works as your AI-powered assistant for research, writing, and summarization, providing access to premium AI models.",
+      logo: "/assets/logos/merlinai_logo.png",
+    },
+    skills: [
+      "React.js",
+      "Next.js",
+      "Typescript",
+      "Tailwind CSS",
+      "Chrome Extension",
+      "AI Integration",
+    ],
+    start_date: indianDateToUnixTimestamp("20/02/2025"),
+    end_date: null,
+    location: "Bengaluru, Karnataka, India",
+    job_type: "full_time",
+  },
   {
     title: "Software Engineer",
     description:
@@ -22,8 +46,8 @@ const experience: Experience[] = [
       "MUI",
       "DND-Kit",
     ],
-    start_date: 1704067200, // January 2024
-    end_date: null,
+    start_date: indianDateToUnixTimestamp("28/12/2024"),
+    end_date: indianDateToUnixTimestamp("08/02/2025"),
     location: "Bengaluru, Karnataka, India",
     job_type: "full_time",
   },
@@ -50,8 +74,8 @@ const experience: Experience[] = [
       "NGINX",
       "PM2",
     ],
-    start_date: 1717286400, // June 2024
-    end_date: 1735689600, // December 2024
+    start_date: indianDateToUnixTimestamp("01/06/2024"),
+    end_date: indianDateToUnixTimestamp("27/12/2024"),
     location: "Bengaluru, Karnataka, India",
     job_type: "full_time",
   },
@@ -66,8 +90,8 @@ const experience: Experience[] = [
       logo: "/assets/logos/freelance_logo.jpeg",
     },
     skills: ["Next.js", "React.js", "TypeScript", "AI Integration"],
-    start_date: 1706745600, // February 2024
-    end_date: 1714521600, // May 2024
+    start_date: indianDateToUnixTimestamp("01/02/2024"),
+    end_date: indianDateToUnixTimestamp("01/05/2024"),
     location: "Bengaluru, Karnataka, India",
     job_type: "contract",
   },
@@ -83,8 +107,8 @@ const experience: Experience[] = [
       logo: "/assets/logos/startuphire_logo.jpeg",
     },
     skills: ["Team Leadership", "Next.js", "React.js", "API Integration"],
-    start_date: 1690848000, // August 2023
-    end_date: 1704067200, // January 2024
+    start_date: indianDateToUnixTimestamp("01/08/2023"),
+    end_date: indianDateToUnixTimestamp("01/01/2024"),
     location: "Irvine, California, United States",
     job_type: "full_time",
   },
@@ -104,8 +128,8 @@ const experience: Experience[] = [
       "Research",
       "Indoor Positioning",
     ],
-    start_date: 1675209600, // February 2023
-    end_date: 1688169600, // July 2023
+    start_date: indianDateToUnixTimestamp("01/02/2023"),
+    end_date: indianDateToUnixTimestamp("31/07/2023"),
     location: "Hsinchu City, Taiwan",
     job_type: "full_time",
   },
@@ -125,8 +149,8 @@ const experience: Experience[] = [
       "Server Management",
       "3D Visualization",
     ],
-    start_date: 1656633600, // July 2022
-    end_date: 1672531200, // January 2023
+    start_date: indianDateToUnixTimestamp("01/07/2022"),
+    end_date: indianDateToUnixTimestamp("01/01/2023"),
     location: "Bengaluru, Karnataka, India",
     job_type: "full_time",
   },
@@ -142,8 +166,8 @@ const experience: Experience[] = [
       logo: "/assets/logos/ineuron_ai_logo.jpeg",
     },
     skills: ["UX Design", "Design Systems", "User Flows", "Marketing Design"],
-    start_date: 1651363200, // May 2022
-    end_date: 1656633600, // June 2022
+    start_date: indianDateToUnixTimestamp("01/05/2022"),
+    end_date: indianDateToUnixTimestamp("30/06/2022"),
     location: "Bengaluru, Karnataka, India",
     job_type: "full_time",
   },
@@ -157,8 +181,8 @@ const experience: Experience[] = [
       logo: "/assets/logos/plusklass_logo.jpeg",
     },
     skills: ["Technical Writing", "Course Creation", "Educational Content"],
-    start_date: 1640995200, // January 2022
-    end_date: 1648771200, // April 2022
+    start_date: indianDateToUnixTimestamp("01/01/2022"),
+    end_date: indianDateToUnixTimestamp("30/04/2022"),
     location: "Remote",
     job_type: "contract",
   },

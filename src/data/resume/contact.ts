@@ -1,4 +1,4 @@
-import { Contact } from "./types";
+import { Contact } from "./schema";
 
 const contact: Contact = {
   profilePicture: "https://avatars.githubusercontent.com/u/28717686?v=4",

@@ -1,6 +1,6 @@
 "use client";
 
-import { FetchPostDetailsResponse } from "@/lib/services/blog";
+import { FetchPostDetailsResponse } from "@/services/blog/blog.service";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
