@@ -5,6 +5,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+/**
+ * Formats a Unix timestamp to a date string
+ * @param timestamp - Unix timestamp in seconds
+ * @returns Date string in MM/YYYY format
+ */
 export function formatDate(timestamp: number | null) {
   if (!timestamp) return "Present";
   return new Intl.DateTimeFormat("en-US", {

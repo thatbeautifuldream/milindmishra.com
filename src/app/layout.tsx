@@ -1,7 +1,7 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import Providers from "@/components/providers";
-import { BRAND_COLOR } from "@/data/constants";
+import { BRAND_COLOR } from "@/lib/constants";
 import { inter } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
