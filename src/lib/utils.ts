@@ -27,8 +27,7 @@ export function indianDateToUnixTimestamp(dateStr: string): number {
   if (!match) {
     throw new Error("Invalid date format. Please use DD/MM/YYYY format");
   }
-
-  const [_, day, month, year] = match;
+  const [, day, month, year] = match;
 
   // Create Date object (months are 0-indexed in JavaScript)
   const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
