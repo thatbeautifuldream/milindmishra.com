@@ -1,16 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import ExperienceTooltip from "@/components/experience-tooltip";
 import { Timeline, TimelineItem } from "@/components/ui/timeline";
 import { experience } from "@/data/resume";
 import { bricolageGrotesque } from "@/lib/fonts";
-import { cn, formatDate } from "@/lib/utils";
-import { Minus } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { MAX_EXPERIENCES_TO_SHOW } from "@/lib/constants";
-import { Link } from "next-view-transitions";
+import { ExperienceCard } from "./experience-card";
 
 export function Experience() {
   const [showAll, setShowAll] = useState(false);
@@ -30,31 +28,7 @@ export function Experience() {
       <Timeline>
         {experiencesToShow.map((job, index) => (
           <TimelineItem key={index} isActive={index === 0} index={index}>
-            <Link href={`/experience/${job.organization.slug}`}>
-              <div className="border border-green-400/20 p-4 sm:p-6 hover:border-green-400 transition-colors">
-                <h3
-                  className={cn(
-                    "~text-xl/2xl mb-2 text-green-50 flex items-center",
-                    bricolageGrotesque.className
-                  )}
-                >
-                  {job.title}
-                </h3>
-                <div className="text-green-300 flex items-center ~text-sm/base">
-                  <ExperienceTooltip organization={job.organization} />
-                  <Minus className="h-2 w-2 m-2" />
-                  {job.location}
-                </div>
-                {job.start_date && (
-                  <p className="text-green-300 ~text-xs/sm mb-2 sm:mb-3 ~mt-1/2">
-                    {formatDate(job.start_date)} - {formatDate(job.end_date)}
-                  </p>
-                )}
-                <p className="text-green-300 ~text-sm/base leading-relaxed">
-                  {job.description}
-                </p>
-              </div>
-            </Link>
+            <ExperienceCard job={job} />
           </TimelineItem>
         ))}
       </Timeline>
