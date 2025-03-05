@@ -38,7 +38,7 @@ export function ExperienceLetter({
       {/* Header */}
       <div className="flex justify-between items-start mb-8">
         <div className="flex items-center">
-          <div className="h-12 w-12 relative mr-3">
+          <div className="h-8 w-8 relative mr-3">
             <Image
               src={companyLogo}
               alt={`${companyName} Logo`}
@@ -83,7 +83,8 @@ export function ExperienceLetter({
 
       {/* Signature */}
       <div className="mt-12">
-        <p>Sincerely,</p>
+        <p className="text-green-50">Sincerely,</p>
+
         <div className="mt-2">
           <p className={cn("text-green-50", bricolageGrotesque.className)}>
             {signerName}
