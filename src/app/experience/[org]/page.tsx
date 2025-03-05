@@ -1,9 +1,9 @@
 import { experience } from "@/data/resume";
-import { experienceLetters } from "@/data/experience-letters";
+// import { experienceLetters } from "@/data/experience-letters";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { ExperienceCard } from "@/components/experience-card";
-import { ExperienceLetter } from "@/components/experience-letter";
+// import { ExperienceLetter } from "@/components/experience-letter";
 
 export const metadata: Metadata = {
   title: "Experience | Milind Mishra",
@@ -25,12 +25,12 @@ export default async function ExperiencePage({
     notFound();
   }
 
-  const letterData = experienceLetters[job.organization.slug];
+  // const letterData = experienceLetters[job.organization.slug];
 
   return (
     <section className="min-h-screen space-y-8">
       <ExperienceCard job={job} isTimelineItem={false} />
-      {letterData && <ExperienceLetter {...letterData} />}
+      {/* {letterData && <ExperienceLetter {...letterData} />} */}
     </section>
   );
 }
