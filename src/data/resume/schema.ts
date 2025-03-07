@@ -61,6 +61,7 @@ const TestimonialSchema = z.object({
   message: z.string().min(20).max(1000),
   linkToTestimony: z.string().url(),
   author: TestimonialAuthorSchema,
+  show: z.boolean(),
 });
 
 const SocialLinksSchema = z.object({

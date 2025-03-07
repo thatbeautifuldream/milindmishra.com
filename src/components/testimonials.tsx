@@ -1,136 +1,70 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { bricolageGrotesque } from "@/lib/fonts";
-import { cn } from "@/lib/utils";
-import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { bricolageGrotesque } from "@/lib/fonts";
+import { Testimonial } from "@/data/resume/schema";
 
-interface Testimonial {
-  message: string;
-  linkToTestimony: string;
-  author: {
-    name: string;
-    bio: string;
-    image: string;
-    social: string;
-  };
-}
-
-interface TestimonialsProps {
+type TTestimonialsProps = {
   testimonials: Testimonial[];
   className?: string;
-  title?: string;
-  description?: string;
-  maxDisplayed?: number;
-}
+};
 
-export function Testimonials({
-  testimonials,
-  className,
-  title = "Read what people are saying",
-  description = "Feedback from people who have worked with me",
-  maxDisplayed = 6,
-}: TestimonialsProps) {
-  const [showAll, setShowAll] = useState(false);
-
+export function Testimonials({ testimonials, className }: TTestimonialsProps) {
+  const filteredTestimonials = testimonials.filter(
+    (testimonial) => testimonial.show
+  );
   return (
-    <div className={className}>
-      <div className="flex flex-col items-center justify-center pt-5">
-        <div className="flex flex-col ~gap-3/5 mb-8">
-          <h2
-            className={cn(
-              "text-center ~text-3xl/4xl font-medium",
-              bricolageGrotesque.className
-            )}
+    <section className={cn("mt-22", className)}>
+      <h2 className="sr-only">Testimonials</h2>
+      <div className="grid grid-cols-1 grid-rows-[auto_1fr] gap-x-10 max-lg:gap-y-10 lg:grid-cols-2 lg:gap-y-5">
+        {filteredTestimonials.map((testimonial, index) => (
+          <figure
+            key={index}
+            className="group row-span-2 grid max-lg:mx-auto max-lg:max-w-3xl max-lg:gap-y-5 lg:grid-rows-subgrid lg:border-white/5 lg:first:border-r lg:last:border-l hover:text-sky-400"
           >
-            {title}
-          </h2>
-          <p className="text-center ~text-sm/lg text-muted-foreground">
-            {description.split("<br />").map((line, i) => (
-              <span key={i}>
-                {line}
-                {i !== description.split("<br />").length - 1 && <br />}
-              </span>
-            ))}
-          </p>
-        </div>
-      </div>
-
-      <div className="relative">
-        <div
-          className={cn(
-            "flex justify-center items-center gap-5 flex-wrap",
-            !showAll &&
-              testimonials.length > maxDisplayed &&
-              "max-h-[720px] overflow-hidden"
-          )}
-        >
-          {testimonials
-            .slice(0, showAll ? undefined : maxDisplayed)
-            .map((testimonial, index) => (
-              <Card
-                key={index}
-                className="w-80 h-auto p-5 relative bg-transparent border-green-400/20 hover:border-green-400 text-white backdrop-blur-sm transition-all duration-300 select-none"
+            <blockquote className="mx-auto flex items-center px-8 py-2 text-xl/9 font-medium tracking-tight text-white sm:px-16 sm:text-2xl/10">
+              <p
+                className={cn(
+                  "relative before:pointer-events-none before:absolute before:top-4 before:-left-6 before:text-[6rem] before:text-white/10 before:content-['“'] sm:before:-left-8 lg:before:text-[8rem]",
+                  bricolageGrotesque.className
+                )}
               >
-                <div className="flex items-center">
-                  <Image
-                    src={testimonial.author.image}
-                    alt={testimonial.author.name}
-                    width={50}
-                    height={50}
-                    className="rounded-full"
-                  />
-                  <div className="flex flex-col pl-4">
-                    <Link
-                      href={testimonial.author.social}
-                      target="_blank"
-                      className="text-left hover:opacity-80 transition-opacity"
-                    >
-                      <span className="font-semibold text-base hover:text-green-400 transition-colors">
-                        {testimonial.author.name}
-                      </span>
-                    </Link>
-                    <span className="text-sm text-muted-foreground">
-                      {testimonial.author.bio}
-                    </span>
-                  </div>
-                </div>
-                <div className="mt-5 mb-5">
-                  <p
-                    className={cn(
-                      "text-green-300 hover:text-green-400 transition-colors duration-300 ~text-sm/base",
-                      bricolageGrotesque.className
-                    )}
+                {testimonial.message}
+              </p>
+            </blockquote>
+            <figcaption className="max-lg:line-y lg:group-first:line-y grid grid-cols-[max-content_1fr] gap-6 px-8 py-2 sm:px-16">
+              <Image
+                src={testimonial.author.image}
+                alt={testimonial.author.name}
+                width={56}
+                height={56}
+                className="aspect-square size-14 rounded-full outline -outline-offset-1 outline-white/5"
+              />
+              <div className="text-sm/7">
+                <p className="font-semibold text-white">
+                  <Link
+                    href={testimonial.author.social}
+                    className="underline decoration-green-400 underline-offset-4 hover:text-green-400"
+                    target="_blank"
                   >
-                    &quot; {testimonial.message} &quot;
-                  </p>
-                </div>
-                <Link
-                  href={testimonial.linkToTestimony}
-                  target="_blank"
-                  className="absolute top-4 right-4 hover:opacity-80 transition-opacity"
-                >
-                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </Card>
-            ))}
-        </div>
-
-        {testimonials.length > maxDisplayed && !showAll && (
-          <>
-            <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent opacity-70" />
-            <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
-              <Button variant="ghost" onClick={() => setShowAll(true)}>
-                Read More
-              </Button>
-            </div>
-          </>
-        )}
+                    {testimonial.author.name}
+                  </Link>
+                </p>
+                <p className="text-white/70">
+                  {testimonial.author.bio.split(" at ").map((part, i, arr) => (
+                    <span key={i}>
+                      {part}
+                      {i < arr.length - 1 ? " at " : ""}
+                    </span>
+                  ))}
+                </p>
+              </div>
+            </figcaption>
+          </figure>
+        ))}
       </div>
-    </div>
+    </section>
   );
 }

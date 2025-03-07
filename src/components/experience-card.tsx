@@ -6,7 +6,7 @@ import { bricolageGrotesque } from "@/lib/fonts";
 import { cn, formatDate } from "@/lib/utils";
 import { Minus } from "lucide-react";
 import { Link } from "next-view-transitions";
-
+import { Badge } from "@/components/ui/badge";
 interface ExperienceCardProps {
   job: Experience;
   isTimelineItem?: boolean;
@@ -49,12 +49,7 @@ export function ExperienceCard({
       {job.skills && (
         <div className="flex flex-wrap gap-2 pt-4">
           {job.skills.map((skill, index) => (
-            <span
-              key={skill + index}
-              className="text-xs px-2 py-1 bg-green-400/10 text-green-300"
-            >
-              {skill}
-            </span>
+            <Badge key={skill + index}>{skill}</Badge>
           ))}
         </div>
       )}
