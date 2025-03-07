@@ -4,7 +4,7 @@ const client = new GraphQLClient("https://gql.hashnode.com", {
   method: "POST",
 });
 
-export type FetchAllPostsResponse = {
+export type TBlogPosts = {
   data: {
     publication: {
       id: string;
@@ -37,9 +37,9 @@ export type FetchAllPostsResponse = {
 };
 
 export async function fetchAllPosts(): Promise<
-  FetchAllPostsResponse["data"]["publication"]["posts"]["edges"][number]["node"][]
+  TBlogPosts["data"]["publication"]["posts"]["edges"][number]["node"][]
 > {
-  const data: FetchAllPostsResponse["data"] = await client.request(gql`
+  const data: TBlogPosts["data"] = await client.request(gql`
     query allPosts($tags: [ObjectId!]) {
       publication(host: "blog.milind.live") {
         id
@@ -79,7 +79,7 @@ export async function fetchAllPosts(): Promise<
   return data?.publication?.posts?.edges.map((edge) => edge.node) ?? [];
 }
 
-export type FetchPostDetailsResponse = {
+export type TBlogPostDetails = {
   data: {
     publication: {
       id: string;
@@ -110,8 +110,8 @@ export type FetchPostDetailsResponse = {
 
 export async function fetchPostDetails(
   slug: string
-): Promise<FetchPostDetailsResponse["data"]["publication"]["post"]> {
-  const data: FetchPostDetailsResponse["data"] = await client.request(
+): Promise<TBlogPostDetails["data"]["publication"]["post"]> {
+  const data: TBlogPostDetails["data"] = await client.request(
     gql`
       query postDetails($slug: String!) {
         publication(host: "blog.milind.live") {

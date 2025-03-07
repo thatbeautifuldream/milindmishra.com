@@ -4,21 +4,19 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { TBlogPosts } from "@/services/blog/blog.service";
+import { Badge } from "@/components/ui/badge";
+import { bricolageGrotesque } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 
 dayjs.extend(relativeTime);
 
-interface BlogPostCardProps {
-  post: {
-    slug: string;
-    publishedAt: string;
-    title: string;
-    brief: string;
-    tags: Array<{ id: string; name: string }>;
-  };
+type TBlogPostCardProps = {
+  post: TBlogPosts["data"]["publication"]["posts"]["edges"][number]["node"];
   index: number;
-}
+};
 
-export default function BlogPostCard({ post, index }: BlogPostCardProps) {
+export default function BlogPostCard({ post, index }: TBlogPostCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -28,23 +26,35 @@ export default function BlogPostCard({ post, index }: BlogPostCardProps) {
         delay: index * 0.1,
         ease: "easeOut",
       }}
-      className="border border-green-400/20 p-6 hover:border-green-400 transition-colors h-full backdrop-blur-sm"
+      className="border border-green-700 p-6 hover:border-green-500 hover:bg-green-900/20 transition-colors h-full backdrop-blur-sm"
     >
       <Link href={`/blog/${post.slug}`} className="block h-full">
         <article className="flex flex-col h-full">
-          <span className="text-sm text-green-400 mb-2">
-            {dayjs(post.publishedAt).fromNow()}
-          </span>
-          <h2 className="text-xl font-bold mb-3">{post.title}</h2>
-          <p className="text-green-300 mb-6 flex-grow">{post.brief}</p>
+          <h2
+            className={cn(
+              "text-xl font-bold text-white mb-3",
+              bricolageGrotesque.className
+            )}
+          >
+            {post.title}
+          </h2>
+          <p className="text-green-300 font-mono text-sm mb-6 flex-grow">
+            {post.brief}
+          </p>
           <div className="flex flex-wrap gap-2">
+            <Badge
+              variant="outline"
+              className="uppercase text-xs font-mono font-extralight"
+            >
+              {dayjs(post.publishedAt).fromNow()}
+            </Badge>
             {post.tags.map((tag) => (
-              <span
+              <Badge
+                className="uppercase text-xs font-mono font-extralight"
                 key={tag.id}
-                className="text-sm px-2 py-1 bg-green-400/10 backdrop-blur-sm lowercase"
               >
                 {tag.name}
-              </span>
+              </Badge>
             ))}
           </div>
         </article>

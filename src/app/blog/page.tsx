@@ -20,7 +20,7 @@ export default async function BlogPage() {
       >
         My Blog
       </h2>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="flex flex-col gap-6">
         {posts?.map((post, index) => (
           <BlogPostCard key={post.slug} post={post} index={index} />
         ))}
