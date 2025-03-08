@@ -22,7 +22,7 @@ const experience: Experience[] = [
     ],
     start_date: indianDateToUnixTimestamp("20/02/2025"),
     end_date: null,
-    location: "Bengaluru, Karnataka, India",
+    location: "Bengaluru, India",
     job_type: "full_time",
   },
   {
@@ -48,7 +48,7 @@ const experience: Experience[] = [
     ],
     start_date: indianDateToUnixTimestamp("28/12/2024"),
     end_date: indianDateToUnixTimestamp("08/02/2025"),
-    location: "Bengaluru, Karnataka, India",
+    location: "Bengaluru, India",
     job_type: "full_time",
   },
   {
@@ -76,7 +76,7 @@ const experience: Experience[] = [
     ],
     start_date: indianDateToUnixTimestamp("01/06/2024"),
     end_date: indianDateToUnixTimestamp("27/12/2024"),
-    location: "Bengaluru, Karnataka, India",
+    location: "Bengaluru, India",
     job_type: "full_time",
   },
   {
@@ -92,7 +92,7 @@ const experience: Experience[] = [
     skills: ["Next.js", "React.js", "TypeScript", "AI Integration"],
     start_date: indianDateToUnixTimestamp("01/02/2024"),
     end_date: indianDateToUnixTimestamp("01/05/2024"),
-    location: "Bengaluru, Karnataka, India",
+    location: "Bengaluru, India",
     job_type: "contract",
   },
   {
@@ -130,7 +130,7 @@ const experience: Experience[] = [
     ],
     start_date: indianDateToUnixTimestamp("01/02/2023"),
     end_date: indianDateToUnixTimestamp("31/07/2023"),
-    location: "Hsinchu City, Taiwan",
+    location: "Hsinchu, Taiwan",
     job_type: "full_time",
   },
   {
@@ -151,7 +151,7 @@ const experience: Experience[] = [
     ],
     start_date: indianDateToUnixTimestamp("01/07/2022"),
     end_date: indianDateToUnixTimestamp("01/01/2023"),
-    location: "Bengaluru, Karnataka, India",
+    location: "Bengaluru, India",
     job_type: "full_time",
   },
   {
@@ -168,7 +168,7 @@ const experience: Experience[] = [
     skills: ["UX Design", "Design Systems", "User Flows", "Marketing Design"],
     start_date: indianDateToUnixTimestamp("01/05/2022"),
     end_date: indianDateToUnixTimestamp("30/06/2022"),
-    location: "Bengaluru, Karnataka, India",
+    location: "Bengaluru, India",
     job_type: "full_time",
   },
   {

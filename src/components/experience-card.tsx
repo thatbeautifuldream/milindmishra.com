@@ -1,12 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Experience } from "@/data/resume/schema";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn, formatDate } from "@/lib/utils";
-import { Minus } from "lucide-react";
 import { Link } from "next-view-transitions";
-import { Badge } from "@/components/ui/badge";
 interface ExperienceCardProps {
   job: Experience;
   isTimelineItem?: boolean;
@@ -17,7 +16,10 @@ export function ExperienceCard({
   isTimelineItem = true,
 }: ExperienceCardProps) {
   const CardContent = () => (
-    <div className="border border-green-400/20 p-4 sm:p-6 hover:border-green-400 transition-colors">
+    <div className="border border-green-400/20 p-4 sm:p-6 hover:border-green-400 transition-colors relative">
+      <Badge className="absolute font-mono uppercase text-xs top-4 sm:top-6 right-4 sm:right-6 truncate">
+        {job.location}
+      </Badge>
       <h3
         className={cn(
           "~text-xl/2xl mb-2 text-green-50 flex items-center",
@@ -26,7 +28,7 @@ export function ExperienceCard({
       >
         {job.title}
       </h3>
-      <div className="text-green-300 flex items-center ~text-sm/base">
+      <div className="text-green-300 flex items-center ~text-xs/base font-mono">
         <div className="flex items-center cursor-pointer hover:text-green-400 transition-colors">
           <img
             src={job.organization.logo}
@@ -35,8 +37,6 @@ export function ExperienceCard({
           />
           {job.organization.name}
         </div>
-        <Minus className="h-2 w-2 m-2" />
-        {job.location}
       </div>
       {job.start_date && (
         <p className="text-green-300 ~text-xs/sm mb-2 sm:mb-3 ~mt-1/2">
