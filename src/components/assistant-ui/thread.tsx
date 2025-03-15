@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import {
   ActionBarPrimitive,
   BranchPickerPrimitive,
@@ -5,22 +6,21 @@ import {
   MessagePrimitive,
   ThreadPrimitive,
 } from "@assistant-ui/react";
-import type { FC } from "react";
 import {
   ArrowDownIcon,
+  ArrowUp,
   CheckIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   CopyIcon,
   PencilIcon,
   RefreshCwIcon,
-  SendHorizontalIcon,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import type { FC } from "react";
 
-import { Button } from "@/components/ui/button";
 import { MarkdownText } from "@/components/assistant-ui/markdown-text";
 import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button";
+import { Button } from "@/components/ui/button";
 
 export const Thread: FC = () => {
   return (
@@ -132,7 +132,7 @@ const ComposerAction: FC = () => {
             variant="default"
             className="my-2.5 size-8 p-2 transition-opacity ease-in"
           >
-            <SendHorizontalIcon />
+            <ArrowUp className="size-4" />
           </TooltipIconButton>
         </ComposerPrimitive.Send>
       </ThreadPrimitive.If>
