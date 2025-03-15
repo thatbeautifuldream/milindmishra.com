@@ -1,5 +1,5 @@
-import ReactQueryProvider from "./react-query-provider";
 import { Analytics } from "@vercel/analytics/react";
+import ReactQueryProvider from "./react-query-provider";
 import ViewTransitionsProvider from "./view-transitions-provider";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
