@@ -1,6 +1,5 @@
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
 import Providers from "@/components/providers";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { BRAND_COLOR } from "@/lib/constants";
 import { inter } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
@@ -28,14 +27,19 @@ export default function RootLayout({
           className={cn(inter.className, "antialiased bg-black text-green-400")}
           suppressHydrationWarning
         >
-          <NextTopLoader color={BRAND_COLOR} height={1.5} showSpinner={false} />
-          <div className="min-h-screen">
-            <Header />
-            <main className="max-w-6xl mx-auto ~px-4/8 ~py-8/16">
-              {children}
-            </main>
-            <Footer />
-          </div>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <NextTopLoader
+              color={BRAND_COLOR}
+              height={1.5}
+              showSpinner={false}
+            />
+            <div className="min-h-screen">{children}</div>
+          </ThemeProvider>
         </body>
       </html>
     </Providers>
