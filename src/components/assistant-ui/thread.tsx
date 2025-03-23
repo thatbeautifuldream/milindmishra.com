@@ -17,6 +17,7 @@ import {
   RefreshCwIcon,
 } from "lucide-react";
 import type { FC } from "react";
+import { Sign } from "@/components/sign";
 
 import { MarkdownText } from "@/components/assistant-ui/markdown-text";
 import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button";
@@ -73,6 +74,7 @@ const ThreadWelcome: FC = () => {
     <ThreadPrimitive.Empty>
       <div className="flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col">
         <div className="flex w-full flex-grow flex-col items-center justify-center">
+          <Sign color="#49DE80" className="w-16 h-16" />
           <p className="mt-4 font-medium">How can I help you today?</p>
         </div>
         <ThreadWelcomeSuggestions />
