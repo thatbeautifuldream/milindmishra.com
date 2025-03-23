@@ -1,6 +1,5 @@
-import { PersonDetails } from "./schema";
 import { experience } from "./experience";
-import { projects } from "./projects";
+import { PersonDetails } from "./schema";
 
 const details: PersonDetails = {
   person: {
@@ -27,10 +26,6 @@ const details: PersonDetails = {
               (endDate.getMonth() - startDate.getMonth());
             return acc + months;
           }, 0),
-        },
-        {
-          name: "total_projects",
-          value: projects.length,
         },
       ],
     },
