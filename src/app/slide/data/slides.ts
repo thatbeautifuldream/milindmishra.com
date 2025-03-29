@@ -93,7 +93,7 @@ export const aiForReactDevelopersSlides: Slide[] = [
   {
     title: "Structured Output Magic ✨",
     content:
-      "Using generateObject() to generate structured outputs by providing a zod schema. Handling it on the frontend using the useObject hook.",
+      "Using streamObject() to stream the structured outputs by providing a valid zod schema. Handling it on the frontend using the useObject hook.",
   },
   {
     title: "Tool Calling: Your AI's Swiss Army Knife 🔧",
