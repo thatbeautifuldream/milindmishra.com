@@ -3,9 +3,8 @@ import { Slide } from "./schema";
 export const aiForReactDevelopersSlides: Slide[] = [
   {
     title: "AI for React Developers 🚀",
-    content:
-      "A Deep Dive into the Vercel AI SDK @ React Play, March 29th, 2025",
-    footer: "By Milind Mishra",
+    content: "A Deep Dive into the Vercel's AI SDK",
+    footer: "React Play, March | Milind Mishra",
   },
   {
     title: "Find these Slides! 📱",
@@ -32,8 +31,11 @@ export const aiForReactDevelopersSlides: Slide[] = [
   },
   {
     title: "The Three Pillars of the AI SDK 🏛️",
-    content:
-      "The SDK consists of three main pillars: 1) Core for backend (Node/Bun/Deno), 2) UI for framework-agnostic frontend components, and 3) RSC for Generative UI. It provides comprehensive support for text generation, streaming, structured outputs, tool calling, and agent handling.",
+    ul: [
+      "AI SDK Core for backend (Node/Bun/Deno)",
+      "AI SDK UI for framework-agnostic frontend components",
+      "AI SDK RSC for Generative UI",
+    ],
   },
   {
     title: "Our Mission Today 🎯",
@@ -81,8 +83,12 @@ export const aiForReactDevelopersSlides: Slide[] = [
   },
   {
     title: "Chat Management Made Easy 💬",
-    content:
-      "Using a messages array to maintain chat history. stop can be used to stop the stream. isLoading can be used to show a loading state. error can be used to show an error state.",
+    ul: [
+      "messages array to maintain chat history.",
+      "isLoading used to handle a loading state.",
+      "error used to handle an error state.",
+      "stop used to stop the stream.",
+    ],
   },
   {
     title: "Structured Output Magic ✨",
@@ -91,12 +97,20 @@ export const aiForReactDevelopersSlides: Slide[] = [
   },
   {
     title: "Tool Calling: Your AI's Swiss Army Knife 🔧",
-    content:
-      "Tools are objects that can be called by the model to perform a specific task. We will be using the web_search_preview supported by OpenAi Responses API to search the web and return the results.",
+    ul: [
+      "Tools are objects that can be called by the model to perform a specific task.",
+      "We will be using the web_search_preview supported by OpenAi Responses API to search the web and return the results.",
+    ],
   },
   {
     title: "Future Frontiers 🚀",
-    content: `"Chatbot Message Persistence", "Chatbot Tool Usage", "Generative User Interfaces", "Object Generation"`,
+    ul: [
+      "Chatbot Message Persistence",
+      "Chatbot Tool Usage",
+      "Generative User Interfaces",
+      "Object Generation",
+      "Agentic Worlflows",
+    ],
   },
   {
     title: "Q&A and Closing Thoughts",

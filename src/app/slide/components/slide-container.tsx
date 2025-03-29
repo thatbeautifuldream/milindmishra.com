@@ -55,6 +55,21 @@ export function SlideContainer({ slides, config = {} }: SlideContainerProps) {
             )}
             {slide.content && <p>{slide.content}</p>}
             {slide.footer && <p>{slide.footer}</p>}
+            {slide.ul && (
+              <ul>
+                {slide.ul.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            )}
+            {slide.ol && (
+              <ol>
+                {slide.ol.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ol>
+            )}
+            {slide.code && <code>{slide.code}</code>}
           </section>
         ))}
       </div>
