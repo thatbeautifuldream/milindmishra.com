@@ -7,6 +7,14 @@ export const aiForReactDevelopersSlides: Slide[] = [
     footer: "By Milind Mishra",
   },
   {
+    title: "Get the slides on",
+    content: "https://milind.app/slides",
+  },
+  {
+    title: "Get the code on",
+    content: "https://milind.app/code",
+  },
+  {
     title: "Why should backend developers have all the fun?",
     content:
       "It's been quite evident from the last 2 years that AI is the future. But why should backend developers have all the fun? Let's explore AI for frontend!",
