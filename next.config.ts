@@ -42,6 +42,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/feedback",
+        destination: "https://forms.gle/mZKFrYM9P4NAkzK99",
+        permanent: true,
+      },
+      {
         source: "/slides",
         destination: "https://milindmishra.com/slide/ai-for-react-developers",
         permanent: false,

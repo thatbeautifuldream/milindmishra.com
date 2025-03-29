@@ -109,11 +109,15 @@ export const aiForReactDevelopersSlides: Slide[] = [
       "Chatbot Tool Usage",
       "Generative User Interfaces",
       "Object Generation",
-      "Agentic Worlflows",
+      "Agentic Workflows",
     ],
   },
   {
     title: "Q&A and Closing Thoughts",
     content: "Recap, key takeaways, and open discussion.",
+  },
+  {
+    title: "Share your feedback! (anonymous) 💬",
+    content: "https://milind.app/feedback",
   },
 ];
