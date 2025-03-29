@@ -48,7 +48,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/code",
-        destination: "https://milindmishra.com/gist/",
+        destination:
+          "https://milindmishra.com/gist/81b5d579e38fb79432ac2f5d525d80ba",
         permanent: false,
       },
     ];
