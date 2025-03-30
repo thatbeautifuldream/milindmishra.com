@@ -27,6 +27,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/twitter",
+        destination: "https://twitter.com/milindmishra_",
+        permanent: true,
+      },
+      {
         source: "/instagram",
         destination: "https://www.instagram.com/thatbeautifuldream",
         permanent: true,
