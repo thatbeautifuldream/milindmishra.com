@@ -108,6 +108,7 @@ function SlideContent({ slide }: { slide: SlideType }) {
             code={slide.code}
             showLineNumbers={slide.showLineNumbers}
             highlightLines={slide.highlightLines}
+            maxLines={slide.maxLines}
             data-id={slide.codeId}
           />
         </div>

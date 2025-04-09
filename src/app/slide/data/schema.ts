@@ -100,6 +100,8 @@ export const slideSchema = z.object({
   showLineNumbers: z.boolean().optional(),
   /** Lines to highlight in format "1,4-7,10" */
   highlightLines: z.string().optional(), // Format: "1,4-7,10"
+  /** Maximum number of lines to display in code blocks (will add scrolling) */
+  maxLines: z.number().optional(),
 
   // Fragment animations and behavior
   /**

@@ -1,9 +1,11 @@
 import { Slide } from "./schema";
 
+const MAX_LINES = 24;
+
 export const aiForReactDevelopersSlides: Slide[] = [
   {
     title: "AI for React Developers 🚀",
-    content: "A Deep Dive into the Vercel's AI SDK",
+    content: "A deep-dive into Vercel's AI SDK",
     footer: "React Bangalore | Milind Mishra",
     state: "title-slide",
     titleId: "main-title",
@@ -12,387 +14,325 @@ export const aiForReactDevelopersSlides: Slide[] = [
   },
   {
     title: "Find these Slides! 📱",
-    image: "http://localhost:3000/assets/qr/ai-slides.png",
+    image: "https://www.milindmishra.com/assets/qr/ai-slides.png",
     imageId: "qr-code",
   },
   {
-    title: "Get the Code! 💻",
-    content: "https://milind.app/code",
-  },
-  {
-    title: "Why should backend developers have all the fun? ✨",
+    title: "Why should backend developers have all the AI fun? 🤖",
     content:
-      "It's been quite evident from the last few years that AI is the future. But why should backend developers have all the fun? Let's explore AI as frontend developers!",
+      "AI isn't just for the backend folks! As React developers, we can build intelligent, conversational UIs that feel magical. Let's bring AI to the frontend together!",
     contentId: "why-content",
   },
   {
-    title: "What is @vercel/ai?",
+    title: "What is AI SDK? 🧩",
     content:
-      "The AI SDK is the TypeScript toolkit designed to help developers build AI-powered applications and agents with React, Next.js, Vue, Svelte, Node.js, and more.",
+      "The AI SDK is a TypeScript toolkit that helps you build AI-powered applications with React, Next.js and more. It's your one-stop shop for adding AI superpowers to your frontend!",
     titleId: "what-is-title",
     contentId: "what-is-content",
     verticalGroup: "vercel-ai-intro",
   },
   {
-    title: "Why @vercel/ai? 🤔",
+    title: "Why use the AI SDK? 🤔",
     content:
-      "Imagine switching from OpenAI to Anthropic without rewriting your entire app! That's the power of Vercel AI SDK - it becomes your universal AI adapter!",
+      "Building with LLMs is complicated! Different providers, complex streaming, managing state... AI SDK handles all of this with a unified, delightful developer experience.",
     verticalGroup: "vercel-ai-intro",
   },
   {
-    title: "The Three Pillars of @vercel/ai 🏛️",
+    title: "The Three Pillars of AI SDK 🏛️",
     titleId: "pillars-title",
     verticalGroup: "vercel-ai-intro",
     ul: [
-      "AI SDK Core for backend (Node/Bun/Deno) - @vercel/ai/core",
-      "AI SDK UI for framework-agnostic frontend components - @vercel/ai/react",
-      "AI SDK RSC for Generative UI - @vercel/ai/rsc",
+      "AI SDK Core: Unified API for text generation, tool calls, and LLM interactions with any provider",
+      "AI SDK UI: Ready-to-use React hooks for chat, completion, and streaming interfaces",
+      "AI SDK RSC: Special functions for AI-native applications with React Server Components",
     ],
     ulItemClassName: "fragment fade-in",
     listItemsAutoReveal: true,
   },
   {
-    title: "Our Mission Today 🎯",
+    title: "Today's Adventure 🎯",
     content:
-      "We'll be using the Core part to build the backend and the UI part to hook it up to the frontend using @vercel/ai.",
+      "We'll build a streaming AI chatbot from scratch! Complete with tool calls and multi-step reasoning — all with surprisingly little code.",
     titleId: "mission-title",
     contentId: "mission-content",
   },
   {
-    title: "Getting Started 🛠️",
-    content: "First, install the required dependencies:",
+    title: "Setting Up Our Project 🛠️",
+    content:
+      "First things first: let's create a shiny new Next.js app with App Router!",
     titleId: "get-started-title",
     verticalGroup: "implementation",
   },
   {
-    code: `npm install @vercel/ai ai openai
-# or
-yarn add @vercel/ai ai openai
-# or
-pnpm add @vercel/ai ai openai`,
+    code: `pnpm create next-app@latest my-ai-app
+cd my-ai-app`,
     codeLanguage: "tsx",
     codeId: "install-code",
     showLineNumbers: true,
     verticalGroup: "implementation",
   },
   {
-    title: "Setting up Environment",
-    content: "Create a .env.local file and add your OpenAI API key:",
+    title: "Installing AI Superpowers 🧙‍♂️",
+    content:
+      "Let's add the magical ingredients: ai, @ai-sdk/react, and @ai-sdk/openai — all you need to chat with robots!",
+    titleId: "install-title",
+    contentId: "install-content",
+    verticalGroup: "implementation",
+  },
+  {
+    code: `pnpm add ai @ai-sdk/react @ai-sdk/openai zod`,
+    codeLanguage: "tsx",
+    codeId: "install-code",
+    showLineNumbers: true,
+    verticalGroup: "implementation",
+  },
+  {
+    title: "Don't Forget Your Secret Key 🔑",
+    content:
+      "Create a .env.local file with your OPENAI_API_KEY. No key, no AI magic!",
     titleId: "env-title",
     contentId: "env-content",
     verticalGroup: "implementation",
   },
   {
-    code: `OPENAI_API_KEY=your-api-key-here
-# Optional: Configure other providers
-ANTHROPIC_API_KEY=your-anthropic-key
-COHERE_API_KEY=your-cohere-key`,
+    code: `// .env.local
+OPENAI_API_KEY=your_actual_key_here`,
     codeLanguage: "tsx",
     codeId: "env-code",
     showLineNumbers: true,
-    highlightLines: "1",
     verticalGroup: "implementation",
   },
   {
-    title: "API Route Setup with @vercel/ai",
-    content: "Create app/api/chat/route.ts for handling AI requests:",
+    title: "Creating Our AI Brain 🧠",
+    content: "Let's set up our route handler to connect with OpenAI:",
     titleId: "api-title",
     contentId: "api-content",
   },
   {
-    code: `import { OpenAIStream, StreamingTextResponse } from '@vercel/ai'
-import OpenAI from 'openai'
+    code: `// app/api/chat/route.ts
+import { openai } from '@ai-sdk/openai';
+import { streamText } from 'ai';
 
-// Initialize with @vercel/ai recommended patterns
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!
-})
-
-export const runtime = 'edge'
+// Let responses stream for up to 30 seconds
+export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { messages } = await req.json()
-  const response = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo',
-    stream: true,
-    messages
-  })
-  // Use @vercel/ai's streaming utilities
-  const stream = OpenAIStream(response)
-  return new StreamingTextResponse(stream)
+  const { messages } = await req.json();
+
+  const result = streamText({
+    model: openai('gpt-4o'),
+    messages,
+  });
+
+  return result.toDataStreamResponse();
 }`,
     codeLanguage: "tsx",
     codeId: "api-code",
     showLineNumbers: true,
-    highlightLines: "1,17-18",
+    highlightLines: "2-3,10-14",
+    maxLines: MAX_LINES,
   },
   {
-    title: "Basic Text Completion with @vercel/ai",
-    content: "Using useCompletion hook for simple text generation:",
-    titleId: "completion-title",
-    contentId: "completion-content",
-    verticalGroup: "sdk-hooks",
-  },
-  {
-    code: `import { useCompletion } from '@vercel/ai/react'
- 
-export default function Completion() {
-  const { completion, input, handleInputChange, handleSubmit } = useCompletion()
- 
-  return (
-    <div className="max-w-xl mx-auto p-4">
-      <form onSubmit={handleSubmit}>
-        <input
-          className="w-full p-2 border rounded"
-          value={input}
-          onChange={handleInputChange}
-          placeholder="Enter your prompt..."
-        />
-        <button 
-          className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
-          type="submit"
-        >
-          Generate
-        </button>
-      </form>
-      <p className="mt-4">{completion}</p>
-    </div>
-  )
-}`,
-    codeLanguage: "tsx",
-    codeId: "completion-code",
-    showLineNumbers: true,
-    highlightLines: "1,4",
-    verticalGroup: "sdk-hooks",
-  },
-  {
-    title: "Chat Interface with @vercel/ai",
-    content: "Using useChat hook for interactive conversations:",
+    title: "Building Our Chat UI 💬",
+    content:
+      "One hook to rule them all! useChat makes building chat UIs ridiculously easy:",
     titleId: "chat-title",
     contentId: "chat-content",
     verticalGroup: "sdk-hooks",
   },
   {
-    code: `import { useChat } from '@vercel/ai/react'
- 
+    code: `// app/page.tsx
+'use client';
+
+import { useChat } from '@ai-sdk/react';
+
 export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat()
- 
+  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  
   return (
-    <div className="max-w-xl mx-auto p-4">
-      <div className="space-y-4 mb-4">
-        {messages.map(m => (
-          <div 
-            key={m.id}
-            className={\`p-3 rounded \${
-              m.role === 'user' ? 'bg-blue-100' : 'bg-gray-100'
-            }\`}
-          >
-            <strong>{m.role}:</strong> {m.content}
-          </div>
-        ))}
-      </div>
- 
+    <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
+      {messages.map(message => (
+        <div key={message.id} className="whitespace-pre-wrap">
+          {message.role === 'user' ? 'User: ' : 'AI: '}
+          {message.parts.map((part, i) => {
+            switch (part.type) {
+              case 'text':
+                return <div key={\`\${message.id}-\${i}\`}>{part.text}</div>;
+            }
+          })}
+        </div>
+      ))}
+
       <form onSubmit={handleSubmit}>
         <input
-          className="w-full p-2 border rounded"
+          className="fixed bottom-0 w-full max-w-md p-2 mb-8 border rounded shadow-xl"
           value={input}
+          placeholder="Ask me anything..."
           onChange={handleInputChange}
-          placeholder="Say something..."
         />
       </form>
     </div>
-  )
+  );
 }`,
     codeLanguage: "tsx",
     codeId: "chat-code",
     showLineNumbers: true,
-    highlightLines: "1,4,9-17",
+    highlightLines: "4,7,13-17",
+    maxLines: MAX_LINES,
     verticalGroup: "sdk-hooks",
   },
   {
-    title: "Type-Safe AI with @vercel/ai",
-    content: "Using useCompletion with TypeScript for type-safe AI responses:",
-    titleId: "type-safe-title",
-    contentId: "type-safe-content",
-    verticalGroup: "sdk-hooks",
-  },
-  {
-    code: `import { useCompletion } from '@vercel/ai/react'
- 
-type Recipe = {
-  title: string
-  ingredients: string[]
-  instructions: string[]
-}
-
-export default function Recipe() {
-  const { completion, input, handleInputChange, handleSubmit } = 
-    useCompletion<Recipe>({
-      api: '/api/recipe',
-    })
- 
-  return (
-    <div className="max-w-xl mx-auto p-4">
-      <form onSubmit={handleSubmit}>
-        <input
-          value={input}
-          onChange={handleInputChange}
-          placeholder="Enter a recipe idea..."
-        />
-      </form>
-      
-      {completion && (
-        <div className="mt-4">
-          <h3>{completion.title}</h3>
-          <ul>
-            {completion.ingredients.map(i => (
-              <li key={i}>{i}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  )
-}`,
-    codeLanguage: "tsx",
-    codeId: "type-safe-code",
-    showLineNumbers: true,
-    highlightLines: "3-7,10-12,25-32",
-  },
-  {
-    title: "Function Calling with @vercel/ai",
-    content: "Implementing tool calling with enhanced patterns:",
+    title: "Let's Add Some Tools! 🛠️",
+    content:
+      "LLMs are smart, but they need help with real-world tasks. Let's give our AI some superpowers:",
     titleId: "function-call-title",
     contentId: "function-call-content",
   },
   {
-    code: `import { OpenAIStream, StreamingTextResponse } from '@vercel/ai'
-import OpenAI from 'openai'
-
-const openai = new OpenAI()
+    code: `// app/api/chat/route.ts
+import { openai } from '@ai-sdk/openai';
+import { streamText, tool } from 'ai';
+import { z } from 'zod';
 
 export async function POST(req: Request) {
-  const { messages } = await req.json()
-  const response = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo',
-    stream: true,
-    messages,
-    functions: [
-      {
-        name: 'search',
-        description: 'Search for information',
-        parameters: {
-          type: 'object',
-          properties: {
-            query: { type: 'string' }
-          }
-        }
-      }
-    ],
-    function_call: 'auto'
-  })
+  const { messages } = await req.json();
 
-  const stream = OpenAIStream(response)
-  return new StreamingTextResponse(stream)
+  const result = streamText({
+    model: openai('gpt-4o'),
+    messages,
+    tools: {
+      weather: tool({
+        description: 'Get the weather in a location (fahrenheit)',
+        parameters: z.object({
+          location: z.string().describe('The location to get the weather for'),
+        }),
+        execute: async ({ location }) => {
+          // In real life, we'd call a weather API!
+          const temperature = Math.round(Math.random() * (90 - 32) + 32);
+          return {
+            location,
+            temperature,
+          };
+        },
+      }),
+    },
+  });
+
+  return result.toDataStreamResponse();
 }`,
     codeLanguage: "tsx",
     codeId: "function-call-code",
     showLineNumbers: true,
-    highlightLines: "12-24",
+    highlightLines: "3,12-25",
+    maxLines: MAX_LINES,
   },
   {
-    title: "@vercel/ai Streaming Protocols 📡",
-    content: "The SDK provides multiple streaming protocols optimized for AI:",
-    titleId: "streaming-title",
-    contentId: "streaming-content",
-    ul: [
-      "Text Streams - For basic chat and completions",
-      "Data Streams - For structured JSON responses",
-      "Event Streams - For real-time interactions",
-    ],
-    ulItemClassName: "fragment fade-right",
-    listItemsAutoReveal: true,
+    title: "Displaying Tool Results 🔍",
+    content: "Now let's update our UI to show when our AI uses tools:",
+    titleId: "tool-display-title",
+    contentId: "tool-display-content",
   },
   {
-    title: "@vercel/ai Streaming in Action 🌊",
-    content: "Using the SDK's streaming utilities for optimal performance:",
-    titleId: "streaming-action-title",
-    contentId: "streaming-action-content",
+    code: `// Inside app/page.tsx render function
+{message.parts.map((part, i) => {
+  switch (part.type) {
+    case 'text':
+      return <div key={\`\${message.id}-\${i}\`}>{part.text}</div>;
+    case 'tool-invocation':
+      return (
+        <pre key={\`\${message.id}-\${i}\`} className="bg-gray-100 p-2 rounded text-xs">
+          {JSON.stringify(part.toolInvocation, null, 2)}
+        </pre>
+      );
+  }
+})}`,
+    codeLanguage: "tsx",
+    codeId: "tool-display-code",
+    showLineNumbers: true,
+    highlightLines: "5-10",
   },
   {
-    code: `import { useChat } from '@vercel/ai/react'
- 
+    title: "Multi-Step Reasoning 🧩",
+    content:
+      "With maxSteps, our AI can use tools, get results, and keep thinking!",
+    titleId: "multi-step-title",
+    contentId: "multi-step-content",
+  },
+  {
+    code: `// app/page.tsx
 export default function Chat() {
-  const { 
-    messages, 
-    input, 
-    handleInputChange, 
-    handleSubmit,
-    isLoading,
-    error 
-  } = useChat()
- 
-  return (
-    <div>
-      {messages.map(m => (
-        <div key={m.id}>
-          {m.role}: {m.content}
-        </div>
-      ))}
- 
-      <form onSubmit={handleSubmit}>
-        <input
-          value={input}
-          onChange={handleInputChange}
-          placeholder="Say something..."
-          disabled={isLoading}
-        />
-        {error && <div className="text-red-500">{error.message}</div>}
-      </form>
-    </div>
-  )
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    maxSteps: 5, // Allow up to 5 steps of reasoning with tools
+  });
+  
+  // ... rest of the component
 }`,
     codeLanguage: "tsx",
-    codeId: "streaming-action-code",
+    codeId: "multi-step-code",
     showLineNumbers: true,
-    highlightLines: "8-9,24-25",
+    highlightLines: "3-4",
   },
   {
-    title: "Key Features",
+    title: "Weather in Celsius? Let's Add Another Tool! 🌡️",
+    content: "Multi-step tools working together - the real magic of AI tools:",
+    titleId: "temperature-tool-title",
+    contentId: "temperature-tool-content",
+  },
+  {
+    code: `// Add to the tools object
+convertFahrenheitToCelsius: tool({
+  description: 'Convert a temperature in fahrenheit to celsius',
+  parameters: z.object({
+    temperature: z
+      .number()
+      .describe('The temperature in fahrenheit to convert'),
+  }),
+  execute: async ({ temperature }) => {
+    const celsius = Math.round((temperature - 32) * (5 / 9));
+    return {
+      celsius,
+    };
+  },
+}),`,
+    codeLanguage: "tsx",
+    codeId: "temperature-tool-code",
+    showLineNumbers: true,
+    highlightLines: "1-13",
+  },
+  {
+    title: "Cool Features of AI SDK 🌟",
     titleId: "features-title",
     id: "features-slide",
     state: "features-state",
     ul: [
-      "Automatic message history management",
-      "Built-in loading states",
-      "Error handling and recovery",
-      "Stream control and cancellation",
-      "Real-time token counting",
-      "Multi-provider support",
+      "Provider Switching - Change models with a single line of code!",
+      "Automatic Streaming - No need to manage complex streaming logic",
+      "Message History - Tracks the entire conversation automatically",
+      "Tool Calling - Easily extend your AI with custom capabilities",
+      "Multi-Step Reasoning - Let the AI solve problems in steps",
+      "Typescript Support - Full type safety for your AI code",
     ],
     ulItemClassName: "fragment fade-in",
     listItemsAutoReveal: true,
   },
   {
-    title: "The Road Ahead",
+    title: "Beyond The Basics 🚀",
     titleId: "road-ahead-title",
     id: "road-ahead-slide",
     ul: [
-      "Enhanced message persistence",
-      "Advanced tool usage patterns",
-      "Generative UI components",
-      "Structured output generation",
-      "Agentic workflows",
-      "Multi-modal AI support",
-      "Fine-tuning capabilities",
+      "RAG (Retrieval-Augmented Generation) - Give your AI access to your data",
+      "Multi-Modal AI - Working with images and other media types",
+      "Persistent Conversations - Save and load chat history",
+      "Structured Outputs - Getting formatted data from AI responses",
+      "Agent Workflows - Building complex AI-powered agents",
+      "Custom Model Providers - Using your own models or other API providers",
     ],
     ulItemClassName: "fragment fade-in",
     listItemsAutoReveal: true,
   },
   {
-    title: "Let's Connect!",
-    content: "Share your thoughts and experiences",
+    title: "Let's Build Together! 🤝",
+    content: "AI + React is a powerful combination. What will YOU build?",
     titleId: "connect-title",
     contentId: "connect-content",
   },

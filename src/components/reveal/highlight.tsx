@@ -13,6 +13,8 @@ interface BaseHighlightProps {
     showLineNumbers?: boolean;
     /** Lines to highlight in format "1,4-7,10" */
     highlightLines?: string; // Format: "1,4-7,10"
+    /** Maximum number of lines to display (will add scrolling) */
+    maxLines?: number;
     /** Optional data-id attribute for the pre element */
     'data-id'?: string;
 }
@@ -45,6 +47,7 @@ export const BaseHighlight: React.FC<BaseHighlightProps> = ({
     language,
     showLineNumbers,
     highlightLines,
+    maxLines,
     'data-id': dataId
 }) => {
     // Parse highlightLines string to get an array of highlighted line numbers
@@ -70,6 +73,13 @@ export const BaseHighlight: React.FC<BaseHighlightProps> = ({
         return result;
     }, [highlightLines]);
 
+    // Calculate max height style if maxLines is provided
+    const maxHeightStyle = React.useMemo(() => {
+        if (!maxLines) return {};
+        // Each line is approximately 24px high, add some buffer
+        return { maxHeight: `${maxLines * 24}px`, overflow: 'auto' };
+    }, [maxLines]);
+
     return (
         <PrismHighlight
             code={code}
@@ -77,7 +87,7 @@ export const BaseHighlight: React.FC<BaseHighlightProps> = ({
             theme={undefined}
         >
             {({ className, style, tokens, getLineProps, getTokenProps }: RenderProps) => (
-                <pre className={className} style={style} data-id={dataId}>
+                <pre className={className} style={{ ...style, ...maxHeightStyle }} data-id={dataId}>
                     {tokens.map((line, lineIdx) => {
                         const lineNumber = lineIdx + 1;
                         const isHighlighted = highlightedLineNumbers.has(lineNumber);
