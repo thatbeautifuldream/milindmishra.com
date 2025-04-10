@@ -95,7 +95,11 @@ export const BaseHighlight: React.FC<BaseHighlightProps> = ({
                         return (
                             <div
                                 key={`line-${lineIdx}`}
-                                {...getLineProps({ line, key: lineIdx })}
+                                {...(() => {
+                                    const lineProps = getLineProps({ line, key: lineIdx });
+                                    delete lineProps.key;
+                                    return lineProps;
+                                })()}
                                 className={`${isHighlighted ? 'bg-yellow-900/30' : ''}`}
                                 data-highlighted={isHighlighted || undefined}
                             >
@@ -105,9 +109,14 @@ export const BaseHighlight: React.FC<BaseHighlightProps> = ({
                                     </span>
                                 )}
 
-                                {line.map((token, tokenIdx) => (
-                                    <span key={`token-${lineIdx}-${tokenIdx}`} {...getTokenProps({ token, key: tokenIdx })} />
-                                ))}
+                                {line.map((token, tokenIdx) => {
+                                    const tokenProps = getTokenProps({ token, key: tokenIdx });
+                                    // Remove the key from tokenProps to avoid duplicate keys
+                                    delete tokenProps.key;
+                                    return (
+                                        <span key={`token-${lineIdx}-${tokenIdx}`} {...tokenProps} />
+                                    );
+                                })}
                             </div>
                         );
                     })}
