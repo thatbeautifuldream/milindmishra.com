@@ -48,6 +48,21 @@ function SlideContent({ slide }: { slide: SlideType }) {
         </div>
       )}
 
+      {slide.iframe && (
+        <div
+          className="flex justify-center items-center my-4"
+          data-id={slide.iframeId}
+        >
+          <iframe
+            src={slide.iframe}
+            title={slide.title || "Embedded content"}
+            className="w-full h-[500px] rounded-lg border-none"
+            data-id={slide.iframeId}
+            allowFullScreen
+          />
+        </div>
+      )}
+
       {slide.content && (
         <p
           data-id={slide.contentId}

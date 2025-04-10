@@ -21,6 +21,8 @@ export const slideSchema = z.object({
   footer: z.string().optional(),
   /** URL of an image to display */
   image: z.string().optional(),
+  /** URL for an iframe to embed */
+  iframe: z.string().optional(),
   /** Unordered list items */
   ul: z.array(z.string()).optional(),
   /** Ordered list items */
@@ -78,6 +80,8 @@ export const slideSchema = z.object({
   contentId: z.string().optional(),
   /** ID for the image element */
   imageId: z.string().optional(),
+  /** ID for the iframe element */
+  iframeId: z.string().optional(),
   /** ID for the footer element */
   footerId: z.string().optional(),
   /** ID for the code block element */

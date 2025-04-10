@@ -341,4 +341,31 @@ convertFahrenheitToCelsius: tool({
     content: "https://milind.app/feedback",
     transition: "fade",
   },
+  {
+    title: "Resources 📚",
+    content: "Learn more about the Vercel AI SDK",
+    ul: [
+      "Official Documentation: [ai.vercel.ai](https://ai.vercel.ai)",
+      "GitHub Repository: [github.com/vercel/ai](https://github.com/vercel/ai)",
+      "Vercel AI Playground: [play.vercel.ai](https://play.vercel.ai)",
+      "Template Projects: [vercel.com/templates/ai](https://vercel.com/templates/ai)",
+    ],
+    ulItemClassName: "fragment fade-in",
+    listItemsAutoReveal: true,
+    transition: "fade",
+  },
+  {
+    title: "Interactive Demo 🧪",
+    content: "Check out this working demo of the AI SDK",
+    iframe: "https://sdk.vercel.ai/demo",
+    iframeId: "chat-demo-iframe",
+    transition: "zoom",
+  },
+  {
+    title: "Code for this slide deck",
+    content: "Check out the code for this slide deck",
+    iframe: "https://milindmishra.com/gist/81b5d579e38fb79432ac2f5d525d80ba",
+    iframeId: "code-iframe",
+    transition: "zoom",
+  },
 ];
