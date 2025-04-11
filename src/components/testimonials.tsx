@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { bricolageGrotesque } from "@/lib/fonts";
-import { Testimonial } from "@/data/resume/schema";
+import { Testimonial } from "@/data/resume/resume-schema";
 
 type TTestimonialsProps = {
   testimonials: Testimonial[];
