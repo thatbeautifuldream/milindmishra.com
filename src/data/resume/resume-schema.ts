@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-const AwardSchema = z.object({
+export const AwardSchema = z.object({
   link: z.string().url(),
   img: z.string().startsWith("/"),
 });
 
-const ProjectSchema = z.object({
+export const ProjectSchema = z.object({
   title: z.string().min(1).max(100),
   description: z.string().min(10).max(500),
   moreDetails: z.string().min(10),
@@ -15,33 +15,33 @@ const ProjectSchema = z.object({
   awards: z.record(z.string(), AwardSchema).optional(),
 });
 
-const PersonNameSchema = z.object({
+export const PersonNameSchema = z.object({
   full_name: z.string().min(2).max(100),
   first_name: z.string().min(1).max(50),
   last_name: z.string().min(1).max(50),
 });
 
-const ProfileSchema = z.object({
+export const ProfileSchema = z.object({
   bio: z.string().min(50).max(1000),
   shortBio: z.string().min(10).max(200),
 });
 
-const KeyStatSchema = z.object({
+export const KeyStatSchema = z.object({
   name: z.string().min(1).max(50),
   value: z.number().positive(),
 });
 
-const StatisticsSchema = z.object({
+export const StatisticsSchema = z.object({
   key_stats: z.array(KeyStatSchema).min(1),
 });
 
-const SocialsSchema = z.object({
+export const SocialsSchema = z.object({
   github: z.string().url(),
   linkedin: z.string().url(),
   twitter: z.string().url(),
 });
 
-const PersonDetailsSchema = z.object({
+export const PersonDetailsSchema = z.object({
   person: z.object({
     name: PersonNameSchema,
     profile: ProfileSchema,
@@ -50,43 +50,43 @@ const PersonDetailsSchema = z.object({
   }),
 });
 
-const TestimonialAuthorSchema = z.object({
+export const TestimonialAuthorSchema = z.object({
   name: z.string().min(2).max(100),
   bio: z.string().min(10).max(300),
   image: z.string().startsWith("/"),
   social: z.string().url(),
 });
 
-const TestimonialSchema = z.object({
+export const TestimonialSchema = z.object({
   message: z.string().min(20).max(1000),
   linkToTestimony: z.string().url(),
   author: TestimonialAuthorSchema,
   show: z.boolean(),
 });
 
-const SocialLinksSchema = z.object({
+export const SocialLinksSchema = z.object({
   github: z.string().url(),
   twitter: z.string().url(),
   email: z.string().email(),
 });
 
-const ContactSchema = z.object({
+export const ContactSchema = z.object({
   profilePicture: z.string().startsWith("/"),
   name: z.string().min(2).max(100),
   title: z.string().min(2).max(100),
   socialLinks: SocialLinksSchema,
 });
 
-const OrganizationSchema = z.object({
+export const OrganizationSchema = z.object({
   name: z.string().min(1).max(100),
   slug: z.string().regex(/^[a-z0-9-]+$/),
   description: z.string().min(10).max(500),
   logo: z.string().startsWith("/assets/logos/").endsWith(".jpeg"),
 });
 
-const JobTypeSchema = z.enum(["full_time", "contract", "internship"]);
+export const JobTypeSchema = z.enum(["full_time", "contract", "internship"]);
 
-const ExperienceSchema = z
+export const ExperienceSchema = z
   .object({
     title: z.string().min(2).max(100),
     description: z.string().min(10).max(1000),
@@ -108,56 +108,21 @@ const ExperienceSchema = z
     }
   );
 
-const ExperienceArraySchema = z.array(ExperienceSchema);
+export const ExperienceArraySchema = z.array(ExperienceSchema);
 
-type Award = z.infer<typeof AwardSchema>;
-type Project = z.infer<typeof ProjectSchema>;
-type PersonName = z.infer<typeof PersonNameSchema>;
-type Profile = z.infer<typeof ProfileSchema>;
-type KeyStat = z.infer<typeof KeyStatSchema>;
-type Statistics = z.infer<typeof StatisticsSchema>;
-type Socials = z.infer<typeof SocialsSchema>;
-type PersonDetails = z.infer<typeof PersonDetailsSchema>;
-type TestimonialAuthor = z.infer<typeof TestimonialAuthorSchema>;
-type Testimonial = z.infer<typeof TestimonialSchema>;
-type SocialLinks = z.infer<typeof SocialLinksSchema>;
-type Contact = z.infer<typeof ContactSchema>;
-type Organization = z.infer<typeof OrganizationSchema>;
-type JobType = z.infer<typeof JobTypeSchema>;
-type Experience = z.infer<typeof ExperienceSchema>;
-type ExperienceArray = z.infer<typeof ExperienceArraySchema>;
-
-export {
-  AwardSchema,
-  ProjectSchema,
-  PersonNameSchema,
-  ProfileSchema,
-  KeyStatSchema,
-  StatisticsSchema,
-  SocialsSchema,
-  PersonDetailsSchema,
-  TestimonialAuthorSchema,
-  TestimonialSchema,
-  SocialLinksSchema,
-  ContactSchema,
-  OrganizationSchema,
-  JobTypeSchema,
-  ExperienceSchema,
-  ExperienceArraySchema,
-  type Award,
-  type Project,
-  type PersonName,
-  type Profile,
-  type KeyStat,
-  type Statistics,
-  type Socials,
-  type PersonDetails,
-  type TestimonialAuthor,
-  type Testimonial,
-  type SocialLinks,
-  type Contact,
-  type Organization,
-  type JobType,
-  type Experience,
-  type ExperienceArray,
-};
+export type Award = z.infer<typeof AwardSchema>;
+export type Project = z.infer<typeof ProjectSchema>;
+export type PersonName = z.infer<typeof PersonNameSchema>;
+export type Profile = z.infer<typeof ProfileSchema>;
+export type KeyStat = z.infer<typeof KeyStatSchema>;
+export type Statistics = z.infer<typeof StatisticsSchema>;
+export type Socials = z.infer<typeof SocialsSchema>;
+export type PersonDetails = z.infer<typeof PersonDetailsSchema>;
+export type TestimonialAuthor = z.infer<typeof TestimonialAuthorSchema>;
+export type Testimonial = z.infer<typeof TestimonialSchema>;
+export type SocialLinks = z.infer<typeof SocialLinksSchema>;
+export type Contact = z.infer<typeof ContactSchema>;
+export type Organization = z.infer<typeof OrganizationSchema>;
+export type JobType = z.infer<typeof JobTypeSchema>;
+export type Experience = z.infer<typeof ExperienceSchema>;
+export type ExperienceArray = z.infer<typeof ExperienceArraySchema>;
