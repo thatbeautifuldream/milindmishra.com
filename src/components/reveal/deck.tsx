@@ -36,42 +36,48 @@ import 'reveal.js/plugin/math/math.js';
 export function Deck({ options, children }: { options: Reveal.Options, children: React.ReactNode }) {
     const revealRef = useRef<Reveal.Api | null>(null);
     const deckRef = useRef<HTMLDivElement>(null);
+    const optionsRef = useRef<Reveal.Options>(options);
 
     useEffect(() => {
-        if (deckRef.current) {
-            // Initialize Reveal.js only once
-            if (!revealRef.current) {
-                // Merge default options with provided options
-                const mergedOptions = {
-                    ...revealOptions,
-                    ...options,
-                    plugins: [
-                        // // @ts-expect-error - RevealHighlight is a valid plugin
-                        // RevealHighlight,
-                        // // @ts-expect-error - RevealNotes is a valid plugin
-                        // RevealNotes,
-                        // // @ts-expect-error - RevealZoom is a valid plugin
-                        // RevealZoom,
-                        // // @ts-expect-error - RevealMath is a valid plugin
-                        // RevealMath.KaTeX,
-                        ...(options.plugins || [])
-                    ]
-                };
+        if (!deckRef.current) return;
 
-                // Initialize Reveal.js
-                revealRef.current = new Reveal(deckRef.current, mergedOptions);
-                revealRef.current.initialize(mergedOptions);
-            } else {
-                // If already initialized, just sync the state
-                revealRef.current.sync();
+        // Merge default options with provided options
+        const mergedOptions = {
+            ...revealOptions,
+            ...options,
+            plugins: [
+                ...(options.plugins || [])
+            ]
+        };
+
+        // Store the current options for comparison
+        const prevOptions = optionsRef.current;
+        optionsRef.current = options;
+
+        // Initialize or reinitialize Reveal.js when options change
+        if (!revealRef.current || JSON.stringify(prevOptions) !== JSON.stringify(options)) {
+            // If already initialized, we need to destroy the previous instance
+            if (revealRef.current) {
+                // Reveal.js doesn't have a proper destroy method, so we'll try to clean up
+                // by removing event listeners and resetting the DOM
+                const deck = deckRef.current;
+                if (deck) {
+                    // Remove any event listeners that might have been added
+                    const newDeck = deck.cloneNode(true);
+                    if (deck.parentNode) {
+                        deck.parentNode.replaceChild(newDeck, deck);
+                    }
+                }
             }
+
+            // Initialize a new Reveal.js instance
+            revealRef.current = new Reveal(deckRef.current, mergedOptions);
+            revealRef.current.initialize(mergedOptions);
         }
 
         // Clean up
         return () => {
-            if (revealRef.current) {
-                // No built-in destroy method, so we just leave it
-            }
+            // No proper cleanup needed as we handle it above
         };
     }, [options]);
 

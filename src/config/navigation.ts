@@ -12,18 +12,18 @@ export const navigation: NavItem[] = [
     shortcut: "1",
   },
   {
-    href: "/contact",
-    label: "Contact",
-    shortcut: "2",
-  },
-  {
     href: "/blog",
     label: "Blog",
-    shortcut: "3",
+    shortcut: "2",
   },
   {
     href: "/gist",
     label: "Gists",
+    shortcut: "3",
+  },
+  {
+    href: "/slide",
+    label: "Slide",
     shortcut: "4",
   },
   {
