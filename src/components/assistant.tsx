@@ -38,10 +38,9 @@ export default function Assistant() {
         {/* Sidebar */}
         <div
           className={`fixed sm:static inset-y-0 left-0 flex transform transition-all duration-300 ease-in-out z-40
-            ${
-              isSidebarOpen
-                ? "translate-x-0"
-                : "-translate-x-full sm:translate-x-0"
+            ${isSidebarOpen
+              ? "translate-x-0"
+              : "-translate-x-full sm:translate-x-0"
             }
             ${isSidebarOpen ? "w-64 sm:w-64" : "sm:w-16"}
           `}
