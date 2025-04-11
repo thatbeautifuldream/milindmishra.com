@@ -7,8 +7,6 @@ module.exports = {
   sitemapSize: 5000,
   exclude: [
     '/api/*',
-    '/server-sitemap.xml',
-    '/server-sitemap-index.xml',
   ],
   robotsTxtOptions: {
     policies: [
@@ -16,9 +14,6 @@ module.exports = {
         userAgent: '*',
         allow: '/',
       },
-    ],
-    additionalSitemaps: [
-      'https://milindmishra.com/server-sitemap.xml',
     ],
   },
   // Default transformation function
