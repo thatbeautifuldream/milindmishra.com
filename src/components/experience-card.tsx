@@ -2,7 +2,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { Experience } from "@/data/resume/schema";
+import { Experience } from "@/data/resume/resume-schema";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn, formatDate } from "@/lib/utils";
 import { Link } from "next-view-transitions";
@@ -28,7 +28,7 @@ export function ExperienceCard({
       >
         {job.title}
       </h3>
-      <div className="text-green-300 flex items-center ~text-xs/base font-mono">
+      <div className="text-green-300 flex items-center font-semibold ~text-xs/base">
         <div className="flex items-center cursor-pointer hover:text-green-400 transition-colors">
           <img
             src={job.organization.logo}
