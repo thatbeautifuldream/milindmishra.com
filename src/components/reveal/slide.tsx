@@ -22,6 +22,12 @@ import React from 'react';
  * @example
  * // Slide with background
  * <Slide backgroundColor="#ff0000">Red background slide</Slide>
+ * 
+ * @example
+ * // Slide with iframe background
+ * <Slide backgroundIframe="https://example.com" backgroundInteractive>
+ *   Content with interactive iframe background
+ * </Slide>
  */
 interface SlideProps {
     /** Content of the slide */
@@ -48,6 +54,10 @@ interface SlideProps {
     backgroundRepeat?: string;
     /** Opacity of the background (0-1) */
     backgroundOpacity?: number;
+    /** URL for an iframe to use as a background */
+    backgroundIframe?: string;
+    /** Whether the background iframe should be interactive */
+    backgroundInteractive?: boolean;
     /**
      * Custom state applied to the viewport when this slide is active
      * 
@@ -77,6 +87,8 @@ export function Slide({
     backgroundPosition,
     backgroundRepeat,
     backgroundOpacity,
+    backgroundIframe,
+    backgroundInteractive,
     state,
     notes,
     id,
@@ -100,6 +112,8 @@ export function Slide({
             data-auto-animate={autoAnimate !== undefined ? autoAnimate : undefined}
             data-auto-animate-unmatched={autoAnimateUnmatched !== undefined ? autoAnimateUnmatched : undefined}
             data-background-transition={backgroundTransition}
+            data-background-iframe={backgroundIframe}
+            data-background-interactive={backgroundInteractive !== undefined ? backgroundInteractive : undefined}
             data-state={state}
             data-notes={notes}
             style={hasBackgroundStyle ? backgroundStyle : undefined}

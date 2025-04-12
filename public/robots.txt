@@ -7,4 +7,3 @@ Host: https://milindmishra.com
 
 # Sitemaps
 Sitemap: https://milindmishra.com/sitemap.xml
-Sitemap: https://milindmishra.com/server-sitemap.xml

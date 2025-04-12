@@ -23,124 +23,6 @@ import Reveal from "reveal.js";
  * @see {@link https://revealjs.com/config/} for complete documentation of all options
  */
 export const revealOptions: Reveal.Options = {
-  // // Display presentation control arrows
-  // controls: true,
-
-  // // Help the user learn the controls by providing hints
-  // controlsTutorial: true,
-
-  // // Determines where controls appear
-  // controlsLayout: "bottom-right",
-
-  // // Visibility rule for backwards navigation arrows
-  // controlsBackArrows: "faded",
-
-  // // Display a presentation progress bar
-  // progress: true,
-
-  // // Display the page number of the current slide
-  // slideNumber: false,
-
-  // // Add the current slide number to the URL hash
-  // hash: true,
-
-  // // Push each slide change to the browser history
-  // history: true,
-
-  // // Enable keyboard shortcuts for navigation
-  // keyboard: true,
-
-  // // Enable the slide overview mode
-  // overview: true,
-
-  // // Vertical centering of slides
-  // center: true,
-
-  // // Enables touch navigation on devices with touch input
-  // touch: true,
-
-  // // Loop the presentation
-  // loop: false,
-
-  // // Change the presentation direction to be RTL
-  // rtl: false,
-
-  // // Navigation mode
-  // navigationMode: "default",
-
-  // // Randomizes the order of slides
-  // shuffle: false,
-
-  // // Turns fragments on and off globally
-  // fragments: true,
-
-  // // Fragment animation settings
-  // fragmentInURL: true,
-
-  // // Embedded mode
-  // embedded: false,
-
-  // // Help overlay
-  // help: true,
-
-  // // Speaker notes
-  // showNotes: false,
-
-  // // Global override for autoplaying embedded media
-  // autoPlayMedia: null,
-
-  // // Global override for preloading lazy-loaded iframes
-  // preloadIframes: null,
-
-  // // Number of milliseconds between automatically proceeding to the next slide
-  // autoSlide: 0,
-
-  // // Stop auto-sliding after user input
-  // autoSlideStoppable: true,
-
-  // // Use this method for navigation when auto-sliding
-  // autoSlideMethod: Reveal.navigateNext,
-
-  // // Default timing for slides
-  // defaultTiming: 120,
-
-  // // Enable slide navigation via mouse wheel
-  // mouseWheel: false,
-
-  // // Hide cursor if inactive
-  // hideInactiveCursor: true,
-
-  // // Time before the cursor is hidden (in ms)
-  // hideCursorTime: 5000,
-
-  // // Preview links
-  // previewLinks: false,
-
-  // // Global transition settings
-  // transition: "slide",
-  // transitionSpeed: "default",
-
-  // // Background transition
-  // backgroundTransition: "fade",
-
-  // // Number of slides away from the current that are visible
-  // viewDistance: 3,
-
-  // // Parallax background settings
-  // parallaxBackgroundImage: "",
-  // parallaxBackgroundSize: "",
-  // parallaxBackgroundHorizontal: null,
-  // parallaxBackgroundVertical: null,
-
-  // // Display mode
-  // display: "block",
-
-  // // Animation settings
-  // autoAnimate: true,
-  // autoAnimateEasing: "ease",
-  // autoAnimateDuration: 1.0,
-  // autoAnimateUnmatched: true,
-  // default settings
   // Display presentation control arrows
   controls: true,
 
@@ -153,7 +35,7 @@ export const revealOptions: Reveal.Options = {
 
   // Visibility rule for backwards navigation arrows; "faded", "hidden"
   // or "visible"
-  controlsBackArrows: "faded",
+  controlsBackArrows: "visible",
 
   // Display a presentation progress bar
   progress: true,
@@ -283,7 +165,7 @@ export const revealOptions: Reveal.Options = {
   //           the viewDistance, iframes with only data-src will be loaded when visible
   // - true:   All iframes with data-src will be loaded when within the viewDistance
   // - false:  All iframes with data-src will be loaded only when visible
-  preloadIframes: null,
+  preloadIframes: true,
 
   // Can be used to globally disable auto-animation
   autoAnimate: true,
@@ -352,13 +234,13 @@ export const revealOptions: Reveal.Options = {
   focusBodyOnPageVisibilityChange: true,
 
   // Transition style
-  transition: "fade", // none/fade/slide/convex/concave/zoom
+  transition: "slide", // none/fade/slide/convex/concave/zoom
 
   // Transition speed
   transitionSpeed: "default", // default/fast/slow
 
   // Transition style for full page slide backgrounds
-  backgroundTransition: "fade", // none/fade/slide/convex/concave/zoom
+  backgroundTransition: "slide", // none/fade/slide/convex/concave/zoom
 
   // The maximum number of pages a single slide can expand onto when printing
   // to PDF, unlimited by default

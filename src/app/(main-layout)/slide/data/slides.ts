@@ -1,6 +1,6 @@
 import { Slide } from "./schema";
 
-const MAX_LINES = 24;
+// const MAX_LINES = 24;
 
 export const aiForReactDevelopersSlides: Slide[] = [
   {
@@ -13,12 +13,12 @@ export const aiForReactDevelopersSlides: Slide[] = [
     footerId: "main-footer",
   },
   {
-    title: "Find these Slides! 📱",
-    image: "https://www.milindmishra.com/assets/qr/ai-slides.png",
-    imageId: "qr-code",
+    backgroundIframe: "https://milindmishra.com",
+    backgroundInteractive: true,
+    transition: "zoom",
   },
   {
-    title: "Why should backend developers have all the AI fun? 🤖",
+    title: "Why should backend developers have all the fun? 😁",
     content:
       "AI isn't just for the backend folks! As React developers, we can build intelligent, conversational UIs that feel magical. Let's bring AI to the frontend together!",
     contentId: "why-content",
@@ -40,264 +40,38 @@ export const aiForReactDevelopersSlides: Slide[] = [
   {
     title: "The Three Pillars of AI SDK 🏛️",
     titleId: "pillars-title",
-    verticalGroup: "vercel-ai-intro",
     ul: [
       "AI SDK Core: Unified API for text generation, tool calls, and LLM interactions with any provider",
       "AI SDK UI: Ready-to-use React hooks for chat, completion, and streaming interfaces",
       "AI SDK RSC: Special functions for AI-native applications with React Server Components",
     ],
-    ulItemClassName: "fragment fade-in",
+    ulItemClassName: "fragment",
     listItemsAutoReveal: true,
+    verticalGroup: "vercel-ai-intro",
   },
   {
-    title: "Today's Adventure 🎯",
+    title: "Today's Mission 🎯",
     content:
-      "We'll build a streaming AI chatbot from scratch! Complete with tool calls and multi-step reasoning — all with surprisingly little code.",
+      "We'll explore three powerful AI capabilities: text generation, streaming text, and structured data streaming. All with a beautiful React UI!",
     titleId: "mission-title",
     contentId: "mission-content",
   },
   {
-    title: "Setting Up Our Project 🛠️",
-    content:
-      "First things first: let's create a shiny new Next.js app with App Router!",
-    titleId: "get-started-title",
-    verticalGroup: "implementation",
+    title: "Let the AI Experimentation Begin! 🧪",
+    content: "Let's get hands dirty with some code!",
+    titleId: "hands-on-title",
+    contentId: "hands-on-content",
   },
   {
-    code: `pnpm create next-app@latest my-ai-app
-cd my-ai-app`,
-    codeLanguage: "tsx",
-    codeId: "install-code",
-    showLineNumbers: true,
-    verticalGroup: "implementation",
+    backgroundIframe: "https://sdk.vercel.ai/demo",
+    backgroundInteractive: true,
+    transition: "zoom",
   },
   {
-    title: "Installing AI Superpowers 🧙‍♂️",
-    content:
-      "Let's add the magical ingredients: ai, @ai-sdk/react, and @ai-sdk/openai — all you need to chat with robots!",
-    titleId: "install-title",
-    contentId: "install-content",
-    verticalGroup: "implementation",
-  },
-  {
-    code: `pnpm add ai @ai-sdk/react @ai-sdk/openai zod`,
-    codeLanguage: "tsx",
-    codeId: "install-code",
-    showLineNumbers: true,
-    verticalGroup: "implementation",
-  },
-  {
-    title: "Don't Forget Your Secret Key 🔑",
-    content:
-      "Create a .env.local file with your OPENAI_API_KEY. No key, no AI magic!",
-    titleId: "env-title",
-    contentId: "env-content",
-    verticalGroup: "implementation",
-  },
-  {
-    code: `// .env.local
-OPENAI_API_KEY=your_actual_key_here`,
-    codeLanguage: "tsx",
-    codeId: "env-code",
-    showLineNumbers: true,
-    verticalGroup: "implementation",
-  },
-  {
-    title: "Creating Our AI Brain 🧠",
-    content: "Let's set up our route handler to connect with OpenAI:",
-    titleId: "api-title",
-    contentId: "api-content",
-  },
-  {
-    code: `// app/api/chat/route.ts
-import { openai } from '@ai-sdk/openai';
-import { streamText } from 'ai';
-
-// Let responses stream for up to 30 seconds
-export const maxDuration = 30;
-
-export async function POST(req: Request) {
-  const { messages } = await req.json();
-
-  const result = streamText({
-    model: openai('gpt-4o'),
-    messages,
-  });
-
-  return result.toDataStreamResponse();
-}`,
-    codeLanguage: "tsx",
-    codeId: "api-code",
-    showLineNumbers: true,
-    highlightLines: "2-3,10-14",
-    maxLines: MAX_LINES,
-  },
-  {
-    title: "Building Our Chat UI 💬",
-    content:
-      "One hook to rule them all! useChat makes building chat UIs ridiculously easy:",
-    titleId: "chat-title",
-    contentId: "chat-content",
-    verticalGroup: "sdk-hooks",
-  },
-  {
-    code: `// app/page.tsx
-'use client';
-
-import { useChat } from '@ai-sdk/react';
-
-export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
-  
-  return (
-    <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
-      {messages.map(message => (
-        <div key={message.id} className="whitespace-pre-wrap">
-          {message.role === 'user' ? 'User: ' : 'AI: '}
-          {message.parts.map((part, i) => {
-            switch (part.type) {
-              case 'text':
-                return <div key={\`\${message.id}-\${i}\`}>{part.text}</div>;
-            }
-          })}
-        </div>
-      ))}
-
-      <form onSubmit={handleSubmit}>
-        <input
-          className="fixed bottom-0 w-full max-w-md p-2 mb-8 border rounded shadow-xl"
-          value={input}
-          placeholder="Ask me anything..."
-          onChange={handleInputChange}
-        />
-      </form>
-    </div>
-  );
-}`,
-    codeLanguage: "tsx",
-    codeId: "chat-code",
-    showLineNumbers: true,
-    highlightLines: "4,7,13-17",
-    maxLines: MAX_LINES,
-    verticalGroup: "sdk-hooks",
-  },
-  {
-    title: "Let's Add Some Tools! 🛠️",
-    content:
-      "LLMs are smart, but they need help with real-world tasks. Let's give our AI some superpowers:",
-    titleId: "function-call-title",
-    contentId: "function-call-content",
-  },
-  {
-    code: `// app/api/chat/route.ts
-import { openai } from '@ai-sdk/openai';
-import { streamText, tool } from 'ai';
-import { z } from 'zod';
-
-export async function POST(req: Request) {
-  const { messages } = await req.json();
-
-  const result = streamText({
-    model: openai('gpt-4o'),
-    messages,
-    tools: {
-      weather: tool({
-        description: 'Get the weather in a location (fahrenheit)',
-        parameters: z.object({
-          location: z.string().describe('The location to get the weather for'),
-        }),
-        execute: async ({ location }) => {
-          // In real life, we'd call a weather API!
-          const temperature = Math.round(Math.random() * (90 - 32) + 32);
-          return {
-            location,
-            temperature,
-          };
-        },
-      }),
-    },
-  });
-
-  return result.toDataStreamResponse();
-}`,
-    codeLanguage: "tsx",
-    codeId: "function-call-code",
-    showLineNumbers: true,
-    highlightLines: "3,12-25",
-    maxLines: MAX_LINES,
-  },
-  {
-    title: "Displaying Tool Results 🔍",
-    content: "Now let's update our UI to show when our AI uses tools:",
-    titleId: "tool-display-title",
-    contentId: "tool-display-content",
-  },
-  {
-    code: `// Inside app/page.tsx render function
-{message.parts.map((part, i) => {
-  switch (part.type) {
-    case 'text':
-      return <div key={\`\${message.id}-\${i}\`}>{part.text}</div>;
-    case 'tool-invocation':
-      return (
-        <pre key={\`\${message.id}-\${i}\`} className="bg-gray-100 p-2 rounded text-xs">
-          {JSON.stringify(part.toolInvocation, null, 2)}
-        </pre>
-      );
-  }
-})}`,
-    codeLanguage: "tsx",
-    codeId: "tool-display-code",
-    showLineNumbers: true,
-    highlightLines: "5-10",
-  },
-  {
-    title: "Multi-Step Reasoning 🧩",
-    content:
-      "With maxSteps, our AI can use tools, get results, and keep thinking!",
-    titleId: "multi-step-title",
-    contentId: "multi-step-content",
-  },
-  {
-    code: `// app/page.tsx
-export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat({
-    maxSteps: 5, // Allow up to 5 steps of reasoning with tools
-  });
-  
-  // ... rest of the component
-}`,
-    codeLanguage: "tsx",
-    codeId: "multi-step-code",
-    showLineNumbers: true,
-    highlightLines: "3-4",
-  },
-  {
-    title: "Weather in Celsius? Let's Add Another Tool! 🌡️",
-    content: "Multi-step tools working together - the real magic of AI tools:",
-    titleId: "temperature-tool-title",
-    contentId: "temperature-tool-content",
-  },
-  {
-    code: `// Add to the tools object
-convertFahrenheitToCelsius: tool({
-  description: 'Convert a temperature in fahrenheit to celsius',
-  parameters: z.object({
-    temperature: z
-      .number()
-      .describe('The temperature in fahrenheit to convert'),
-  }),
-  execute: async ({ temperature }) => {
-    const celsius = Math.round((temperature - 32) * (5 / 9));
-    return {
-      celsius,
-    };
-  },
-}),`,
-    codeLanguage: "tsx",
-    codeId: "temperature-tool-code",
-    showLineNumbers: true,
-    highlightLines: "1-13",
+    backgroundIframe:
+      "https://milindmishra.com/gist/81b5d579e38fb79432ac2f5d525d80ba",
+    backgroundInteractive: true,
+    transition: "zoom",
   },
   {
     title: "Cool Features of AI SDK 🌟",
@@ -325,10 +99,19 @@ convertFahrenheitToCelsius: tool({
       "Persistent Conversations - Save and load chat history",
       "Structured Outputs - Getting formatted data from AI responses",
       "Agent Workflows - Building complex AI-powered agents",
-      "Custom Model Providers - Using your own models or other API providers",
     ],
     ulItemClassName: "fragment fade-in",
     listItemsAutoReveal: true,
+  },
+  {
+    backgroundIframe: "https://sdk.vercel.ai/docs/introduction",
+    backgroundInteractive: true,
+    transition: "zoom",
+  },
+  {
+    title: "Find these Slides! 📱",
+    image: "https://www.milindmishra.com/assets/qr/ai-slides.png",
+    imageId: "qr-code",
   },
   {
     title: "Let's Build Together! 🤝",
@@ -340,32 +123,5 @@ convertFahrenheitToCelsius: tool({
     title: "Share your feedback! (anonymous) 💬",
     content: "https://milind.app/feedback",
     transition: "fade",
-  },
-  {
-    title: "Resources 📚",
-    content: "Learn more about the Vercel AI SDK",
-    ul: [
-      "Official Documentation: [ai.vercel.ai](https://ai.vercel.ai)",
-      "GitHub Repository: [github.com/vercel/ai](https://github.com/vercel/ai)",
-      "Vercel AI Playground: [play.vercel.ai](https://play.vercel.ai)",
-      "Template Projects: [vercel.com/templates/ai](https://vercel.com/templates/ai)",
-    ],
-    ulItemClassName: "fragment fade-in",
-    listItemsAutoReveal: true,
-    transition: "fade",
-  },
-  {
-    title: "Interactive Demo 🧪",
-    content: "Check out this working demo of the AI SDK",
-    iframe: "https://sdk.vercel.ai/demo",
-    iframeId: "chat-demo-iframe",
-    transition: "zoom",
-  },
-  {
-    title: "Code for this slide deck",
-    content: "Check out the code for this slide deck",
-    iframe: "https://milindmishra.com/gist/81b5d579e38fb79432ac2f5d525d80ba",
-    iframeId: "code-iframe",
-    transition: "zoom",
   },
 ];

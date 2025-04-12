@@ -23,6 +23,10 @@ export const slideSchema = z.object({
   image: z.string().optional(),
   /** URL for an iframe to embed */
   iframe: z.string().optional(),
+  /** URL for an iframe to use as a background */
+  backgroundIframe: z.string().optional(),
+  /** Whether the background iframe should be interactive */
+  backgroundInteractive: z.boolean().optional(),
   /** Unordered list items */
   ul: z.array(z.string()).optional(),
   /** Ordered list items */
