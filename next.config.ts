@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/resume",
-        destination: "https://milindmishra.com/resume.pdf",
+        destination: "https://resume.milind.app",
       },
     ];
   },
