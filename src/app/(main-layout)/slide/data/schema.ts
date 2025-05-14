@@ -34,7 +34,7 @@ export const slideSchema = z.object({
   /** Code to display with syntax highlighting */
   code: z.string().optional(),
   /** Programming language for syntax highlighting */
-  codeLanguage: z.enum(["tsx", "jsx", "json"]).optional(),
+  codeLanguage: z.enum(["tsx", "jsx", "json", "bash"]).optional(),
 
   // Animation and transition properties
   /**
