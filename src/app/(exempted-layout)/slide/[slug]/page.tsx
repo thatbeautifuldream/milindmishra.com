@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { SlideContainer } from "@/app/(main-layout)/slide/components/slide-container";
-import { slidesConfig } from "@/app/(main-layout)/slide/data";
+import { slidesConfig } from "@/app/(main-layout)/slide/data/slides-config";
 
 export const metadata: Metadata = {
   title: "Slides by Milind Mishra",

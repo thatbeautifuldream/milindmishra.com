@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { slidesConfig } from "./data";
+import { slidesConfig } from "./data/slides-config";
 import { cn } from "@/lib/utils";
 import { bricolageGrotesque } from "@/lib/fonts";
 import SlideCard from "./components/slide-card";
