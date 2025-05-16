@@ -3,7 +3,7 @@ import { Slide } from "../schema";
 export const buildingRealtimeApplicationsWithReactiveDatabaseSlides: Slide[] = [
     {
         title: "Building Real-Time Applications with Reactive Databases 🔄",
-        content: "Simplifying Real-Time App Development with Convex and React",
+        content: "w/ React & Convex",
         footer: "React Bangalore | Milind Mishra",
         state: "title-slide",
         titleId: "main-title",
@@ -12,8 +12,12 @@ export const buildingRealtimeApplicationsWithReactiveDatabaseSlides: Slide[] = [
     },
     {
         title: "Pain Points of Real-Time Application Development 😓",
-        content:
-            "1. High complexity of managing live data across client-server\n2. Inefficiencies of handling real-time updates in traditional backends\n3. Scalability and performance challenges\n4. Difficult and laggy user experiences due to manual sync",
+        ul: [
+            "High complexity of managing live data across client-server",
+            "Inefficiencies of handling real-time updates in traditional backends",
+            "Scalability and performance challenges",
+            "Difficult and laggy user experiences due to manual sync",
+        ],
         ulItemClassName: "fragment fade-in",
         listItemsAutoReveal: true,
     },
@@ -52,8 +56,8 @@ export const buildingRealtimeApplicationsWithReactiveDatabaseSlides: Slide[] = [
         contentId: "quickstart-content",
     },
     {
-        title: "Step 1: Install Convex SDK 📦",
-        code: `npm install convex`,
+        title: "Step 1: Initialize convex-next app 📦",
+        code: `npm create convex@latest`,
         showLineNumbers: false,
         codeLanguage: "bash",
         titleId: "install-title",
@@ -61,25 +65,21 @@ export const buildingRealtimeApplicationsWithReactiveDatabaseSlides: Slide[] = [
     },
     {
         title: "Step 2: Initialize Convex in your React App ⚙️",
-        code: `import { ConvexProvider, ConvexReactClient } from 'convex/react';
-  
-  // Initialize the Convex client
-  const convex = new ConvexReactClient('<CONVEX_URL>');
-  
-  // Wrap your app
-  export default function App({ Component, pageProps }) {
-    return (
-      <ConvexProvider client={convex}>
-        <Component {...pageProps} />
-      </ConvexProvider>
-    );
-  };
-      `,
+        code: `"use client";
+
+import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { ReactNode } from "react";
+
+const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+
+export function ConvexClientProvider({ children }: { children: ReactNode }) {
+  return <ConvexProvider client={convex}>{children}</ConvexProvider>;
+}`,
         codeLanguage: "tsx",
-        highlightLines: "1, 4, 9-11",
+        highlightLines: "3, 6, 9",
         showLineNumbers: true,
         titleId: "initialize-title",
-        contentId: "initialize-content",
+        contentId: "initialize-convex-provider",
     },
     {
         title: "Step 3: Write Backend Queries ✍️",
