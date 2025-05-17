@@ -138,16 +138,16 @@ export const toggleComplete = mutation({
         notes: "Show how Convex gets devs productive—live updating in minutes."
     },
     {
-        title: "Step 1: Scaffold Project",
-        code: `pnpm create convex@latest -- -t nextjs`,
+        code: `// Scaffold Project
+pnpm create convex@latest -- -t nextjs`,
         codeLanguage: "bash",
         showLineNumbers: false,
         content: "Create a Next.js + Convex app scaffold.",
         notes: "Show how quick it is. Mention alternatives (Remix, SvelteKit)."
     },
     {
-        title: "Step 2: Set up Convex Provider",
-        code: `import { ConvexProvider, ConvexReactClient } from "convex/react";
+        code: `// Set up Convex Provider
+import { ConvexProvider, ConvexReactClient } from "convex/react";
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
 export function ConvexClientProvider({ children }) {
@@ -159,8 +159,8 @@ export function ConvexClientProvider({ children }) {
         notes: "Boilerplate for React Context with Convex client."
     },
     {
-        title: "Step 3: Binding Your Root Layout",
-        code: `import { ConvexClientProvider } from "./ConvexClientProvider";
+        code: `// Binding Your Root Layout
+import { ConvexClientProvider } from "./ConvexClientProvider";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -175,62 +175,57 @@ export default function RootLayout({ children }) {
         notes: "Shows top-level context wrapping for app."
     },
     {
-        title: "Live Query in React ⚛️ (Step 1: Fetching Data)",
-        code: `import { useQuery } from "convex/react";
+        code: `// Fetching Data
+import { useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 
 const tasks = useQuery(api.tasks.get);`,
         codeLanguage: "tsx",
         showLineNumbers: true,
-        highlightLines: "1-4",
         notes: "Show how to fetch tasks reactively from Convex. Explain that useQuery gives you live, always-up-to-date data.",
     },
     {
-        title: "Live Query in React ⚛️ (Step 2: Rendering Data)",
-        code: `if (!tasks) return <p>Loading...</p>;
+        code: `// Rendering Data
+if (!tasks) return <p>Loading...</p>;
 return <ul>{tasks.map(t => <li key={t._id}>{t.text}</li>)}</ul>;`,
         codeLanguage: "tsx",
         showLineNumbers: true,
-        highlightLines: "1-2",
         notes: "Show how to render the live data. UI updates automatically as data changes in Convex.",
     },
     {
-        title: "Live Mutation Example (Step 1: Add Task)",
-        code: `import { useMutation } from "convex/react";
+        code: `// Add Task Mutation
+import { useMutation } from "convex/react";
 const add = useMutation(api.tasks.add);
 
 <input value={text} onChange={...} />
 <button onClick={() => add({ text })}>Add</button>`,
         codeLanguage: "tsx",
         showLineNumbers: true,
-        highlightLines: "1-5",
         notes: "Show how to add a new task using useMutation. Explain the input and button for adding.",
     },
     {
-        title: "Live Mutation Example (Step 2: Toggle Complete)",
-        code: `const toggleComplete = useMutation(api.tasks.toggleComplete);
+        code: `// Toggle Complete Mutation
+const toggleComplete = useMutation(api.tasks.toggleComplete);
 
 <button onClick={() => toggleComplete({ id: _id })}>
   <span style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>{text}</span>
 </button>`,
         codeLanguage: "tsx",
         showLineNumbers: true,
-        highlightLines: "1-4",
         notes: "Show how to toggle task completion. UI reflects changes instantly.",
     },
     {
-        title: "Live Mutation Example (Step 3: Delete Task)",
-        code: `const deleteTask = useMutation(api.tasks.deleteTask);
+        code: `// Delete Task Mutation
+const deleteTask = useMutation(api.tasks.deleteTask);
 
 <button onClick={() => deleteTask({ id: _id })}>(delete)</button>`,
         codeLanguage: "tsx",
         showLineNumbers: true,
-        highlightLines: "1-3",
         notes: "Show how to delete a task in real-time. Emphasize instant UI update.",
     },
     {
-        title: "Full Example: Real-Time Task App",
-        code: `"use client";
+        code: `// Full Example: Real-Time Task App
+"use client";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { useState } from "react";
