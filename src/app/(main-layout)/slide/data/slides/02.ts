@@ -41,10 +41,10 @@ export const buildingRealtimeApplicationsWithReactiveDatabaseSlides: Slide[] = [
         notes: "Explain how Convex replaces/manage server & DB; clients use their favorite framework."
     },
     {
-        image: "/assets/slides/02/app-arch.png",
+        image: "/assets/slides/02/modern-arch.png",
     },
     {
-        image: "/assets/slides/02/convex-app-arch.png",
+        image: "/assets/slides/02/modern-arch-convex-dark.png",
     },
     {
         title: "Convex = Database + Functions + Sync",
@@ -58,8 +58,11 @@ export const buildingRealtimeApplicationsWithReactiveDatabaseSlides: Slide[] = [
     {
         title: "The Database: Flexible & Strongly-Typed",
         ul: [
-            "Convex supports:\n• Document/relational hybrid\n• TypeScript unions for dynamic models\n• Safe migrations and relations",
-            "Schema: Hybrid of doc & relational · Type safe like PostgreSQL"
+            "Document/relational hybrid",
+            "TypeScript unions for dynamic models",
+            "Safe migrations and relations",
+            "Schema: Hybrid of doc & relational",
+            "Type safe like PostgreSQL"
         ],
         notes: "Describe schema, unions, and how types match TS interfaces."
     },
