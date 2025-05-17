@@ -337,6 +337,10 @@ export default function Home() {
         notes: "Open the floor to the audience."
     },
     {
+        content: "Connect with me on Socials",
+        qrCodeLink: "https://milindmishra.com/links",
+    },
+    {
         title: "Thank You! 🙏",
         content: "Have fun building real-time apps with Convex.",
         footer: "Milind Mishra · React Bangalore",
