@@ -7,7 +7,7 @@ import { Slide } from "@/components/reveal/slide";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import "reveal.js/dist/reveal.css";
-// theme is being handled by the SlidesThemeProvider
+// TODO : handle theme from slides-config.ts using slideTheme
 // import "reveal.js/dist/theme/black.css";
 // import "reveal.js/dist/theme/white.css";
 // import "reveal.js/dist/theme/league.css";
@@ -151,7 +151,7 @@ function SlideContent({ slide }: { slide: SlideType }) {
 
       {slide.footer && (
         <p
-          className={`text-sm text-gray-400 ${slide.footerClassName || ''}`}
+          className={`text-sm ${slide.footerClassName || ''}`}
           data-id={slide.footerId}
         >
           {slide.footer}
