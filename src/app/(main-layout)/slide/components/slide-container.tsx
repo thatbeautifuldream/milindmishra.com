@@ -9,10 +9,10 @@ import { cn } from "@/lib/utils";
 import "reveal.js/dist/reveal.css";
 // TODO : handle theme from slides-config.ts using slideTheme
 // import "reveal.js/dist/theme/black.css";
-// import "reveal.js/dist/theme/white.css";
+import "reveal.js/dist/theme/white.css";
 // import "reveal.js/dist/theme/league.css";
 // import "reveal.js/dist/theme/beige.css";
-import "reveal.js/dist/theme/night.css";
+// import "reveal.js/dist/theme/night.css";
 // import "reveal.js/dist/theme/serif.css";
 // import "reveal.js/dist/theme/simple.css";
 // import "reveal.js/dist/theme/solarized.css";
