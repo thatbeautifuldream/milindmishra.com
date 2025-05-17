@@ -15,9 +15,9 @@ export const buildingRealtimeApplicationsWithReactiveDatabaseSlides: Slide[] = [
         title: "Challenges in Real-Time App Development 😓",
         ul: [
             "Difficult manual sync between client & server",
-            "Complex real-time logic & race conditions",
+            "Complex real-time logic",
             "Scalability pains and infra complexity",
-            "Poor/lossy UX due to lags & stale data"
+            "Poor/lossy UX due to lags & stale data",
         ],
         footer: "Let's see how Convex solves these…",
         notes: "Highlight pain points to set up contrast for Convex.",
@@ -41,10 +41,10 @@ export const buildingRealtimeApplicationsWithReactiveDatabaseSlides: Slide[] = [
         notes: "Explain how Convex replaces/manage server & DB; clients use their favorite framework."
     },
     {
-        image: "/assets/slides/02/app-arch-dark.png",
+        image: "/assets/slides/02/app-arch.png",
     },
     {
-        image: "/assets/slides/02/convex-app-arch-dark.png",
+        image: "/assets/slides/02/convex-app-arch.png",
     },
     {
         title: "Convex = Database + Functions + Sync",
