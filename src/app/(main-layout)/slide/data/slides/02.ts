@@ -44,7 +44,7 @@ export const buildingRealtimeApplicationsWithReactiveDatabaseSlides: Slide[] = [
         image: "/assets/slides/02/modern-arch.png",
     },
     {
-        image: "/assets/slides/02/modern-arch-convex-dark.png",
+        image: "/assets/slides/02/modern-arch-convex.png",
     },
     {
         title: "Convex = Database + Functions + Sync",
