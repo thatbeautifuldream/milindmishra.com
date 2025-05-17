@@ -19,7 +19,7 @@ export const buildingRealtimeApplicationsWithReactiveDatabaseSlides: Slide[] = [
             "Scalability pains and infra complexity",
             "Poor/lossy UX due to lags & stale data"
         ],
-        footer: "Let’s see how Convex solves these…",
+        footer: "Let's see how Convex solves these…",
         notes: "Highlight pain points to set up contrast for Convex.",
     },
     {
@@ -91,17 +91,27 @@ export default defineSchema({
         notes: "Highlight transactional safety of queries & mutations."
     },
     {
-        code: `// Query: fetch all messages
-export default query(async ({ db }) => db.query("messages").collect());
-
-// Mutation: add a message transactionally
-export default mutation(async ({ db }, { text }) => {
-  await db.insert("messages", { text });
+        code: `// Query: fetch all tasks
+export const get = query({
+    args: {},
+    handler: async (ctx) => {
+        return await ctx.db.query("tasks").collect();
+    },
 });
-    `,
+
+// Mutation: toggle task completion
+export const toggleComplete = mutation({
+    args: { id: v.id("tasks") },
+    handler: async (ctx, args) => {
+        const task = await ctx.db.get(args.id);
+        if (!task) {
+            throw new Error("Task not found");
+        }
+        await ctx.db.patch(args.id, { isCompleted: !task.isCompleted });
+    },
+});`,
         codeLanguage: "tsx",
         showLineNumbers: true,
-        highlightLines: "1-5",
     },
     {
         backgroundIframe: "https://docs.convex.dev/functions",
@@ -123,7 +133,7 @@ export default mutation(async ({ db }, { text }) => {
     },
     {
         title: "Quickstart: Convex + React/Next.js",
-        content: "Let’s boot a live app in minutes!",
+        content: "Let's boot a live app in minutes!",
         footer: "Lets get our hands dirty!",
         notes: "Show how Convex gets devs productive—live updating in minutes."
     },
@@ -165,25 +175,96 @@ export default function RootLayout({ children }) {
         notes: "Shows top-level context wrapping for app."
     },
     {
-        title: "Live Query in React ⚛️",
-        code: `import { useQuery } from 'convex/react';
-const messages = useQuery('getMessages');
-if (!messages) return <p>Loading...</p>;
-return <ul>{messages.map(m => <li key={m.id}>{m.text}</li>)}</ul>;`,
+        title: "Live Query in React ⚛️ (Step 1: Fetching Data)",
+        code: `import { useQuery } from "convex/react";
+import { api } from "../convex/_generated/api";
+
+const tasks = useQuery(api.tasks.get);`,
         codeLanguage: "tsx",
         showLineNumbers: true,
-        highlightLines: "2-5",
-        notes: "Highlight how queries are always up-to-date with no polling."
+        highlightLines: "1-4",
+        notes: "Show how to fetch tasks reactively from Convex. Explain that useQuery gives you live, always-up-to-date data.",
     },
     {
-        title: "Live Mutation Example",
-        code: `import { useMutation } from 'convex/react';
-const addMessage = useMutation('sendMessage');
-<button onClick={() => addMessage({ text: "Hello, Convex!" })}>Send</button>`,
+        title: "Live Query in React ⚛️ (Step 2: Rendering Data)",
+        code: `if (!tasks) return <p>Loading...</p>;
+return <ul>{tasks.map(t => <li key={t._id}>{t.text}</li>)}</ul>;`,
         codeLanguage: "tsx",
         showLineNumbers: true,
-        highlightLines: "2-3",
-        notes: "Show that mutations are easy, safe, and transactional."
+        highlightLines: "1-2",
+        notes: "Show how to render the live data. UI updates automatically as data changes in Convex.",
+    },
+    {
+        title: "Live Mutation Example (Step 1: Add Task)",
+        code: `import { useMutation } from "convex/react";
+const add = useMutation(api.tasks.add);
+
+<input value={text} onChange={...} />
+<button onClick={() => add({ text })}>Add</button>`,
+        codeLanguage: "tsx",
+        showLineNumbers: true,
+        highlightLines: "1-5",
+        notes: "Show how to add a new task using useMutation. Explain the input and button for adding.",
+    },
+    {
+        title: "Live Mutation Example (Step 2: Toggle Complete)",
+        code: `const toggleComplete = useMutation(api.tasks.toggleComplete);
+
+<button onClick={() => toggleComplete({ id: _id })}>
+  <span style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>{text}</span>
+</button>`,
+        codeLanguage: "tsx",
+        showLineNumbers: true,
+        highlightLines: "1-4",
+        notes: "Show how to toggle task completion. UI reflects changes instantly.",
+    },
+    {
+        title: "Live Mutation Example (Step 3: Delete Task)",
+        code: `const deleteTask = useMutation(api.tasks.deleteTask);
+
+<button onClick={() => deleteTask({ id: _id })}>(delete)</button>`,
+        codeLanguage: "tsx",
+        showLineNumbers: true,
+        highlightLines: "1-3",
+        notes: "Show how to delete a task in real-time. Emphasize instant UI update.",
+    },
+    {
+        title: "Full Example: Real-Time Task App",
+        code: `"use client";
+import { useMutation, useQuery } from "convex/react";
+import { api } from "../convex/_generated/api";
+import { useState } from "react";
+
+export default function Home() {
+  const [text, setText] = useState("");
+  const tasks = useQuery(api.tasks.get);
+  const toggleComplete = useMutation(api.tasks.toggleComplete);
+  const add = useMutation(api.tasks.add);
+  const deleteTask = useMutation(api.tasks.deleteTask);
+
+  return (
+    <main className="flex flex-col items-center justify-between p-24">
+      <div className="flex items-center justify-between space-x-2">
+        <input type="text" placeholder="Add a task" value={text} onChange={(e) => setText(e.target.value)} />
+        <button className="text-blue-500 hover:text-blue-700 font-semibold cursor-pointer" onClick={() => add({ text })}>Add</button>
+      </div>
+      {tasks?.map(({ _id, text, isCompleted }) => (
+        <div className="flex items-center justify-between space-x-2" key={_id}>
+          <button
+            onClick={() => toggleComplete({ id: _id })}
+            className="mb-2 text-left cursor-pointer"
+          >
+            <span className="hover:text-gray-500" style={{ textDecoration: isCompleted ? "line-through" : "none" }}>{text}</span>
+          </button>
+          <button className="text-red-500 hover:text-red-700 cursor-pointer" onClick={() => deleteTask({ id: _id })}>(delete)</button>
+        </div>
+      ))}
+    </main>
+  );
+}`,
+        codeLanguage: "tsx",
+        showLineNumbers: true,
+        notes: "Show the complete real-time task app. Recap how queries and mutations work together for a live, collaborative UI.",
     },
     {
         title: "Beyond CRUD: Convex Power Features",
