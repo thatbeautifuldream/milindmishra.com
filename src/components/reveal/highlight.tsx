@@ -1,4 +1,4 @@
-import { Highlight as PrismHighlight, Language, type RenderProps } from 'prism-react-renderer';
+import { Language, Highlight as PrismHighlight, type RenderProps } from 'prism-react-renderer';
 import React from 'react';
 
 /**
@@ -75,9 +75,13 @@ export const BaseHighlight: React.FC<BaseHighlightProps> = ({
 
     // Calculate max height style if maxLines is provided
     const maxHeightStyle = React.useMemo(() => {
-        if (!maxLines) return {};
-        // Each line is approximately 24px high, add some buffer
-        return { maxHeight: `${maxLines * 24}px`, overflow: 'auto' };
+        const style: React.CSSProperties = { overflowX: 'auto', whiteSpace: 'pre' };
+        if (maxLines) {
+            // Each line is approximately 24px high, add some buffer
+            style.maxHeight = `${maxLines * 24}px`;
+            style.overflowY = 'auto';
+        }
+        return style;
     }, [maxLines]);
 
     return (

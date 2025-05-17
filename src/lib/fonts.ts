@@ -1,4 +1,4 @@
-import { Inter, Bricolage_Grotesque } from "next/font/google";
+import { Bricolage_Grotesque, Inter } from "next/font/google";
 
 export const inter = Inter({
   subsets: ["latin"],

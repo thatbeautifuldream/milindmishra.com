@@ -1,188 +1,258 @@
-import { Slide } from "../schema";
+import { Slide } from "../slides-schema";
 
 export const buildingRealtimeApplicationsWithReactiveDatabaseSlides: Slide[] = [
     {
         title: "Building Real-Time Applications with Reactive Databases 🔄",
-        content: "w/ React & Convex",
-        footer: "React Bangalore | Milind Mishra",
-        state: "title-slide",
-        titleId: "main-title",
-        contentId: "subtitle",
-        footerId: "footer",
+        content: "with React & Convex",
+        footer: "React Bangalore · Milind Mishra",
+        notes: "Introduce scope: why real-time apps? Why Convex?",
     },
     {
-        title: "Pain Points of Real-Time Application Development 😓",
+        backgroundIframe: "https://milindmishra.com",
+        backgroundInteractive: true,
+    },
+    {
+        title: "Challenges in Real-Time App Development 😓",
         ul: [
-            "High complexity of managing live data across client-server",
-            "Inefficiencies of handling real-time updates in traditional backends",
-            "Scalability and performance challenges",
-            "Difficult and laggy user experiences due to manual sync",
+            "Difficult manual sync between client & server",
+            "Complex real-time logic & race conditions",
+            "Scalability pains and infra complexity",
+            "Poor/lossy UX due to lags & stale data"
         ],
-        ulItemClassName: "fragment fade-in",
-        listItemsAutoReveal: true,
+        footer: "Let’s see how Convex solves these…",
+        notes: "Highlight pain points to set up contrast for Convex.",
     },
     {
         title: "Enter Convex 🚀",
-        content: "A reactive database designed for the modern web.",
+        content: "Convex is an open source, reactive database platform that enables simpler, live-updating full-stack apps.",
         ul: [
-            "Reactive Queries - Automatic reactivity to changes",
-            "Live Mutations - Simplified state manipulation",
-            "Serverless Scalability - Built-in scaling without manual intervention",
-            "TypeScript Integration - Strong typing across the tech stack",
+            "Reactive serverless DB, functions & sync in one",
+            "TypeScript throughout (queries = TS code)",
+            "Automated live-updating queries and UI",
+            "Built-in scaling, file storage, auth, search"
         ],
-        ulItemClassName: "fragment fade-in",
-        listItemsAutoReveal: true,
-        titleId: "enter-convex",
-        contentId: "why-convex",
+        footer: "From the creators of Convex",
+        notes: "Enumerate Convex's pillars: DB, Functions, Sync"
     },
     {
-        title: "How Convex Works 🔍",
+        title: "Modern Full-Stack App – The Big Picture",
+        ul: ["Client (UI)", "Server: Functions & DB", "3rd-Party APIs (AI, email, payments)"],
+        footer: "Lets talk about modern development landscape",
+        notes: "Explain how Convex replaces/manage server & DB; clients use their favorite framework."
+    },
+    {
+        image: "/assets/slides/02/app-arch-dark.png",
+    },
+    {
+        image: "/assets/slides/02/convex-app-arch-dark.png",
+    },
+    {
+        title: "Convex = Database + Functions + Sync",
         ul: [
-            "Database: Fully managed, serverless backend",
-            "Server-side Functions: TypeScript-written logic",
-            "Real-Time Queries: Auto-runs queries on changes",
-            "Reactive Updates: Syncs data seamlessly with the UI",
+            "Database — Hybrid relational with flexible schemas, relations, TypeScript like unions",
+            "Functions — Serverless: actions, queries, mutations (all TS)",
+            "Sync — Real-time, cache-less client updates"
         ],
-        ulItemClassName: "fragment fade-in-then-out",
-        listItemsAutoReveal: true,
-        titleId: "how-title",
-        contentId: "how-content",
+        notes: "Emphasize how Convex's three pillars fit app needs."
     },
     {
-        title: "Quickstart: Convex with Next.js 🧑‍💻",
-        content: "Setting up Convex & React integration with Next.js",
-        transition: "slide",
-        titleId: "quickstart-title",
-        contentId: "quickstart-content",
+        title: "The Database: Flexible & Strongly-Typed",
+        ul: [
+            "Convex supports:\n• Document/relational hybrid\n• TypeScript unions for dynamic models\n• Safe migrations and relations",
+            "Schema: Hybrid of doc & relational · Type safe like PostgreSQL"
+        ],
+        notes: "Describe schema, unions, and how types match TS interfaces."
     },
     {
-        title: "Step 1: Initialize convex-next app 📦",
-        code: `npm create convex@latest`,
-        showLineNumbers: false,
+        code: `import { defineSchema, defineTable, v } from "convex/schema";
+
+export default defineSchema({
+  tasks: defineTable({
+    text: v.string(),
+    isCompleted: v.boolean(),
+    createdAt: v.number(),
+  }).index("byCreatedAt", ["createdAt"]),
+});`,
+        codeLanguage: "tsx",
+        showLineNumbers: true,
+        footer: "Schema: Hybrid of doc & relational · Type safe like PostgreSQL",
+    },
+    {
+        backgroundIframe: "https://docs.convex.dev/database/schemas",
+        backgroundInteractive: true,
+    },
+    {
+        title: "Functions: Actions, Queries, Mutations",
+        ul: [
+            "Actions — arbitrary logic; perfect for calling APIs",
+            "Queries — fetch data; transactional, cached, live",
+            "Mutations — safely change data; all-or-nothing consistency"
+        ],
+        notes: "Highlight transactional safety of queries & mutations."
+    },
+    {
+        code: `// Query: fetch all messages
+export default query(async ({ db }) => db.query("messages").collect());
+
+// Mutation: add a message transactionally
+export default mutation(async ({ db }, { text }) => {
+  await db.insert("messages", { text });
+});
+    `,
+        codeLanguage: "tsx",
+        showLineNumbers: true,
+        highlightLines: "1-5",
+    },
+    {
+        backgroundIframe: "https://docs.convex.dev/functions",
+        backgroundInteractive: true,
+    },
+    {
+        backgroundIframe: "https://docs.convex.dev/realtime",
+        backgroundInteractive: true,
+    },
+    {
+        title: "Automatic Real-Time Sync 🎯",
+        content: "Convex clients re-run queries and update state on every relevant DB change. No cache-invalidation, no manual dirty flags!",
+        ul: [
+            "UI automatically live-updating as data changes",
+            "No stale state, no manual syncing, no race bugs",
+            "Built-in deterministic caching"
+        ],
+        notes: "Demo how UI is always fresh—compare with traditional async fetching."
+    },
+    {
+        title: "Quickstart: Convex + React/Next.js",
+        content: "Let’s boot a live app in minutes!",
+        footer: "Lets get our hands dirty!",
+        notes: "Show how Convex gets devs productive—live updating in minutes."
+    },
+    {
+        title: "Step 1: Scaffold Project",
+        code: `pnpm create convex@latest -- -t nextjs`,
         codeLanguage: "bash",
-        titleId: "install-title",
-        contentId: "install-content",
+        showLineNumbers: false,
+        content: "Create a Next.js + Convex app scaffold.",
+        notes: "Show how quick it is. Mention alternatives (Remix, SvelteKit)."
     },
     {
-        title: "Step 2: Initialize Convex in your React App ⚙️",
-        code: `"use client";
-
-import { ConvexProvider, ConvexReactClient } from "convex/react";
-import { ReactNode } from "react";
-
+        title: "Step 2: Set up Convex Provider",
+        code: `import { ConvexProvider, ConvexReactClient } from "convex/react";
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
-export function ConvexClientProvider({ children }: { children: ReactNode }) {
+export function ConvexClientProvider({ children }) {
   return <ConvexProvider client={convex}>{children}</ConvexProvider>;
 }`,
         codeLanguage: "tsx",
-        highlightLines: "3, 6, 9",
         showLineNumbers: true,
-        titleId: "initialize-title",
-        contentId: "initialize-convex-provider",
+        highlightLines: "2,5",
+        notes: "Boilerplate for React Context with Convex client."
     },
     {
-        title: "Step 3: Write Backend Queries ✍️",
-        code: `
-  // Define backend logic to fetch messages
-  import { query } from './_generated/server';
-  
-  export default query(async ({ db }) => {
-    return await db.query("messages").collect();
-  });
-      `,
+        title: "Step 3: Binding Your Root Layout",
+        code: `import { ConvexClientProvider } from "./ConvexClientProvider";
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <ConvexClientProvider>{children}</ConvexClientProvider>
+      </body>
+    </html>
+  );
+}`,
         codeLanguage: "tsx",
-        highlightLines: "1-5",
         showLineNumbers: true,
-        titleId: "queries-title",
-        contentId: "queries-content",
+        notes: "Shows top-level context wrapping for app."
     },
     {
-        title: "Step 4: Use Queries in React Components ⚛️",
-        code: `
-  import { useQuery } from 'convex/react';
-  
-  // Fetch live-updating messages
-  const Messages = () => {
-    const messages = useQuery('getMessages');
-    if (!messages) return <p>Loading...</p>;
-    return (
-      <ul>
-        {messages.map(msg => (
-          <li key={msg.id}>{msg.text}</li>
-        ))}
-      </ul>
-    );
-  };
-      `,
+        title: "Live Query in React ⚛️",
+        code: `import { useQuery } from 'convex/react';
+const messages = useQuery('getMessages');
+if (!messages) return <p>Loading...</p>;
+return <ul>{messages.map(m => <li key={m.id}>{m.text}</li>)}</ul>;`,
         codeLanguage: "tsx",
-        highlightLines: "2, 4-12",
         showLineNumbers: true,
-        titleId: "use-query-title",
-        contentId: "use-query-content",
+        highlightLines: "2-5",
+        notes: "Highlight how queries are always up-to-date with no polling."
     },
     {
-        title: "Step 5: Handle User Interactions with Mutations 🤖",
-        code: `
-  import { useMutation } from 'convex/react';
-  
-  const SendMessage = () => {
-    const addMessage = useMutation('sendMessage');
-  
-    const handleClick = async () => {
-      await addMessage({ text: 'Hello, Convex!' });
-    };
-  
-    return (
-      <button onClick={handleClick}>Send Message</button>
-    );
-  };
-      `,
+        title: "Live Mutation Example",
+        code: `import { useMutation } from 'convex/react';
+const addMessage = useMutation('sendMessage');
+<button onClick={() => addMessage({ text: "Hello, Convex!" })}>Send</button>`,
         codeLanguage: "tsx",
-        highlightLines: "2, 4-11",
         showLineNumbers: true,
-        titleId: "mutation-title",
-        contentId: "mutation-content",
+        highlightLines: "2-3",
+        notes: "Show that mutations are easy, safe, and transactional."
     },
     {
-        backgroundIframe: "https://docs.convex.dev/home",
-        backgroundInteractive: true,
-        transition: "zoom",
-    },
-    {
-        title: "Benefits of Convex with Next.js 💡",
+        title: "Beyond CRUD: Convex Power Features",
         ul: [
-            "Seamless integration with React's reactive state",
-            "Serverless scalability and infrastructure-free",
-            "Better developer experience through TypeScript-first queries",
-            "Improved user experiences with live-updating UIs",
+            "Scheduled Functions (cron jobs, reminders)",
+            "File Storage & Serving",
+            "Integrated Authentication",
+            "Full-text & Vector Search",
+            "Self-hosted or cloud, permissive license",
+            "Composable components (plugin model)"
         ],
-        ulItemClassName: "fragment fade-in",
-        listItemsAutoReveal: true,
-        id: "benefits-slide",
-        state: "benefits-state",
+        notes: "Highlight productive features and why they matter."
     },
     {
-        backgroundIframe: "https://chef.convex.dev/",
-        backgroundInteractive: true,
-        transition: "zoom",
-    },
-    {
-        title: "More Resources 📚",
+        title: "Bonus: Components = Plug-ins for Convex",
         ul: [
-            "Convex Documentation - https://docs.convex.dev/",
-            "Convex Chef - https://chef.convex.dev/",
+            "Isolated mini-apps (e.g. rate limiting, AI agents)",
+            "Each has its own database namespace and API",
+            "No direct DB access, only via API for better isolation",
+            "Like WordPress Plugins but safer"
         ],
-        ulItemClassName: "fragment fade-in",
-        listItemsAutoReveal: true,
-        titleId: "resources-title",
-        contentId: "resources-content",
+        footer: "See Convex Docs: Components (https://docs.convex.dev/components)",
+        notes: "Mention new Convex component model as future growth area."
+    },
+    {
+        backgroundIframe: "https://docs.convex.dev/components",
+        backgroundInteractive: true,
+    },
+    {
+        title: "When Not To Use Convex? 🚫",
+        ul: [
+            "Ultra-high-frequency/low-latency apps (e.g. FPS games, IoT, heavy AI/ML, GPU compute)",
+            "Massive scale requiring custom infra or raw database tuning",
+            "If vendor lock-in or specific compliance forbidden (though Convex is self-hostable!)"
+        ],
+        footer: "Honest limitations: use right tool for right job.",
+        notes: "Honest answer: For most web apps it's perfect, but know the edge cases."
+    },
+    {
+        title: "Great Use Cases for Convex ✅",
+        ul: [
+            "Chat & Collaboration (live docs, editors)",
+            "Dashboards that always reflect latest data",
+            "Games with turn-based or collaborative mechanics",
+            "Apps that benefit from serverless, live sync"
+        ],
+        footer: "Explore the budding community of Convex developers!",
+        notes: "Give specific best-fit scenarios."
+    },
+    {
+        title: "Learn More & Get Started",
+        ul: [
+            "https://docs.convex.dev/",
+            "https://chef.convex.dev/",
+            "https://github.com/get-convex"
+        ],
+        footer: "Resources for self-paced exploration.",
+        notes: "Resources for self-paced exploration."
+    },
+    {
+        title: "Q & A & Ideas!",
+        content: "Got a budding idea for a real-time app?",
+        footer: "Let's chat!",
+        notes: "Open the floor to the audience."
     },
     {
         title: "Thank You! 🙏",
-        content: "Have fun building real-time apps today!",
-        footer: "Share your feedback to help improve this talk!",
-        footerId: "feedback-footer",
-        transition: "fade",
-    },
+        content: "Have fun building real-time apps with Convex.",
+        footer: "Milind Mishra · React Bangalore",
+        notes: "Close and invite further questions in hallway chat."
+    }
 ];

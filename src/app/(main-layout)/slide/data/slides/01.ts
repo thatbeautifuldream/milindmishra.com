@@ -1,4 +1,4 @@
-import { Slide } from "../schema";
+import { Slide } from "../slides-schema";
 
 // const MAX_LINES = 24;
 

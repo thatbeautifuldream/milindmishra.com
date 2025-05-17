@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { slidesConfig } from "./data/slides-config";
-import { cn } from "@/lib/utils";
 import { bricolageGrotesque } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 import SlideCard from "./components/slide-card";
+import { slidesConfig } from "./data/slides-config";
 
 export function SlidePageClient() {
     return (

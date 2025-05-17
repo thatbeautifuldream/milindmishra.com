@@ -1,12 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import "reveal.js/dist/reveal.css";
-import "reveal.js/dist/theme/black.css";
-import { Slide as SlideType } from "../data/schema";
 import { Deck } from "@/components/reveal/deck";
-import { Slide } from "@/components/reveal/slide";
 import { BaseHighlight } from "@/components/reveal/highlight";
+import { Slide } from "@/components/reveal/slide";
+import { bricolageGrotesque } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
+import "reveal.js/dist/reveal.css";
+// theme is being handled by the SlidesThemeProvider
+// import "reveal.js/dist/theme/black.css";
+// import "reveal.js/dist/theme/white.css";
+// import "reveal.js/dist/theme/league.css";
+// import "reveal.js/dist/theme/beige.css";
+import "reveal.js/dist/theme/night.css";
+// import "reveal.js/dist/theme/serif.css";
+// import "reveal.js/dist/theme/simple.css";
+// import "reveal.js/dist/theme/solarized.css";
+// import "reveal.js/dist/theme/moon.css";
+// import "reveal.js/dist/theme/dracula.css";
+// import "reveal.js/dist/theme/sky.css";
+// import "reveal.js/dist/theme/blood.css";
+
+import { Slide as SlideType } from "../data/slides-schema";
+
 
 /**
  * Props for the SlideContainer component
@@ -23,12 +39,15 @@ interface SlideContainerProps {
  */
 function SlideContent({ slide }: { slide: SlideType }) {
   return (
-    <>
+    <div className={cn(bricolageGrotesque.className)} >
       {slide.title && (
         <h2
           id={slide.titleId}
           data-id={slide.titleId}
-          className={slide.titleClassName}
+          className={cn(slide.titleClassName)}
+          style={{
+            fontFamily: bricolageGrotesque.style.fontFamily,
+          }}
         >
           {slide.title}
         </h2>
@@ -69,15 +88,6 @@ function SlideContent({ slide }: { slide: SlideType }) {
           className={slide.contentClassName}
         >
           {slide.content}
-        </p>
-      )}
-
-      {slide.footer && (
-        <p
-          className={`text-sm text-gray-400 ${slide.footerClassName || ''}`}
-          data-id={slide.footerId}
-        >
-          {slide.footer}
         </p>
       )}
 
@@ -138,7 +148,16 @@ function SlideContent({ slide }: { slide: SlideType }) {
           data-selector={fragment.selector}
         />
       ))}
-    </>
+
+      {slide.footer && (
+        <p
+          className={`text-sm text-gray-400 ${slide.footerClassName || ''}`}
+          data-id={slide.footerId}
+        >
+          {slide.footer}
+        </p>
+      )}
+    </div>
   );
 }
 

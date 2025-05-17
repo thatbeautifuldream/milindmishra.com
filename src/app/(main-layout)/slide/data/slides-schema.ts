@@ -1,5 +1,22 @@
 import { z } from "zod";
 
+export const slideThemes: Array<string> = [
+  "black",
+  "white",
+  "league",
+  "beige",
+  "night",
+  "serif",
+  "simple",
+  "solarized",
+  "moon",
+  "dracula",
+  "sky",
+  "blood",
+];
+
+export type SlideTheme = (typeof slideThemes)[number];
+
 /**
  * Slide Schema - Defines the structure of a slide in a Reveal.js presentation
  *
