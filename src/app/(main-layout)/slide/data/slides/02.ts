@@ -41,10 +41,10 @@ export const buildingRealtimeApplicationsWithReactiveDatabaseSlides: Slide[] = [
         notes: "Explain how Convex replaces/manage server & DB; clients use their favorite framework."
     },
     {
-        image: "/assets/slides/02/modern-arch.png",
+        image: "/assets/slides/02/architecture.png",
     },
     {
-        image: "/assets/slides/02/modern-arch-convex.png",
+        image: "/assets/slides/02/convex-architecture.png",
     },
     {
         title: "Convex = Database + Functions + Sync",
