@@ -1,12 +1,12 @@
 "use client"
 
-import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRightIcon, XIcon } from "lucide-react";
 import { motion } from "framer-motion";
+import { usePersistedState } from "@/hooks/use-persisted-state";
 
 export default function FloatingBanner() {
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = usePersistedState("floating-banner-visible", true);
     if (!visible) return null;
     return (
         <motion.div
@@ -32,7 +32,7 @@ export default function FloatingBanner() {
                     <svg viewBox="0 0 2 2" aria-hidden="true" className="mx-2 inline size-0.5 fill-current text-green-400">
                         <circle r={1} cx={1} cy={1} />
                     </svg>
-                    <Link href="/slide" className="group hover:underline font-semibold text-green-50">
+                    <Link href="/slide" onClick={() => setVisible(false)} className="group hover:underline font-semibold text-green-50">
                         See slides&nbsp;<span aria-hidden="true"><ArrowUpRightIcon className="size-4 inline-block transition-transform group-hover:-translate-y-0.5" /></span>
                     </Link>
                 </p>
