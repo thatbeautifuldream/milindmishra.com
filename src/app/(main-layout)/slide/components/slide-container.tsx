@@ -22,6 +22,7 @@ import "reveal.js/dist/theme/white.css";
 // import "reveal.js/dist/theme/blood.css";
 
 import { Slide as SlideType } from "../data/slides-schema";
+import { QRCode } from "@/components/qr-code";
 
 
 /**
@@ -79,6 +80,17 @@ function SlideContent({ slide }: { slide: SlideType }) {
             data-id={slide.iframeId}
             allowFullScreen
           />
+        </div>
+      )}
+
+      {slide.qrCodeLink && (
+        <div
+          className="flex justify-center items-center"
+          data-id={slide.qrCodeLink}
+        >
+          <div className="w-1/2 rounded-lg flex justify-center items-center">
+            <QRCode data={slide.qrCodeLink} />
+          </div>
         </div>
       )}
 

@@ -30,6 +30,8 @@ import React from 'react';
  * </Slide>
  */
 interface SlideProps {
+    /** QR code URL link */
+    qrCodeLink?: string;
     /** Content of the slide */
     children: React.ReactNode;
     /** Transition effect when navigating to this slide */

@@ -30,6 +30,8 @@ export type SlideTheme = (typeof slideThemes)[number];
  * the application.
  */
 export const slideSchema = z.object({
+  /** URL of a QR code to display */
+  qrCodeLink: z.string().optional(),
   /** Main slide title */
   title: z.string().optional(),
   /** Main content text */

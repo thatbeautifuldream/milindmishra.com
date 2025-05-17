@@ -265,6 +265,10 @@ export default function Home() {
         notes: "Show the complete real-time task app. Recap how queries and mutations work together for a live, collaborative UI.",
     },
     {
+        content: "accountabillibuddy.com",
+        qrCodeLink: "https://accountabillibuddy.com/",
+    },
+    {
         title: "Beyond CRUD: Convex Power Features",
         ul: [
             "Scheduled Functions (cron jobs, reminders)",
@@ -321,6 +325,10 @@ export default function Home() {
         ],
         footer: "Resources for self-paced exploration.",
         notes: "Resources for self-paced exploration."
+    },
+    {
+        content: "Get the slides",
+        qrCodeLink: "https://milindmishra.com/slide/building-realtime-applications-with-reactive-databases",
     },
     {
         title: "Q & A & Ideas!",
