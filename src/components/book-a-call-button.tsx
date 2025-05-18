@@ -3,9 +3,9 @@ import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { ArrowRightIcon } from "lucide-react";
 import { getCalApi } from "@calcom/embed-react";
-import { useEffect } from "react";
+import { useEffect, forwardRef } from "react";
 
-export default function BookACallButton() {
+const BookACallButton = forwardRef<HTMLButtonElement, React.ComponentPropsWithoutRef<typeof Button>>((props, ref) => {
   useEffect(() => {
     (async function () {
       const cal = await getCalApi({ namespace: "30min" });
@@ -22,8 +22,11 @@ export default function BookACallButton() {
       data-cal-config='{"layout":"month_view"}'
       className={cn(
         "group transition transform active:scale-95 bg-green-500 text-black hover:bg-green-600",
-        bricolageGrotesque.className
+        bricolageGrotesque.className,
+        props.className
       )}
+      ref={ref}
+      {...props}
     >
       Book a call
       <ArrowRightIcon
@@ -33,4 +36,8 @@ export default function BookACallButton() {
       />
     </Button>
   );
-}
+});
+
+BookACallButton.displayName = "BookACallButton";
+
+export default BookACallButton;
