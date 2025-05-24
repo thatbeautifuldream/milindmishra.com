@@ -4,10 +4,13 @@ import { streamText } from "ai";
 export const maxDuration = 30;
 
 async function fetchResumeJson() {
-  const response = await fetch(
-    "https://gist.githubusercontent.com/thatbeautifuldream/0d70e38808751c8b7b53167303bd7df5/raw/7eb1d0f64963a68d3cd1262b635776225ef5ba45/resume.json"
-  );
+  const response = await fetch("https://www.milindmishra.com/api/resume-json", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   const data = await response.json();
+  console.log("Fetched resume JSON:", data);
   return data;
 }
 
