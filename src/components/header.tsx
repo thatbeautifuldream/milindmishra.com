@@ -1,17 +1,18 @@
 "use client";
 
-import Link from "next/link";
-import { Sign } from "./sign";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { useRouter } from "nextjs-toploader/app";
-import { Badge } from "@/components/ui/badge";
 import { navigation } from "@/config/navigation";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { useRouter } from "nextjs-toploader/app";
+import { useEffect, useState } from "react";
+import { Sign } from "./sign";
 
 export function Header() {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [hovered, setHovered] = useState<number | null>(null);
 
+  // tracks scroll position to adjust header padding
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -21,6 +22,7 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // handles keyboard shortcuts for navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       const navItem = navigation.find((item) => item.shortcut === event.key);
@@ -32,17 +34,6 @@ export function Header() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [router]);
-
-  function ShortcutBadge({ children }: { children: React.ReactNode }) {
-    return (
-      <Badge
-        variant="shortcut"
-        className="hidden md:block ml-1 text-xs absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2"
-      >
-        {children}
-      </Badge>
-    );
-  }
 
   return (
     <motion.header
@@ -66,20 +57,25 @@ export function Header() {
             </motion.div>
           </Link>
 
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+          <div className="flex items-center">
             {navigation
               .slice(1)
               .filter((item) => item.visible !== false)
-              .map((item) => (
+              .map((item, idx) => (
                 <Link
-                  key={item.href}
                   href={item.href}
-                  className="hover:text-green-300 transition-colors relative"
+                  className="transition-colors relative px-2 py-1 text-sm hover:text-green-300"
+                  onMouseEnter={() => setHovered(idx)}
+                  onMouseLeave={() => setHovered(null)}
+                  key={idx}
                 >
-                  {item.label}
-                  {item.shortcut && (
-                    <ShortcutBadge>{item.shortcut}</ShortcutBadge>
+                  {hovered === idx && (
+                    <motion.span
+                      layoutId="hovered-span"
+                      className="absolute inset-0 h-full w-full bg-green-500/20"
+                    />
                   )}
+                  <span className="relative z-10">{item.label}</span>
                 </Link>
               ))}
           </div>
