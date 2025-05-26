@@ -12,24 +12,29 @@ export const navigation: NavItem[] = [
     shortcut: "1",
   },
   {
+    href: "/mock-interview",
+    label: "Mock Interviews",
+    shortcut: "2",
+  },
+  {
     href: "/blog",
     label: "Blog",
-    shortcut: "2",
+    shortcut: "3",
   },
   {
     href: "/gist",
     label: "Gists",
-    shortcut: "3",
+    shortcut: "4",
   },
   {
     href: "/slide",
     label: "Slide",
-    shortcut: "4",
+    shortcut: "5",
   },
   {
     href: "/links",
     label: "Links",
-    shortcut: "5",
+    shortcut: "6",
     visible: false,
   },
 ];
