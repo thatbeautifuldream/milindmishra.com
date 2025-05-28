@@ -20,4 +20,11 @@ export const mockInterviews: TMockInterview[] = [
       "A mock interview session with Linkedin's AI Role Play Bot, focusing on React Fundamentals and Best Component Design Practices.",
     videoId: "kijhf9bWy5w",
   },
+  {
+    id: 3,
+    title: "React Developer Mock Interview - 3",
+    description:
+      "A mock interview session with Linkedin's AI Role Play Bot, focusing on React Component design and search and filter list implementation.",
+    videoId: "QizAc177RDU",
+  },
 ];
