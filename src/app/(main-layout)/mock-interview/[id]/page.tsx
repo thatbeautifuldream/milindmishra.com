@@ -3,6 +3,7 @@ import { mockInterviews } from "../interview";
 import { notFound } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { bricolageGrotesque } from "@/lib/fonts";
+import Markdown from "react-markdown";
 
 export default async function MockInterviewPage({
   params,
@@ -19,9 +20,14 @@ export default async function MockInterviewPage({
     return notFound();
   }
 
+  const markdown = `## Mock Interview Details
+### Title: ${mockInterview.title}
+### Description: ${mockInterview.description}
+`;
+
   return (
     <>
-      <div className="space-y-3 mb-8">
+      <div className="space-y-4">
         <h1
           className={cn(
             "text-3xl font-bold text-white",
@@ -31,13 +37,12 @@ export default async function MockInterviewPage({
           {mockInterview.title}
         </h1>
         <p className="text-md text-gray-300">{mockInterview.description}</p>
-      </div>
-      <div className="">
         <YouTubeEmbed
           videoid={mockInterview.videoId}
           height={400}
           params="controls=1"
         />
+        <Markdown className="prose prose-invert max-w-6xl">{markdown}</Markdown>
       </div>
     </>
   );
