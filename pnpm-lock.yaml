@@ -125,6 +125,9 @@ importers:
       react-dom:
         specifier: 19.0.0-rc-02c0e824-20241028
         version: 19.0.0-rc-02c0e824-20241028(react@19.0.0-rc-02c0e824-20241028)
+      react-github-calendar:
+        specifier: ^4.5.7
+        version: 4.5.7(react@19.0.0-rc-02c0e824-20241028)
       react-markdown:
         specifier: ^9.0.3
         version: 9.0.3(@types/react@18.3.12)(react@19.0.0-rc-02c0e824-20241028)
@@ -1966,6 +1969,9 @@ packages:
     resolution: {integrity: sha512-t/Ygsytq+R995EJ5PZlD4Cu56sWa8InXySaViRzw9apusqsOO2bQP+SbYzAhR0pFKoB+43lYy8rWban9JSuXnA==}
     engines: {node: '>= 0.4'}
 
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
+
   dayjs@1.11.13:
     resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
 
@@ -3607,6 +3613,11 @@ packages:
     resolution: {integrity: sha512-WmJJU2e9Y6M5UzTOkHaM7xJGAPQD8PNzx3bAd2+uhZAim6wDk6dAZxPVYLF67XhbR4hmKGh33Lpmh4XWrCH5Mg==}
     engines: {node: '>= 0.8.0'}
 
+  react-activity-calendar@2.7.12:
+    resolution: {integrity: sha512-OzVconQ5LA/uF2ZN3zDeWZb4UxjOmGr1ymaGCSEAMLSzwjzP7ojdyZs8DyV7jcV+rZ+lmwp6BTpBJqdW8ehXyw==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+
   react-colorful@5.6.1:
     resolution: {integrity: sha512-1exovf0uGTGyq5mXQT0zgQ80uvj2PCwvF8zY1RN9/vbJVSjSo3fsB/4L3ObbF7u70NduSiK4xu4Y6q1MHoUGEw==}
     peerDependencies:
@@ -3628,6 +3639,16 @@ packages:
     engines: {node: '>= 10.13'}
     peerDependencies:
       react: '>= 16.8'
+
+  react-error-boundary@6.0.0:
+    resolution: {integrity: sha512-gdlJjD7NWr0IfkPlaREN2d9uUZUlksrfOx7SX62VRerwXbMY6ftGCIZua1VG1aXFNOimhISsTq+Owp725b9SiA==}
+    peerDependencies:
+      react: '>=16.13.1'
+
+  react-github-calendar@4.5.7:
+    resolution: {integrity: sha512-R1VBhSMM6NTeKkpvlHaAnIue1XPHhGHx6RpnyIfT7p1lq9PpNsIgwYGZ5I8FhX+J/F4ps+DAPMr+qdYj7lzQWQ==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -6577,6 +6598,8 @@ snapshots:
       es-errors: 1.3.0
       is-data-view: 1.0.1
 
+  date-fns@4.1.0: {}
+
   dayjs@1.11.13: {}
 
   debug@2.2.0:
@@ -8551,6 +8574,11 @@ snapshots:
       bytes: 1.0.0
       string_decoder: 0.10.31
 
+  react-activity-calendar@2.7.12(react@19.0.0-rc-02c0e824-20241028):
+    dependencies:
+      date-fns: 4.1.0
+      react: 19.0.0-rc-02c0e824-20241028
+
   react-colorful@5.6.1(react-dom@19.0.0-rc-02c0e824-20241028(react@19.0.0-rc-02c0e824-20241028))(react@19.0.0-rc-02c0e824-20241028):
     dependencies:
       react: 19.0.0-rc-02c0e824-20241028
@@ -8575,6 +8603,17 @@ snapshots:
       file-selector: 0.5.0
       prop-types: 15.8.1
       react: 19.0.0-rc-02c0e824-20241028
+
+  react-error-boundary@6.0.0(react@19.0.0-rc-02c0e824-20241028):
+    dependencies:
+      '@babel/runtime': 7.26.7
+      react: 19.0.0-rc-02c0e824-20241028
+
+  react-github-calendar@4.5.7(react@19.0.0-rc-02c0e824-20241028):
+    dependencies:
+      react: 19.0.0-rc-02c0e824-20241028
+      react-activity-calendar: 2.7.12(react@19.0.0-rc-02c0e824-20241028)
+      react-error-boundary: 6.0.0(react@19.0.0-rc-02c0e824-20241028)
 
   react-is@16.13.1: {}
 
