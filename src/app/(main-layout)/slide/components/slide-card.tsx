@@ -26,7 +26,7 @@ export default function SlideCard({ slug, title, content, slideCount, index }: T
             }}
             className="border border-green-700 p-6 hover:border-green-500 hover:bg-green-900/20 transition-colors h-full backdrop-blur-sm"
         >
-            <Link href={`/slide/${slug}`} className="block h-full">
+            <Link href={`/slide/${slug}`} target="_blank" className="block h-full">
                 <article className="flex flex-col h-full">
                     <h2
                         className={cn(
