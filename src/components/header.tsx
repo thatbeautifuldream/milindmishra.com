@@ -6,9 +6,11 @@ import Link from "next/link";
 import { useRouter } from "nextjs-toploader/app";
 import { useEffect, useState } from "react";
 import { Sign } from "./sign";
+import { usePathname } from "next/navigation";
 
 export function Header() {
   const router = useRouter();
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [hovered, setHovered] = useState<number | null>(null);
 
@@ -61,23 +63,26 @@ export function Header() {
             {navigation
               .slice(1)
               .filter((item) => item.visible !== false)
-              .map((item, idx) => (
-                <Link
-                  href={item.href}
-                  className="transition-colors relative px-2 py-1 text-sm hover:text-green-300"
-                  onMouseEnter={() => setHovered(idx)}
-                  onMouseLeave={() => setHovered(null)}
-                  key={idx}
-                >
-                  {hovered === idx && (
-                    <motion.span
-                      layoutId="hovered-span"
-                      className="absolute inset-0 h-full w-full bg-green-500/20"
-                    />
-                  )}
-                  <span className="relative z-10">{item.label}</span>
-                </Link>
-              ))}
+              .map((item, idx) => {
+                const isActive = pathname === item.href || (pathname?.startsWith(item.href) && item.href !== "/");
+                return (
+                  <Link
+                    href={item.href}
+                    className={`transition-colors relative px-2 py-1 text-sm hover:text-green-300 ${isActive ? "text-green-400 border border-green-400 border-dashed" : ""}`}
+                    onMouseEnter={() => setHovered(idx)}
+                    onMouseLeave={() => setHovered(null)}
+                    key={idx}
+                  >
+                    {hovered === idx && (
+                      <motion.span
+                        layoutId="hovered-span"
+                        className="absolute inset-0 h-full w-full bg-green-500/20"
+                      />
+                    )}
+                    <span className="relative z-10">{item.label}</span>
+                  </Link>
+                );
+              })}
           </div>
         </nav>
       </div>
