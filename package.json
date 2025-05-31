@@ -17,6 +17,8 @@
     "@assistant-ui/react-markdown": "^0.8.0",
     "@calcom/embed-react": "^1.5.2",
     "@gsap/react": "^2.1.2",
+    "@headless-tree/core": "^1.0.1",
+    "@headless-tree/react": "^1.0.1",
     "@next/third-parties": "15.4.0-canary.51",
     "@octokit/rest": "^21.1.0",
     "@radix-ui/react-avatar": "^1.1.2",
