@@ -68,20 +68,6 @@ const projects: Project[] = [
     ],
   },
   {
-    title: "Sideprojects Directory",
-    description: "A directory of sideprojects",
-    moreDetails:
-      "A curated space for developers to share and discover amazing side projects.",
-    link: "https://sideprojects.directory/",
-    repo: "https://github.com/thatbeautifuldream/sideprojects.directory",
-    tech: [
-      "Next.js",
-      "Octokit.js",
-      "Shadcn",
-      "Typescript",
-    ],
-  },
-  {
     title: "Accountabillibuddy [WIP]",
     description: "Share Your Accountability Goals with fellow buddies.",
     moreDetails:
