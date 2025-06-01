@@ -45,12 +45,54 @@ const projects: Project[] = [
     link: "https://json.milind.live/",
     repo: "https://github.com/thatbeautifuldream/json-visualiser",
     tech: [
-      "React",
       "Next.js",
       "Tailwind",
       "Shadcn",
       "Zustand",
       "Zod",
+      "Typescript",
+    ],
+  },
+  {
+    title: "Sideprojects Directory",
+    description: "A directory of sideprojects",
+    moreDetails:
+      "A directory of sideprojects. It is built using React, Next.js, Tailwind and Shadcn.",
+    link: "https://sideprojects.directory/",
+    repo: "https://github.com/thatbeautifuldream/sideprojects.directory",
+    tech: [
+      "Next.js",
+      "Octokit.js",
+      "Shadcn",
+      "Typescript",
+    ],
+  },
+  {
+    title: "Sideprojects Directory",
+    description: "A directory of sideprojects",
+    moreDetails:
+      "A curated space for developers to share and discover amazing side projects.",
+    link: "https://sideprojects.directory/",
+    repo: "https://github.com/thatbeautifuldream/sideprojects.directory",
+    tech: [
+      "Next.js",
+      "Octokit.js",
+      "Shadcn",
+      "Typescript",
+    ],
+  },
+  {
+    title: "Accountabillibuddy [WIP]",
+    description: "Share Your Accountability Goals with fellow buddies.",
+    moreDetails:
+      "Post what you want to be accountable for and inspire others to join you on your journey.",
+    link: "https://www.accountabillibuddy.com/",
+    repo: "https://github.com/thatbeautifuldream/accountabillibuddy",
+    tech: [
+      "Next.js",
+      "Convex",
+      "WebSocket",
+      "Zustand",
       "Typescript",
     ],
   },
