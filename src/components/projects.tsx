@@ -81,35 +81,37 @@ export function Projects() {
               )}
             </div>
 
-            <div className="mb-4">
-              <h3
-                className={cn(
-                  "~text-xl/2xl mb-2 text-green-50",
-                  bricolageGrotesque.className
-                )}
-              >
-                {project.title}
-              </h3>
-              <p className="text-green-300 ~text-sm/base">
-                {project.description}
-              </p>
-            </div>
-
-            <div className="overflow-hidden">
-              <p className="text-green-200 ~text-sm/base leading-relaxed">
-                {project.moreDetails}
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-2 mb-4">
-              {project.tech.map((tech, index) => (
-                <span
-                  key={tech + index}
-                  className="text-sm px-2 py-1 bg-green-400/10 text-green-300"
+            <div className="space-y-4">
+              <div>
+                <h3
+                  className={cn(
+                    "~text-xl/2xl mb-2 text-green-50",
+                    bricolageGrotesque.className
+                  )}
                 >
-                  {tech}
-                </span>
-              ))}
+                  {project.title}
+                </h3>
+                <p className="text-green-300 ~text-sm/base">
+                  {project.description}
+                </p>
+              </div>
+
+              <div className="overflow-hidden">
+                <p className="text-green-200 ~text-sm/base leading-relaxed">
+                  {project.moreDetails}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((tech, index) => (
+                  <span
+                    key={tech + index}
+                    className="text-sm px-2 py-1 bg-green-400/10 text-green-300"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         ))}
