@@ -55,7 +55,7 @@ export function Header() {
               animate={{ scale: isScrolled ? 0.8 : 1 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
             >
-              <Sign color="#49DE80" className="w-12 h-12" />
+              <Sign color="#49DE80" className="size-12" />
             </motion.div>
           </Link>
 
