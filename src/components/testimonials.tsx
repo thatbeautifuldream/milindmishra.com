@@ -16,8 +16,8 @@ export function Testimonials({ testimonials, className }: TTestimonialsProps) {
     (testimonial) => testimonial.show
   );
   return (
-    <section className={cn("mt-22", className)}>
-      <h2 className="sr-only">Testimonials</h2>
+    <section className={cn("~mt-22/32 ~mb-22/32", className)}>
+      <h2 className={cn("~text-xl/2xl font-bold", bricolageGrotesque.className)}>Testimonials</h2>
       <div className="grid grid-cols-1 grid-rows-[auto_1fr] gap-x-10 max-lg:gap-y-10 lg:grid-cols-2 lg:gap-y-5">
         {filteredTestimonials.map((testimonial, index) => (
           <figure
