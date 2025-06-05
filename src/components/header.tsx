@@ -13,6 +13,15 @@ export function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [hovered, setHovered] = useState<number | null>(null);
+  const [clickCount, setClickCount] = useState<number>(0);
+
+  // Handle navigation when click count reaches threshold
+  useEffect(() => {
+    if (clickCount >= 5) {
+      router.push('/sign');
+      setClickCount(0);
+    }
+  }, [clickCount, router]);
 
   // tracks scroll position to adjust header padding
   useEffect(() => {
@@ -49,7 +58,14 @@ export function Header() {
     >
       <div className="max-w-6xl mx-auto px-4">
         <nav className="flex flex-wrap items-center justify-between">
-          <Link href="/" className="text-xl font-bold">
+          <Link
+            href="/"
+            className="text-xl font-bold"
+            onClick={(e) => {
+              e.preventDefault();
+              setClickCount(prev => prev + 1);
+            }}
+          >
             <motion.div
               initial={{ scale: 1 }}
               animate={{ scale: isScrolled ? 0.8 : 1 }}
