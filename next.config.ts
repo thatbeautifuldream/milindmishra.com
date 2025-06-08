@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
         source: "/resume",
         destination: "https://resume.milind.app",
       },
+      {
+        source: "/resume.pdf",
+        destination: "https://resume.milind.app?print=true",
+      },
+      {
+        source: "/resume.json",
+        destination: "https://raw.githubusercontent.com/thatbeautifuldream/json-resume/main/resume.json",
+      },
     ];
   },
   async redirects() {
