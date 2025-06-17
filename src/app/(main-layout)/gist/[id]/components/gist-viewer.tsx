@@ -9,6 +9,7 @@ import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import Link from "next/link";
 
 interface GistViewerProps {
   gist: RestEndpointMethodTypes["gists"]["get"]["response"]["data"];
@@ -31,14 +32,16 @@ export default function GistViewer({ gist }: GistViewerProps) {
         transition={{ duration: 0.4 }}
       >
         <div className="px-4 sm:px-6 lg:px-8">
-          <h1
+          <Link
+            target="_blank"
+            href={`https://gist.github.com/thatbeautifuldream/${gist.id}`}
             className={cn(
-              "text-2xl sm:text-3xl font-bold mb-4 text-green-50",
+              "text-2xl sm:text-3xl font-bold mb-4 text-green-50 cursor-pointer",
               bricolageGrotesque.className
             )}
           >
             {gist.description || "Untitled Gist"}
-          </h1>
+          </Link>
 
           <div className="mb-6 flex flex-wrap gap-2">
             {Object.entries(gist.files || {}).map(([filename, file]) => (
