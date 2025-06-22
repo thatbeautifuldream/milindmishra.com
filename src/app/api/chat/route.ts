@@ -1,3 +1,4 @@
+import { env } from "@/env";
 import { createOpenAI } from "@ai-sdk/openai";
 import { streamText } from "ai";
 
@@ -12,7 +13,7 @@ async function fetchResumeJson() {
 }
 
 const groq = createOpenAI({
-  apiKey: process.env.GROQ_API_KEY ?? "",
+  apiKey: env.GROQ_API_KEY,
   baseURL: "https://api.groq.com/openai/v1",
 });
 
