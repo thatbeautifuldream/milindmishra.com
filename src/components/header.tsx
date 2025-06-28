@@ -14,14 +14,26 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [hovered, setHovered] = useState<number | null>(null);
   const [clickCount, setClickCount] = useState<number>(0);
+  const [lastClickTime, setLastClickTime] = useState<number>(0);
 
-  // Handle navigation when click count reaches threshold
+  // Handle navigation when click count reaches threshold within time window
   useEffect(() => {
     if (clickCount >= 5) {
       router.push('/sign');
       setClickCount(0);
     }
   }, [clickCount, router]);
+
+  // Reset click count after timeout
+  useEffect(() => {
+    if (clickCount > 0) {
+      const timeout = setTimeout(() => {
+        setClickCount(0);
+      }, 2000); // Reset after 2 seconds of inactivity
+
+      return () => clearTimeout(timeout);
+    }
+  }, [clickCount, lastClickTime]);
 
   // tracks scroll position to adjust header padding
   useEffect(() => {
@@ -62,8 +74,26 @@ export function Header() {
             href="/"
             className="text-xl font-bold"
             onClick={(e) => {
-              e.preventDefault();
-              setClickCount(prev => prev + 1);
+              const now = Date.now();
+              const timeSinceLastClick = now - lastClickTime;
+
+              // If clicks are rapid (within 1 second), count them for easter egg
+              if (timeSinceLastClick < 1000) {
+                setClickCount(prev => prev + 1);
+                setLastClickTime(now);
+
+                // If we're about to trigger the easter egg, prevent navigation
+                if (clickCount >= 4) {
+                  e.preventDefault();
+                  return;
+                }
+              } else {
+                // Reset count for non-rapid clicks
+                setClickCount(1);
+                setLastClickTime(now);
+              }
+
+              // Allow normal navigation to "/" for regular clicks
             }}
           >
             <motion.div
