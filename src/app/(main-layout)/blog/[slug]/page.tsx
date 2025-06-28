@@ -3,13 +3,57 @@ import { fetchPostDetails } from "@/services/blog/blog.service";
 import { notFound } from "next/navigation";
 import { BlogHeader } from "./components/blog-header";
 import { Suspense } from "react";
+import type { Metadata } from "next";
+import { cache } from "react";
 
-export default async function BlogPost({
-  params,
-}: {
+type TProps = {
   params: Promise<{ slug: string }>;
-}) {
-  const post = await fetchPostDetails((await params).slug);
+};
+
+// Create a cached version of fetchPostDetails to avoid duplicate fetches
+const getCachedPostDetails = cache(async (slug: string) => {
+  return await fetchPostDetails(slug);
+});
+
+export async function generateMetadata({ params }: TProps): Promise<Metadata> {
+  const post = await getCachedPostDetails((await params).slug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found",
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.subtitle || `Read "${post.title}" by ${post.author.name}`,
+    authors: [{ name: post.author.name }],
+    openGraph: {
+      title: post.title,
+      description: post.subtitle || `Read "${post.title}" by ${post.author.name}`,
+      type: "article",
+      publishedTime: post.publishedAt,
+      authors: [post.author.name],
+      images: post.coverImage
+        ? [
+          {
+            url: post.coverImage.url,
+            alt: post.title,
+          },
+        ]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.subtitle || `Read "${post.title}" by ${post.author.name}`,
+      images: post.coverImage ? [post.coverImage.url] : undefined,
+    },
+  };
+}
+
+export default async function BlogPost({ params }: TProps) {
+  const post = await getCachedPostDetails((await params).slug);
 
   if (!post) {
     notFound();
