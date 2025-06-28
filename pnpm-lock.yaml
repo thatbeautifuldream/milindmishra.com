@@ -95,6 +95,9 @@ importers:
       framer-motion:
         specifier: ^11.11.11
         version: 11.11.11(react-dom@19.0.0-rc-02c0e824-20241028(react@19.0.0-rc-02c0e824-20241028))(react@19.0.0-rc-02c0e824-20241028)
+      fuse.js:
+        specifier: ^7.1.0
+        version: 7.1.0
       graphql-request:
         specifier: ^7.1.2
         version: 7.1.2(graphql@16.9.0)
@@ -2510,6 +2513,10 @@ packages:
 
   functions-have-names@1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
+
+  fuse.js@7.1.0:
+    resolution: {integrity: sha512-trLf4SzuuUxfusZADLINj+dE8clK1frKdmqiJNb1Es75fmI5oY6X2mxLVUciLLjxqw/xr72Dhy+lER6dGd02FQ==}
+    engines: {node: '>=10'}
 
   generic-pool@2.4.2:
     resolution: {integrity: sha512-c2W/8V0451pHnt+a7tVTrNROpsfaIX4P6OrET4e/Uj3ZpK+8e95U6Ck7y5dubhn4QVWBBA8WkcZPTWtNaQGyOw==}
@@ -7287,6 +7294,8 @@ snapshots:
       functions-have-names: 1.2.3
 
   functions-have-names@1.2.3: {}
+
+  fuse.js@7.1.0: {}
 
   generic-pool@2.4.2: {}
 
