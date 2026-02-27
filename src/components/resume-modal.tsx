@@ -1,6 +1,6 @@
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { ChatResumeButton } from "./chat-resume-button";
 
 interface ResumeModalProps {

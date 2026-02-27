@@ -9,7 +9,7 @@ export class GitHubService {
   }
 
   /**
-   * Fetches gists for a specific user
+   * Fetches gists for a specific user with caching
    * @param username GitHub username
    * @returns Promise<RestEndpointMethodTypes["gists"]["listForUser"]["response"]["data"]>
    * @throws {Error} If the API request fails
@@ -23,18 +23,22 @@ export class GitHubService {
       const response = await this.octokit.rest.gists.listForUser({
         username,
         per_page: this.DEFAULT_PER_PAGE,
+        request: { 
+          cache: "force-cache",
+        },
       });
 
       return response.data;
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : "Unknown error occurred";
+      console.error(`Failed to fetch gists: ${errorMessage}`);
       throw new Error(`Failed to fetch gists: ${errorMessage}`);
     }
   }
 
   /**
-   * Fetches content of a specific gist
+   * Fetches content of a specific gist with caching
    * @param gistId ID of the gist to fetch
    * @returns Promise<RestEndpointMethodTypes["gists"]["get"]["response"]["data"]>
    */
@@ -46,6 +50,9 @@ export class GitHubService {
     try {
       const response = await this.octokit.rest.gists.get({
         gist_id: gistId,
+        request: {
+          cache: "force-cache",
+        },
       });
 
       return response.data;

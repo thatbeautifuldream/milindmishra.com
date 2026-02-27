@@ -4,7 +4,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TYouTubeVideosResponse } from "../data/videos";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { PlayIcon } from "lucide-react";

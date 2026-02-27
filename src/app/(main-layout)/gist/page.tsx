@@ -5,6 +5,15 @@ import { notFound } from "next/navigation";
 import Gists from "./components/gists";
 import RevalidateButton from "@/components/revalidate-button";
 
+export const revalidate = 1800;
+
+export async function generateStaticParams() {
+  const gists = await githubService.getGists("thatbeautifuldream");
+  return gists.slice(0, 20).map((gist) => ({
+    id: gist.id,
+  }));
+}
+
 export default async function Page() {
   const gists = await githubService.getGists("thatbeautifuldream");
 

@@ -3,7 +3,7 @@
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { RestEndpointMethodTypes } from "@octokit/rest";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";

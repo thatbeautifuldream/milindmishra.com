@@ -1,16 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Tilt from "react-parallax-tilt";
 import { Github, Twitter, Mail } from "lucide-react";
-import { useState } from "react";
+import { useState, memo } from "react";
 import { contact, skills } from "@/data/resume";
 import { ResumeModal } from "./resume-modal";
 import { cn } from "@/lib/utils";
 import { bricolageGrotesque } from "@/lib/fonts";
 
-export function ProfileCard() {
+const ProfileCardInner = memo(function ProfileCardInner() {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -176,4 +176,8 @@ export function ProfileCard() {
       <ResumeModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
+});
+
+export function ProfileCard() {
+  return <ProfileCardInner />;
 }

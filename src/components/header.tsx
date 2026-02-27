@@ -1,10 +1,10 @@
 "use client";
 
 import { navigation } from "@/config/navigation";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "nextjs-toploader/app";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Sign } from "./sign";
 import { usePathname } from "next/navigation";
 
@@ -16,36 +16,60 @@ export function Header() {
   const [clickCount, setClickCount] = useState<number>(0);
   const [lastClickTime, setLastClickTime] = useState<number>(0);
 
-  // Handle navigation when click count reaches threshold within time window
-  useEffect(() => {
-    if (clickCount >= 5) {
-      router.push('/sign');
-      setClickCount(0);
-    }
-  }, [clickCount, router]);
+  const incrementClickCount = useCallback(() => {
+    const now = Date.now();
+    const timeSinceLastClick = now - lastClickTime;
 
-  // Reset click count after timeout
+    if (timeSinceLastClick < 1000) {
+      setClickCount(prev => prev + 1);
+      setLastClickTime(now);
+      if (clickCount >= 4) {
+        setClickCount(0);
+        router.push('/sign');
+      }
+    } else {
+      setClickCount(1);
+      setLastClickTime(now);
+    }
+  }, [lastClickTime, clickCount, router]);
+
   useEffect(() => {
     if (clickCount > 0) {
       const timeout = setTimeout(() => {
         setClickCount(0);
-      }, 2000); // Reset after 2 seconds of inactivity
+      }, 2000);
 
       return () => clearTimeout(timeout);
     }
-  }, [clickCount, lastClickTime]);
+  }, [clickCount]);
 
-  // tracks scroll position to adjust header padding
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          setIsScrolled(!entry.isIntersecting);
+        });
+      },
+      { threshold: 0 }
+    );
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const sentinel = document.createElement('div');
+    sentinel.style.position = 'absolute';
+    sentinel.style.top = '50px';
+    sentinel.style.left = '0';
+    sentinel.style.width = '1px';
+    sentinel.style.height = '1px';
+    document.body.prepend(sentinel);
+    observer.observe(sentinel);
+
+    return () => {
+      observer.disconnect();
+      if (sentinel.parentNode) {
+        sentinel.parentNode.removeChild(sentinel);
+      }
+    };
   }, []);
 
-  // handles keyboard shortcuts for navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       const navItem = navigation.find((item) => item.shortcut === event.key);
@@ -77,23 +101,16 @@ export function Header() {
               const now = Date.now();
               const timeSinceLastClick = now - lastClickTime;
 
-              // If clicks are rapid (within 1 second), count them for easter egg
               if (timeSinceLastClick < 1000) {
-                setClickCount(prev => prev + 1);
-                setLastClickTime(now);
-
-                // If we're about to trigger the easter egg, prevent navigation
+                incrementClickCount();
                 if (clickCount >= 4) {
                   e.preventDefault();
                   return;
                 }
               } else {
-                // Reset count for non-rapid clicks
                 setClickCount(1);
                 setLastClickTime(now);
               }
-
-              // Allow normal navigation to "/" for regular clicks
             }}
           >
             <motion.div
@@ -113,11 +130,11 @@ export function Header() {
                 const isActive = pathname === item.href || (pathname?.startsWith(item.href) && item.href !== "/");
                 return (
                   <Link
+                    key={item.href}
                     href={item.href}
                     className={`transition-colors relative px-2 py-1 text-sm hover:text-green-300 ${isActive ? "text-green-400 border border-green-400 border-dashed" : ""}`}
                     onMouseEnter={() => setHovered(idx)}
                     onMouseLeave={() => setHovered(null)}
-                    key={idx}
                   >
                     {hovered === idx && (
                       <motion.span

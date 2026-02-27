@@ -10,7 +10,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { ExperienceCard } from "./experience-card";
 import Fuse from "fuse.js";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Search, X } from "lucide-react";
 
 export function Experience() {

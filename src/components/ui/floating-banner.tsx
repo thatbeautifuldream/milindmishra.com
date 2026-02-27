@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowUpRightIcon, XIcon } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { usePersistedState } from "@/hooks/use-persisted-state";
 
 export default function FloatingBanner() {

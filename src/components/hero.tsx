@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { details } from "@/data/resume";
 import { bricolageGrotesque } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
@@ -7,8 +8,14 @@ import { LayoutGroup, motion } from "motion/react";
 import BookACallButton from "./book-a-call-button";
 import { ChatResumeButton } from "./chat-resume-button";
 import Icons from "./icons";
-import { ProfileCard } from "./profile-card";
 import TextRotate from "./text-rotate";
+
+const ProfileCard = dynamic(() => import("./profile-card").then(mod => ({ default: mod.ProfileCard })), {
+  loading: () => (
+    <div className="w-full max-w-sm mx-auto h-80 bg-black/50 backdrop-blur-lg border border-green-400/20 animate-pulse" />
+  ),
+  ssr: false
+});
 
 export function Hero() {
   const gradient =

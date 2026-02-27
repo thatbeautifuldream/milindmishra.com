@@ -1,6 +1,5 @@
 import React from 'react'
-import { AnimationPageClient } from './page-client'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
     title: "Animations | Milind Mishra",
@@ -9,6 +8,8 @@ export const metadata: Metadata = {
 
 export default function AnimationPage() {
     return (
-        <AnimationPageClient />
+        <div className="min-h-screen flex items-center justify-center">
+            <p className="text-white text-xl">Animations are being updated. Check back later!</p>
+        </div>
     )
 }

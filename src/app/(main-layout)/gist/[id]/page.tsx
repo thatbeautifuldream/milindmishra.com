@@ -2,6 +2,8 @@ import githubService from "@/services/github/github.service";
 import { notFound } from "next/navigation";
 import GistViewer from "./components/gist-viewer";
 
+export const revalidate = 1800;
+
 export default async function GistPage({
   params,
 }: {

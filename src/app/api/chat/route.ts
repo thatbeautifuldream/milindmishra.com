@@ -1,29 +1,49 @@
 import { env } from "@/env";
 import { createOpenAI } from "@ai-sdk/openai";
 import { streamText } from "ai";
+import { unstable_cache } from "next/cache";
 
 export const maxDuration = 30;
 
-async function fetchResumeJson() {
-  const response = await fetch(
-    "https://gist.githubusercontent.com/thatbeautifuldream/0d70e38808751c8b7b53167303bd7df5/raw/resume.json"
-  );
-  const data = await response.json();
-  return data;
-}
+const FALLBACK_RESUME = {
+  name: "Milind Mishra",
+  title: "Software Engineer",
+  skills: ["TypeScript", "React", "Next.js", "Node.js"],
+  experience: [
+    {
+      company: "Company",
+      role: "Software Engineer",
+      duration: "2020 - Present"
+    }
+  ]
+};
+
+const fetchResumeJson = unstable_cache(
+  async () => {
+    try {
+      const response = await fetch(
+        process.env.RESUME_GIST_URL || "https://gist.githubusercontent.com/thatbeautifuldream/0d70e38808751c8b7b53167303bd7df5/raw/resume.json",
+        { next: { revalidate: 3600, tags: ['resume'] } }
+      );
+      if (!response.ok) {
+        throw new Error(`Failed to fetch resume: ${response.status}`);
+      }
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching resume, using fallback:", error);
+      return FALLBACK_RESUME;
+    }
+  },
+  ['resume-data'],
+  { revalidate: 3600 }
+);
 
 const groq = createOpenAI({
   apiKey: env.GROQ_API_KEY,
   baseURL: "https://api.groq.com/openai/v1",
 });
 
-const RESUME_JSON = await fetchResumeJson();
-
-const SYSTEM_PROMPT = {
-  role: "system",
-  content: `You are Milind Mishra's personal AI assistant, designed to help people learn about his professional background and expertise. Here's what you should know:
-
-${JSON.stringify(RESUME_JSON)}
+const SYSTEM_PROMPT_BASE = `You are Milind Mishra's personal AI assistant, designed to help people learn about his professional background and expertise.
 
 Your primary goals are to:
 1. Help potential employers understand Milind's skills and experience
@@ -35,22 +55,37 @@ Your primary goals are to:
 Be professional, knowledgeable, and helpful while maintaining a conversational tone. If asked about specific technical details you're not certain about, be honest and suggest reaching out to Milind directly for clarification.
 
 Be consise and answer as short as possible.
-`,
-};
+`;
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  try {
+    const { messages } = await req.json();
 
-  const augmentedMessages =
-    messages.length === 1 ? [SYSTEM_PROMPT, ...messages] : messages;
+    const resumeData = await fetchResumeJson();
 
-  console.log(augmentedMessages);
+    const SYSTEM_PROMPT = {
+      role: "system",
+      content: `${SYSTEM_PROMPT_BASE}
 
-  const result = streamText({
-    model: groq("llama3-70b-8192"),
-    messages: augmentedMessages,
-    maxTokens: 500,
-  });
+Here's what you should know about Milind:
+${JSON.stringify(resumeData)}`,
+    };
 
-  return result.toDataStreamResponse();
+    const augmentedMessages =
+      messages.length === 1 ? [SYSTEM_PROMPT, ...messages] : messages;
+
+    const result = streamText({
+      model: groq("llama3-70b-8192"),
+      messages: augmentedMessages,
+      maxTokens: 500,
+    });
+
+    return result.toDataStreamResponse();
+  } catch (error) {
+    console.error("Chat API error:", error);
+    return new Response(
+      JSON.stringify({ error: "Failed to process chat request" }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    );
+  }
 }

@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 import { projects } from "@/data/resume";
 import { bricolageGrotesque } from "@/lib/fonts";

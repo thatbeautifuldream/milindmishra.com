@@ -5,6 +5,15 @@ import { cn } from "@/lib/utils";
 import { bricolageGrotesque } from "@/lib/fonts";
 import RevalidateButton from "@/components/revalidate-button";
 
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const posts = await fetchAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
 export default async function BlogPage() {
   const posts = await fetchAllPosts();
   if (!posts) {

@@ -1,10 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
-import { fetchPostDetails } from "@/services/blog/blog.service";
+import { fetchPostDetails, fetchAllPosts } from "@/services/blog/blog.service";
 import { notFound } from "next/navigation";
 import { BlogHeader } from "./components/blog-header";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { cache } from "react";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const posts = await fetchAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 type TProps = {
   params: Promise<{ slug: string }>;
